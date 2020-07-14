@@ -13,7 +13,6 @@
 	require 'config/paths.php';
 	require 'config/database.php';
 
-	$_POST['hello']='hi';
 	$app = new Bootstrap();
 
  ?>

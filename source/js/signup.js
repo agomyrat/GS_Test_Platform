@@ -1,6 +1,5 @@
 		var formData = [];
-        alert('signup js is ok');
-        
+
 		$("#name_form").submit(function(e){
 			e.preventDefault();
 			var name = $("#name").val();
