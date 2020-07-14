@@ -1,4 +1,5 @@
 <?php 
+
 	
 	//use autoloader
 	require 'libs/Bootstrap.php';
@@ -14,5 +15,4 @@
 	require 'config/database.php';
 
 	$app = new Bootstrap();
-
  ?>
