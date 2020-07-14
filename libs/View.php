@@ -7,9 +7,6 @@
 
 		public function render($layout,$name)
 		{	
-			//require 'views/header.php';
-			//$content = "require 'views/'.$name.'.php'";
-			//require 'views/footer.php';
 			require "views/layouts/".$layout.".php";
 		}
 	}
