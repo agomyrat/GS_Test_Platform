@@ -5,9 +5,9 @@
 			$this->msg = "no message";
 		}
 
-		public function render($layout,$name)
+		public function render($content)
 		{	
-			require "views/layouts/".$layout.".php";
+			require "views/layouts/".$this->layout.".php";
 		}
 	}
 
