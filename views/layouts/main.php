@@ -29,7 +29,7 @@
 </div>
 
 <div id="content">
-<?php require 'views/'.$name.'.php';?>
+<?php require 'views/'.$content.'.php';?>
 </div>
 <div id="footer"> (C)Footer</div>
 </body>
