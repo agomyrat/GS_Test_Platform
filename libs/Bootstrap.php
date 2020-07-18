@@ -4,7 +4,7 @@
 		
 		Session::init();
 		$this->url = $this->getUrl();
-		//print_r($_SESSION);
+		print_r($_SESSION);
 
 		if(Session::has(USER_ID) || Cookie::has(USER_ID)){
 			if($this->url){
@@ -33,7 +33,7 @@
 	private function getParameters($array = null, $index = 2){
 		$parametersArray = [];
 		$parametersArray_index = 0;
-		
+
 		while(isset($array[$index])){
 			$parametersArray[$parametersArray_index] = $array[$index];
 			$parametersArray_index++;
@@ -90,100 +90,4 @@
 	}
 	
 }
- 
-
- 
-		// if(Session::has(USER_ID) || Cookie::has(USER_ID)){
-
-		// 	if(isset($_GET['url'])){
-		// 	$url = rtrim($_GET['url'], '/');
-		// 	$url = explode('/',$url);
-
-		// 	//choose the right controller
-		// 	$file = 'controllers/'.$url[0].'.php';
-		// 	if(file_exists($file)){
-		// 		require $file;
-		// 		$controller = new $url[0];
-		// 		$controller->loadModel($url[0]);
-		// 	}else{
-		// 		require 'controllers/error.php';
-		// 		$controller = new Error;
-		// 	}
-		// 	//----------------------------
-
-	
-		// 	//choose the right method from chosen controller
-		// 	if(isset($url[1])){
-
-		// 		if(method_exists($controller,$url[1])){
-		// 			if(isset($url[2])){
-		// 				$controller->{$url[1]}($url[2]);
-		// 			}else{
-		// 				$controller->{$url[1]}();
-		// 			}
-		// 		}else{
-		// 			$controller->error();
-		// 		}
-		// 	}else{
-		// 		$controller->index();
-		// 	}
-		// 	//-----------------------------------------------	
-
-
-		// //choose and run index method of index controller if no controller was chosen
-		// 	}else if(Cookie::has(USER_ID) || Session::has(USER_ID)){
-		// 		require 'controllers/main.php';
-		// 		$controller = new main;
-		// 		$controller->index();
-		// 	}else{
-		// 		require 'controllers/welcome.php';
-		// 		$controller = new welcome;
-		// 		$controller->index();
-		// 	}			
-			
-		// //-----------------------------------------------------------------
-		// }else if(isset($_GET['url'])){
-		// 	$url = rtrim($_GET['url'], '/');
-		// 	$url = explode('/',$url);
-
-		// 	if($url[0]=='signup' || $url[0]=='login' || $url[0]=='welcome'){
-		// 		//choose the right controller
-		// 	$file = 'controllers/'.$url[0].'.php';
-		// 	if(file_exists($file)){
-		// 		require $file;
-		// 		$controller = new $url[0];
-		// 		$controller->loadModel($url[0]);
-		// 	}else{
-		// 		require 'controllers/error.php';
-		// 		$controller = new Error;
-		// 	}
-		// 	//----------------------------
-
-	
-		// 	//choose the right method from chosen controller
-		// 	if(isset($url[1])){
-
-		// 		if(method_exists($controller,$url[1])){
-		// 			if(isset($url[2])){
-		// 				$controller->{$url[1]}($url[2]);
-		// 			}else{
-		// 				$controller->{$url[1]}();
-		// 			}
-		// 		}else{
-		// 			$controller->error();
-		// 		}
-		// 	}else{
-		// 		$controller->index();
-		// 	}
-		// 	//-----------------------------------------------	
-		// 	}else{
-		// 		require 'controllers/welcome.php';
-		// 		$controller = new welcome;
-		// 		$controller->index();
-		// 	}
-		// }else{
-		// 	require 'controllers/welcome.php';
-		// 	$controller = new welcome;
-		// 	$controller->index();
-		// }
 ?>

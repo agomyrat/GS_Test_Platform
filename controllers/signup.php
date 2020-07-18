@@ -1,14 +1,17 @@
 <?php 
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\SMTP;
-use PHPMailer\PHPMailer\Exception;
+// use PHPMailer\PHPMailer\PHPMailer;
+// use PHPMailer\PHPMailer\Exception;
 
 // Load PHPMailer Composer's autoloader
-require 'vendor/autoload.php';
+//require 'vendor/autoload.php';
+require 'vendor/Exception.php';
+require 'vendor/PHPMailer.php';
+require 'vendor/SMTP.php';
+//require 'vendor/autoload.php';
 
 class Signup extends Controller
 {
-	
+		
 	function __construct()
 	{
 		parent::__construct();
@@ -40,8 +43,9 @@ class Signup extends Controller
 
 	public function sendMail($mail_verification_array){
 		 
-		 $mail = $mail_verification_array[0];
-		 $verifyCode = $mail_verification_array[1]; 
+		$mail = $mail_verification_array[0];
+		$verifyCode = $mail_verification_array[1]; 
+
 		echo "verify code: ".$verifyCode;
 		echo "<br>";
 		echo "email: ".$mail;
