@@ -9,7 +9,7 @@ Class Login_Model extends Model{
         $sql = "SELECT COUNT(*) FROM users WHERE $column = ?";
         $query = $this->db->prepare($sql);
         $query->execute([$user]);
-        return (isset($query->fetch()[0]));
+        return (bool) $query->fetch()[0];
     }
 
      public function getUsername($user_id){
