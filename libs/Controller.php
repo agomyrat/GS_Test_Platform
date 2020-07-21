@@ -26,7 +26,13 @@
 			$this->view->render('error/notfound');
 		}
 
+		public function getUserId(){
+			return Session::has(USER_ID) ? Session::get(USER_ID) : Cookie::get(USER_ID);
+		}
 
+		public function redirect($address = ""){
+			header("Location: ".URL.$address);
+		}
 
 
 	}

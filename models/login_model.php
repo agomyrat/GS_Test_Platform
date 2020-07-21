@@ -25,6 +25,13 @@ Class Login_Model extends Model{
             $query->execute([$user]);
             return $query->fetch()[0];
     }
+
+    public function getUserActive($user , $column){
+            $sql = "SELECT ACTIVE FROM users WHERE ".$column." = ?";
+            $query = $this->db->prepare($sql);
+            $query->execute([$user]);
+            return (bool) $query->fetch()[0];
+    }
 }
 
 ?>

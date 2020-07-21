@@ -4,7 +4,6 @@
 		
 		Session::init();
 		$this->url = $this->getUrl();
-		print_r($_SESSION);
 
 		if(Session::has(USER_ID) || Cookie::has(USER_ID)){
 			if($this->url){

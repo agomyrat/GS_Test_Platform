@@ -11,18 +11,19 @@
 		}
 
 		public static function set($key,$value){
-
-			$_SESSION[$key] = $value;
+			$cryptography = new Cryptography();
+			$encrypted_value = $cryptography->encrypt($value);
+			$_SESSION[$key] = $encrypted_value;
 		}
 
 		public static function get($key){
-			isset($_SESSION[$key]) ? $value = $_SESSION[$key] : $value = false;
-			return $value;
+			$cryptography = new Cryptography();
+			$decrypted_value = $cryptography->decrypt($_SESSION[$key]);
+			return $decrypted_value;
 		} 
 
 		public static function has($key){
-			isset($_SESSION[$key]) ? $value = true : $value = false;
-			return $value;
+			return isset($_SESSION[$key]) ? true : false;
 		} 
 		
 		public static function destroy(){
