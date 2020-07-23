@@ -32,7 +32,7 @@ class Signup extends Controller
 	}
 
 	
-	public function registrate_user(){
+	public function registrate_user(){ 
 		if(isset($_POST)){
 			$mail = $this->model->registrate_user($_POST); //registrate edilen userin mailini return edyar
 			$verifyCode = $this->model->getVerifyCodeByMail($mail);//emaili berilen userin verifyCode return edyar
@@ -43,7 +43,7 @@ class Signup extends Controller
 
 	public function sendMail($mail_verification_array){
 		 
-		$mail = $mail_verification_array[0];
+		$mail_address = $mail_verification_array[0];
 		$verifyCode = $mail_verification_array[1]; 
 
 		echo "verify code: ".$verifyCode;
@@ -69,7 +69,7 @@ class Signup extends Controller
 			// $mail->addaddress('mr.parahat28@gmail.com', 'Joe User');     // Add a recipient
 			//$mail->addaddress('erejepow00@mail.ru', 'Erkin Rejepow');     // Add a recipient
 			$mail->addaddress('agamyrat.chariyev@gmail.com', 'Erkin Rejepow');     // Add a recipient
-			$mail->addaddress($mail, 'Eric');     // Add a recipient
+			$mail->addaddress($mail_address, 'Eric');     // Add a recipient
 			
 			$link = 'http://localhost/TestPlatform/GS_Test_Platform/welcome/activateUser/';
 			$random = $verifyCode;
