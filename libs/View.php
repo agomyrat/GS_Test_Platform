@@ -5,12 +5,14 @@
 			$this->msg = "no message";
 		}
 
-		public function render($layout,$name)
+		public function render($content,$elementsArray = null)
 		{	
-			//require 'views/header.php';
-			//$content = "require 'views/'.$name.'.php'";
-			//require 'views/footer.php';
-			require "views/layouts/".$layout.".php";
+			if(isset($elementsArray)){
+				foreach($elementsArray as $key => $value){
+					$$key = $value;
+				}
+			}
+			require "views/layouts/".$this->layout.".php";
 		}
 	}
 
