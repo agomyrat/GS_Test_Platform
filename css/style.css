@@ -1,0 +1,147 @@
+                        * {
+                            box-sizing: border-box;
+                        }
+                        
+                        body {
+                            overflow: hidden;
+                            margin: 0;
+                            padding: 0;
+                        }
+                        
+                        input,
+                        textarea,
+                        html {
+                            font-family: 'Poppins', sans-serif;
+                        }
+                        
+                        .nav {
+                            height: 10vh;
+                            background-color: #ff570c;
+                        }
+                        
+                        .container {
+                            height: 90vh;
+                            display: grid;
+                            grid-template-rows: 1fr;
+                            grid-template-columns: 40vw 60vw;
+                            max-width: 1180px;
+                            margin: 0 auto;
+                        }
+                        
+                        .image {
+                            border-radius: 50%;
+                            background-image: url('../img/profile.jpg');
+                            height: 140px;
+                            width: 140px;
+                            background-size: cover;
+                            background-repeat: no-repeat;
+                            margin: 10px auto;
+                            position: relative;
+                        }
+                        
+                        .oval {
+                            height: 40px;
+                            background-color: #fff;
+                            border-radius: 50%;
+                            width: 40px;
+                            right: 0;
+                            position: absolute;
+                            bottom: 5px;
+                            cursor: pointer;
+                        }
+                        
+                        .oval>img {
+                            height: 30px;
+                            margin: 5px 5px;
+                        }
+                        /*
+                    
+                  
+                    
+                    form .breaker {
+                        display: none;
+                    }
+                    
+                    .img {
+                        height: 250px;
+                        width: 250px;
+                        border-radius: 50%;
+                        margin-left: auto;
+                        margin-right: auto;
+                        margin-top: 90px;
+                        background-image: url('../img/profile.png');
+                        background-size: contain;
+                        background-position: center center;
+                        background-repeat: no-repeat;
+                    }
+                    
+                    */
+                        
+                        .form {
+                            display: flex;
+                            justify-content: space-between;
+                            flex-wrap: wrap;
+                            justify-content: left;
+                        }
+                        
+                        .form_right {
+                            display: flex;
+                            justify-content: space-between;
+                            flex-wrap: wrap;
+                            justify-content: left;
+                            margin-top: 30px;
+                        }
+                        
+                        #input {
+                            padding: 5px 5px;
+                            border-radius: 5px;
+                            width: 210px;
+                            margin-top: 1px;
+                        }
+                        
+                        .long {
+                            width: 440px!important;
+                        }
+                        
+                        .block {
+                            height: 80px;
+                            margin-left: 10px;
+                            margin-right: 10px;
+                            font-size: 14px;
+                            margin-top: 0px;
+                        }
+                        
+                        #add {
+                            height: 33px;
+                            margin-top: 1px;
+                            border-radius: 5px;
+                            width: 210px;
+                        }
+                        
+                        .right {
+                            margin-right: 100px;
+                        }
+                        
+                        .edit {
+                            width: 800px;
+                            position: absolute;
+                            bottom: 25px;
+                        }
+                        
+                        .btn {
+                            height: 40px;
+                            width: 235px;
+                            background-color: #ff570c;
+                            border: none;
+                            border-radius: 5px;
+                            cursor: pointer;
+                            margin-left: 17px;
+                        }
+                        
+                        .gmt {
+                            width: 380px!important;
+                        }
+                        
+                        .right_long {
+                            width: 325px!important;
+                        }
