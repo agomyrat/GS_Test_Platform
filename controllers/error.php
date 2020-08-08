@@ -6,7 +6,9 @@
         }
 
         public function index(){
+            $this->incrementErrorTrial();
             $this->view->render('error/notfound');
+            
         }
     }
 

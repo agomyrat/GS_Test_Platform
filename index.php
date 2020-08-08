@@ -10,11 +10,12 @@
 	require 'libs/Database.php';
 	require 'libs/Session.php';
 	require 'libs/Cookie.php';
+	require 'libs/Cryptography.php';
 
 	//configurations
 	require 'config/paths.php';
 	require 'config/database.php';
-	require 'config/cookie.php';
+	require 'config/cookie_session.php';
 	require 'config/cryptography.php';
 
 	$app = new Bootstrap();
