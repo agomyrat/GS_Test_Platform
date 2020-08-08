@@ -1,11 +1,18 @@
 <?php 
 	class Bootstrap {
 		function __construct(){
+
+	//10 gezek yalnysh yazsa bloklamaly
 		
+		//echo $_SERVER['REMOTE_ADDR'];
+		//echo $_SERVER['HTTP_CLIENT_IP'];
+		/*echo "<pre>";
+		print_r($_SERVER);*/
+
 		Session::init();
 		$this->url = $this->getUrl();
-
-		if(Session::has(USER_ID) || Cookie::has(USER_ID)){
+		//$externalIp = file_get_contents('http://ip4only.me/api/'); getIP address
+		if(Session::isNumber(USER_ID) || Cookie::isNumber(USER_ID)){ //isNUMBER diyip barlamaly
 			if($this->url){
 				$this->runURL($this->url);
 				return;

@@ -33,16 +33,16 @@
                   <li class="dropdown">
                      Turkmen
                      <ul class="dropdown-list">
-                        <li class="dr">Turkmen</li>
+                        <li class="dr">Türkmençe</li>
                         <li class="dr">Russian</li>
                         <li class="dr">English</li>
                      </ul>
                   </li>
                   <li class="sign-up">
-                     <a href="">Sign-Up</a>
+                     <a href="signup">Sign-Up</a>
                   </li>
                   <li class="login">
-                     <a href="">Login</a>
+                     <a href="login">Login</a>
                   </li>
                </ul>
             </div>

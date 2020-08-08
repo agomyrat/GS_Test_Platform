@@ -34,6 +34,12 @@
 			header("Location: ".URL.$address);
 		}
 
+		public function incrementErrorTrial(){
+			$old_trial_number = Session::has(ERROR_TRIAL) ? Session::get(ERROR_TRIAL) : 0;
+			$new_trial_number = $old_trial_number++;
+			Session::set(ERROR_TRIAL,$new_trial_number);
+		}
+
 
 	}
 	
