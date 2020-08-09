@@ -10,6 +10,16 @@ class Model
 	{
 		$this->db = new Database();
 	}
+
+	get($tablename)
+
+	set()
+	
+	delete()
+
+	
+
+
 }
 
  ?>

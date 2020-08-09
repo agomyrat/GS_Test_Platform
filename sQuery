@@ -62,10 +62,10 @@ PRIMARY KEY (`TEST_ID`)
 CREATE TABLE `test_platform`.`questions`  (
   `QUESTIONS_ID` int(0) NOT NULL AUTO_INCREMENT,
   `TEST_ID` int(0) NOT NULL COMMENT 'TESTYN IDSY',
-  `ORDER_` int(0) NOT NULL COMMENT 'SORAGYN YZYGIDERLIGI',
+  -- `ORDER_` int(0) NULL COMMENT 'SORAGYN YZYGIDERLIGI',
   `QUESTION_DATA` text NULL COMMENT 'TUTUSH DATA',
   `ISRANDOM` bit(1) NOT NULL DEFAULT 0 COMMENT '0- NOT RANDOM\\r\\n1- RANDOM',
-  `QUESTION_TYPE` ENUM('single-choice','multi-choice','input','true-false','matching', 'blank') NULL,
+  `QUESTION_TYPE` ENUM('single-choice','multi-choice','input','true-false','matching', 'blank') NOT NULL,
   PRIMARY KEY (`QUESTIONS_ID`),
   CONSTRAINT `TEST_CON` FOREIGN KEY (`TEST_ID`) REFERENCES `test_platform`.`tests` (`TEST_ID`) ON DELETE CASCADE ON UPDATE CASCADE
 );
