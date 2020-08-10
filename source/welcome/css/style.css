@@ -66,6 +66,7 @@ nav{
 .items >ul li{
    display: inline;
    padding: 11px;
+   cursor:pointer;
 }
 .items >ul >li a {
    text-decoration: none;
@@ -122,10 +123,8 @@ li.dropdown ul.dropdown-list>li.dr {
       text-align: center;
 }
 li.dropdown ul.dropdown-list>li.dr:hover{
-   background-color: #0325351f;
+   background-color: #eeeeee;
 }
-
-
 
 
 /* Home */

@@ -7,6 +7,7 @@
         }
 
         public function index(){
+            Polyglot::setPage('login');
             $this->view->render('login/index');
         }
 

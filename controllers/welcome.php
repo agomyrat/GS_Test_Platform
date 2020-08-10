@@ -10,6 +10,7 @@ class Welcome extends Controller
 	}
 
 	public function index(){
+		Polyglot::setPage('welcome');
 		$this->view->render('welcome/index');
 	}
 	
@@ -33,6 +34,15 @@ class Welcome extends Controller
 		$verificationCode = $verificationCodeArray[0];
 
 	}
+
+	public function changeLanguage(){
+		if(isset($_POST['language'])){
+			Session::set(LANG,$_POST['language']);
+		}else{
+			echo "Language couldn't change error";
+		}
+	}
+		
 }
 
  ?>

@@ -22,7 +22,7 @@
             <div class="items">
                <ul>
                   <li>
-                     <a href="#home">Home</a>
+                     <a href="#home"><?=Polyglot::translate('Home')?></a>
                   </li>
                   <li>
                      <a href="#about">About</a>
@@ -33,9 +33,9 @@
                   <li class="dropdown">
                      Turkmen
                      <ul class="dropdown-list">
-                        <li class="dr">Türkmençe</li>
-                        <li class="dr">Russian</li>
-                        <li class="dr">English</li>
+                        <li class="dr" onclick="changeLanguage('TM')">Türkmençe</li>
+                        <li class="dr" onclick="changeLanguage('RU')">Russian</li>
+                        <li class="dr" onclick="changeLanguage('EN')">English</li>
                      </ul>
                   </li>
                   <li class="sign-up">
@@ -52,7 +52,10 @@
 <?php require 'views/'.$content.'.php';?>
 </div>
 
-            <footer>
+         </div>
+   </section>
+
+   <footer>
                <div class="phone">
                   Phone: +993 62 776655
                   Tel: +993 12 555858
@@ -62,18 +65,13 @@
                   Powered by Geek Space <i style="color:#FF5903 ;" class="fas fa-lightbulb"></i> | All rights reserved
                </div>
             </footer>
-         </div>
-
-      </div>
-   </section>
 
    <div class="bg">
 
    </div>
-
+   <script src="source/general/js/jquery/jquery-3.4.1.min.js"></script>
 	  <!-- Navbar Animation -->
    <script>
-
       const collapse = document.querySelector('.collapse');
       const items = document.querySelector('.items');
 
@@ -111,5 +109,21 @@
             });
 
    </script>
+   <script>
+         function changeLanguage(language){
+               $.ajax({ 
+                  url:'welcome/changeLanguage',
+                  method:'POST',
+                  data:{language : language},
+                  success:function(){
+                        location.reload();
+                   },
+                  error: function(){
+                        console.log("Can't change language error!!!");
+                  }
+              });
+         }
+   </script>
+
 </body>
 </html>

@@ -1,2 +1,1 @@
-<h1>email barlap gorun sho yerde buttona basyn</h1>
-openssl
+<h1>Mail iberdik barlap gorayin!!!</h1>
