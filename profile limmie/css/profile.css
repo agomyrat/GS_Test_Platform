@@ -1,0 +1,135 @@
+    * {
+        box-sizing: border-box;
+    }
+    
+    body {
+        overflow: hidden;
+        margin: 0;
+        padding: 0;
+    }
+    
+    input,
+    textarea,
+    html {
+        font-family: 'Poppins', sans-serif;
+    }
+    
+    .container {
+        width: 100vw;
+        height: 90vh;
+        margin: auto auto;
+        display: grid;
+        grid-template-rows: 1fr;
+        grid-template-columns: 80vw 20vw;
+    }
+    
+    nav {
+        height: 10vh;
+        box-shadow: 0 0 5px rgba(0, 0, 0, .5);
+    }
+    
+    .left {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .info {
+        height: 50%;
+        background-color: rgb(235, 230, 230);
+        width: 90%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        font-size: 14px;
+        padding: 10 20px;
+    }
+    
+    .right {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .image {
+        height: 190px;
+        width: 190px;
+        border-radius: 50%;
+        background-image: url('../img/profile.jpg');
+        background-size: cover;
+        background-repeat: no-repeat;
+        margin: auto auto;
+    }
+    
+    .block {
+        width: 30%;
+        text-align: center;
+    }
+    
+    .btn {
+        height: 2.3rem;
+        width: 12rem;
+        background-color: #ff570c;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        color: white;
+        margin-top: -65px;
+    }
+    
+    .button {
+        display: flex;
+        justify-content: center;
+    }
+    
+    @media screen and (max-width: 980px) {
+        .block {
+            width: 50%;
+            text-align: center;
+        }
+        .container {
+            grid-template-columns: 75vw 25vw;
+        }
+        .image {
+            height: 200px;
+            width: 200px;
+        }
+        .info {
+            padding: 5px 10px;
+        }
+        .btn {
+            margin-left: 30px;
+            margin-top: -55px;
+        }
+    }
+    
+    @media screen and (max-width:768px) {
+        .container {
+            grid-template-rows: 40vh 100vh;
+            grid-template-columns: 1fr;
+        }
+        body {
+            overflow-y: scroll;
+        }
+        .block {
+            width: 100%;
+            align-items: center;
+        }
+        .info {
+            height: 100%;
+        }
+        .right {
+            grid-row-start: 1;
+            grid-row-end: 2;
+        }
+        .image {
+            height: 160px;
+            width: 160px;
+        }
+        .btn {
+            margin-top: 15px;
+            margin: 15px auto;
+            width: 15rem;
+        }
+    }
