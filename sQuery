@@ -158,4 +158,12 @@ CREATE TABLE `test_platform`.`questions`  (
 -- ('Boşlugy doldur', 'Fill the space', 'Заполнить поле', 4);
 
 
-
+CREATE TABLE `test_platform`.`mails`  (
+  `MAIL_ID` int(0) NOT NULL AUTO_INCREMENT,
+  `USERNAME` varchar(255) NOT NULL COMMENT 'MAIL YAZYANYN ADY',
+  `EMAIL` varchar(255) NOT NULL COMMENT 'MAIL ADRESSY',
+  `MAIL_TEXT` text NOT NULL COMMENT 'YAZAN MAILY',
+  `CREATE_TIME` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'MAIL ATYLAN VAGTY',
+  `ACTIVE` bit(1) NULL COMMENT '1- MODERATOR OKAMADY, 0 - OKALDY',
+  PRIMARY KEY (`MAIL_ID`)
+);
