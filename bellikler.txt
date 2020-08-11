@@ -3,3 +3,5 @@ In sonunda edilmeli ishler:
 		SOURCE papkada hemme ulanylmajak zatlary ayyrmaly
 
 shu wagtlykca signupda dateler insert edilenok
+
+Subjects gerk dal 

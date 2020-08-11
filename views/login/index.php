@@ -6,8 +6,7 @@
                </h5>
                <div class="letter">
                   <p class="know">
-                     Knowledge is a treasure,<br>
-                     but practice is the key to it</p>
+                     <?=Polyglot::translate('Proverb')?></p>
                </div>
             </div>
         </div>
@@ -19,17 +18,17 @@
                 <h1 id="logintxt"><?=Polyglot::translate('LogIn')?></h1>
                 <label class="formlbl"><?=Polyglot::translate('Username')?></label><br>
                 <input type="text" class='user' name="user" required="" title="Bu  meydanca bos goyulmaly dal"><br>
-                <label class="formlbl">Password</label><br>
+                <label class="formlbl"><?=Polyglot::translate('Password')?></label><br>
                 <input type="password" class='user' name="password " required><br>
                <div class="remember-line">
                   <input type="checkbox" class="check">
-                  <label class="remember">Remember me</label>
-                  <a href="forgotpassword" class="forgot"> Forgot Password?</a><br>
+                  <label class="remember"><?=Polyglot::translate('RememberMe')?></label>
+                  <a href="forgotpassword" class="forgot"><?=Polyglot::translate('ForgotPassword')?></a><br>
                </div>
                 <input type="submit" value="Login" class='loginbtn'><br>
                <div class="sign-up">
-                <label class="txtlogin">Don' t have an accaunt</label><br>
-                <a href="signup" class="sign">Sign Up</a>
+                <label class="txtlogin"><?=Polyglot::translate('NotAccount')?></label><br>
+                <a href="signup" class="sign"><?=Polyglot::translate('SignUp')?></a>
                </div>
             </form>
         </div>

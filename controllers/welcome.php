@@ -13,10 +13,6 @@ class Welcome extends Controller
 		Polyglot::setPage('welcome');
 		$this->view->render('welcome/index');
 	}
-	
-	public function mailNotification(){
-		$this->view->render('welcome/mailnotification');
-	}
 
 	public function activateUser($verificationCodeArray = null){
     	$user_id = isset($verificationCode) ? $this->model->activateUser($verificationCodeArray[0]) : null;
@@ -39,9 +35,13 @@ class Welcome extends Controller
 		if(isset($_POST['language'])){
 			Session::set(LANG,$_POST['language']);
 		}else{
-			echo "Language couldn't change error";
+			echo "Error : Language couldn't change";
 		}
 	}
+
+	/*public function test(){
+		$variable = User_model::get();
+	}*/
 		
 }
 

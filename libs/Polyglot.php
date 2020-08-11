@@ -6,8 +6,7 @@
 	{
 		public static $page;
         public static function translate($key){
-            $language = Session::get(LANG);
-			return self::$page[$key][$language];
+			return Session::has(LANG) ? self::$page[$key][Session::get(LANG)] : self::$page[$key]['EN'];
         }
 
 		public static function setPage($page){	

@@ -1,4 +1,4 @@
-{
+
 "abcd": {
   "files": [
     {
@@ -172,6 +172,5 @@
     }
   ],
   "correct": [1, 3, 4] // array should be saved as sorted array
-}
 }
 

@@ -1,1 +1,0 @@
-<h1>Mail iberdik barlap gorayin!!!</h1>

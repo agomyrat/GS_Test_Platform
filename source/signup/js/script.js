@@ -14,7 +14,6 @@ const countPage = document.querySelectorAll('#page')
 countPage[0].style.backgroundColor = "#FF570C"
 countPage[0].style.color = "white"
 countPage[0].classList.add("active")
-console.log(window.innerWidth )
 
 close.onclick  = () => {
    modal.style.display = "none";
@@ -92,7 +91,7 @@ const birthDateSelector = () => {
    const select = document.querySelectorAll('select.birth')
    
    const optionsDays = days.map((day) => select[0].innerHTML += `<option>${day}</option>`)
-   const optionsMonth = months.map((month) => select[1].innerHTML += `<option>${month}</option>`)
+   const optionsMonth = months.map((month ,index) => select[1].innerHTML += `<option value=${index+1}>${month}</option>`)
    const optionsYears = years.map((year) => select[2].innerHTML += `<option>${year}</option>`)
    
 
@@ -208,20 +207,17 @@ nextBtnFirst.addEventListener("click", () => {
 
    const checkValid = validator.isAlpha(firstname) && validator.isAlpha(lastname) && !validator.isNumeric(username);
    const checkValid2 = validator.isAlphanumeric(username) || validator.isAlpha(username);
-   //const checkData = userData.username.toLowerCase() !== username.toLowerCase() ; 
+   const checkData = userData.username.toLowerCase() !== username.toLowerCase() ; 
 
    // const checkValid = true
    // const checkValid2 = true
    // const checkData = true
 
-    //check('USER_NAME',username);
-
    //validate first form
-   if (checkValid && checkValid2 && check_username ) {
+   if (checkValid && checkValid2 && checkData && check_username ) {
       firstFormAnimation();
       getFirstForm(firstname, lastname, username);
       firstForm = true;
-      console.log(user)
 
    }
    else {
@@ -237,7 +233,7 @@ const iti = window.intlTelInput(input, {
    // any initialisation options go here
    preferredCountries: ['tm','ru','tr','us'],
    nationalMode: true,
-   utilsScript: "../build/utils.js?1590403638580"
+   utilsScript: "../build/js/utils.js?1590403638580"
 });
 const text = (iti.isValidNumber()) ? "International: " + iti.getNumber() : "Please enter a number below";
 
@@ -250,9 +246,40 @@ nextBtnSec.addEventListener("click", () => {
    const birth_day = document.querySelector('.birth-day').value;
    const birth_month = document.querySelector('.birth-month').value;
    const birth_year = document.querySelector('.birth-year').value;
-   const birthDate = birth_day + "-" + birth_month + "-" + birth_year
 
-   const checkValid = isValid && validator.isNumeric(birth_day) && validator.isAlpha(birth_month) && validator.isNumeric(birth_year) && firstForm;
+   const validateDate = (d, m, y) => {
+      y = Number(y);
+      m = Number(m);
+      d = Number(d);
+
+      let a = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+      if (y % 400 === 0 || y % 4 === 0 && y % 100 !== 0) a[1] = 29;
+
+      --m;
+
+      if (a[m] < d) d = a[m];
+
+      return d;
+   };
+
+   let b_day = validateDate(Number(birth_day), Number(birth_month), Number(birth_year));
+
+   let birthDate = ''
+   console.log(Number(b_day), Number(birth_month), Number(birth_year))
+   if (Number(b_day) < 10 && Number(birth_month) > 10) {
+      birthDate = birth_year + "-" + birth_month + "-0" + b_day;
+   }
+   if (Number(birth_month) < 10 && Number(b_day) > 10) {
+      birthDate = birth_year + "-0" + birth_month + "-" + b_day;
+   }
+   if (Number(b_day) < 10 && Number(birth_month) < 10){
+      birthDate = birth_year + "-0" + birth_month + "-0" + b_day;
+   }
+   if(Number(birth_month) > 10 && Number(b_day) > 10) {
+      birthDate = birth_year + "-" + birth_month + "-" + b_day;
+   }
+
+   const checkValid = isValid && validator.isNumeric(birth_day)  && validator.isNumeric(birth_year) && firstForm;
    // const checkValid = true
 
    if(checkValid){
@@ -263,7 +290,6 @@ nextBtnSec.addEventListener("click", () => {
    else{
       alert('*Please fill out all forms !! ')
    }
-
 });
 
 
@@ -280,7 +306,7 @@ createBtn.addEventListener("click", () => {
    const checkValid = validator.isEmail(email) && equalPassword && validator.isAlphanumeric(password) && checkbutton.checked && secondForm && check_email;
    // const checkValid = true
 
-   if(checkValid){
+  if(checkValid){
       getThirdForm(email,password);
       console.log(user);
 
@@ -295,7 +321,7 @@ createBtn.addEventListener("click", () => {
                     console.log('Something went wrong! Cant registrate user');
                 }
             });    
-            //window.location.href = "welcome/mailnotification";
+            //window.location.href = "mailnotification";
             return false;
    }
    else{
@@ -305,10 +331,3 @@ createBtn.addEventListener("click", () => {
 
 
 });
-
-
-
-
-        
-    
-

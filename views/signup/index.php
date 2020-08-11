@@ -22,10 +22,10 @@
                <div>
                   <label>Username</label> <br>
                   <input class="username form-input" type="text" />
-				  <div class="check-username" style="color:red; font-size:12px; display:none;">
-					  This username is occupied!
-				  </div>
+                   <div class="check-username" style="color:red; font-size:12px; display:none;">
+					         This username is occupied!
                </div>
+                </div>
             </form>
             <div class="btn-group" style="display: grid; justify-items: center;">
                <!-- <button class="prev-button"><i class="fas fa-angle-left"></i></button> -->
@@ -37,7 +37,7 @@
               <form class="second-form" action="">
                  <div>
                     <label>Country and Phone number</label> <br>
-                    <input id="phone" class="phone-number form-input" name="phone" type="tel">
+                    <input id="phone" class="phone-number form-input"    name="phone" type="tel">
                  </div>
                  <div>
                     <label>Date of Birth</label> <br>
@@ -63,9 +63,9 @@
                     <div>
                        <label>Email</label> <br>
                        <input class="email form-input" type="email" />
-					   <div class="check-email" style="color:red; font-size:12px; display:none;">
-					  		Someone entered with this email before!
-				 	   </div>
+                        <div class="check-email" style="color:red; font-size:12px; display:none;">
+                            Someone entered with this email before!
+                        </div>
                     </div>
                     <div>
                        <label>Password</label> <br>
@@ -78,7 +78,7 @@
                     <div style="display: flex; align-items: center;">
                        <input  type="checkbox" class="check" />
                        <span style="padding-left: 10px;">
-                       I accept <button class="terms">Terms and Conditions</button>
+                       I agree with <button class="terms">Terms and Conditions</button>
                      </span>
                     </div>
                  </form>

@@ -1,4 +1,6 @@
-
+<div class="container">
+         <!-- Home -->
+         
          <div id="home">
             <div class="part1">
                <div class="header">
@@ -11,7 +13,7 @@
             </div>
             <div class="part2">
                <div class="svg">
-                  <img src="source/welcome/images/home-1.svg" alt="">
+                  <img class="home-1" src="source/welcome/images/home-1.svg" alt="">
                </div>
             </div>
          </div>
@@ -59,16 +61,18 @@
                         </div>
                         <div>
                            <label for="name">Name</label><br>
-                           <input type="text" class="name">
+                           <input type="text" class="name input" id="name" >
                         </div>
                         <div>
                            <label for="email">Email</label><br>
-                           <input type="email" class="name">
+                           <input type="email" class="name input" id="email" >
                         </div>
                         <div>
                            <label for="message">Message</label><br>
-                           <textarea maxlength="200" name="message" id="" cols="30" rows="5">
-                           </textarea>
+                           <textarea maxlength="250" name="message" id="message" cols="30" rows="5"></textarea>
+                        </div>
+                        <div class="error">
+                           <p></p>
                         </div>
                         <div>
                            <input class="send" type="submit" value="Send">
@@ -77,4 +81,5 @@
                   </aside>
                </div>
             </div>
-        </div>
+         </div>
+      </div>

@@ -1,14 +1,15 @@
 @font-face{
-   src: url('../fonts/Poppins/Poppins-Regular.ttf');
-   font-family: Poppins;
+   src: url('../../general/fonts/montserrat/Montserrat-Regular.otf');
+   font-family: Montserrat;
 }
 @font-face {
-   src: url('../fonts/Poppins/Poppins-Bold.ttf');
-   font-family: Poppins-Bold;
+   src: url('../../general/fonts/montserrat/Montserrat-Bold.otf');
+   font-family: Montserrat-Bold;
 }
 *{
-   font-family: Poppins;
+   font-family: Montserrat;
    box-sizing: border-box;
+   max-height: 300vh;
 }
 html{
    scroll-behavior: smooth;
@@ -18,6 +19,7 @@ body{
    margin: 0;
    padding: 0;
    color: #032535;
+   height: 300vh;
 }
 section{
    display: grid;
@@ -30,16 +32,32 @@ section{
    overflow: hidden;
    height: 300vh;
 }
+.bg {
+   position: fixed;
+   top: 0;
+   bottom: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   background-color: black;
+   opacity: 0.5;
+   /* transition: 0.5s; */
+}
+.bg-active{
+   display: block;
+}
 /* Navbar */
 nav{
    position: fixed;
-   width: 90%;
+   width: 100%;
    background-color: white ;
    height: 80px;
    top: 0;
    display: grid;
    grid-template-columns: 30% 70%;
    align-items: center;
+   z-index: 100;
+   padding: 0 5% 0 5%;
 }
 .logo{
    display: flex;
@@ -55,7 +73,7 @@ nav{
 .logo h3{
    margin: 0;
    color: #FF5903;
-   font-family: Poppins-Bold;
+   font-family: Montserrat-Bold;
    font-size: 1.5rem;
 }
 .items> ul{
@@ -90,41 +108,41 @@ nav{
    color: #FF5903;
 }
 li.dropdown{
-      position: relative;
-      padding-right:5px;
+   position: relative;
+   margin-right: 10px;
 }
 li.dropdown::after{
-      content: '';
-      width: 0px;
-      position: absolute;
-      top: 19px;
-      height: 0px;
-      border-left: 8px solid transparent;
-      border-right: 8px solid transparent;
-      border-top: 8px solid #032535;
+   content: '';
+   width: 0px;
+   position: absolute;
+   top: 20px;
+   height: 0px;
+   border-left: 6px solid transparent;
+   border-right: 6px solid transparent;
+   border-top: 6px solid #032535;
 }
 li.dropdown ul.dropdown-list {
-      display: block;
-      color: black;
-       box-shadow: 0px 0px 1px 1px rgb(177, 177, 177); 
-      background: white;
-      position: absolute;
-      top: 50px;
-      right: 0px;
-      left: -30px;
-      display: none;
-      width: 180px;
-      cursor: pointer;
-      padding: 0
+   display: none;
+   color: #032535;
+   box-shadow: 0px 0px 5px -1px rgb(111 111 111);
+   background: white;
+   position: absolute;
+   top: 40px;
+   right: 0px;
+   width: 120px;
+   cursor: pointer;
+   padding: 0
 }
 li.dropdown ul.dropdown-list>li.dr {
-      display: block;
-      padding: 0.5rem;
-      text-align: center;
+   display: block;
+   padding: 0.5rem;
+   /* text-align: center; */
 }
 li.dropdown ul.dropdown-list>li.dr:hover{
-   background-color: #eeeeee;
+   background-color: #0325351f;
 }
+
+
 
 
 /* Home */
@@ -143,7 +161,7 @@ li.dropdown ul.dropdown-list>li.dr:hover{
 }
 .part1 .header h1 {
    font-size: 3rem;
-   font-family: Poppins-Bold;
+   font-family: Montserrat-Bold;
    margin: 0;
    line-height: 4rem;
 }
@@ -153,7 +171,7 @@ li.dropdown ul.dropdown-list>li.dr:hover{
    width: 80%;
 }
 .part1 .header .orange-btn button{
-   font-family: Poppins-Bold;
+   font-family: Montserrat-Bold;
    color: white;
    font-size: 1.2rem;
    padding: 0.8rem 4rem;
@@ -210,6 +228,7 @@ li.dropdown ul.dropdown-list>li.dr:hover{
 }
 #about .box .box2 article {
    width: 80%;
+   line-height: 1.5rem;
 }
 
 /* Contact */
@@ -241,7 +260,7 @@ li.dropdown ul.dropdown-list>li.dr:hover{
 
 #contact .box .box1 .svg {
    width: 100%;
-   padding-top: 4rem;
+   padding-top: 6rem;
 }
 
 #contact .box .box1 .svg img {
@@ -286,6 +305,13 @@ form div>input.send{
    border: none;
    color: white;
    font-size: 1.2rem;
+
+}
+.error p {
+   padding: 0;
+   margin: 0;
+   margin-bottom: 0;
+   color: red;
 }
 
 /* Footer */
@@ -349,14 +375,7 @@ footer{
    }
 }
 @media screen and (max-width:760px) {
-   li.dropdown::after{
-      top: 32px;
-   }
-   li.dropdown ul.dropdown-list {
-      top: 63px;
-      right: 0px;
-      left: 30%;
-   }
+  
    nav {
       grid-template-columns: 100%;
    }
@@ -383,6 +402,17 @@ footer{
    .logo .collapse{
       display: block;
    }
+    li.dropdown::after {
+       top: 34px;
+       margin-left: 3px;
+    }
+    li.dropdown ul.dropdown-list {
+       top: 63px;
+       text-align: left;
+       right: 20%;
+       /* right: 0px; */
+       /* left: 30%; */
+    }
    /* Home */
    #home {
       width: 100%;
@@ -391,11 +421,11 @@ footer{
       grid-template-columns: 1fr;
       grid-template-rows: 40% 60% ;
    }
-   .part1{
+   /* .part1{
       align-items: flex-end;
-   }
+   } */
    .part1 .header {
-      padding-top: 1rem;
+      padding-top: 6rem;
       text-align: center;
    }
    .part1 .header h1 {
@@ -421,7 +451,7 @@ footer{
       align-items: center;
    }
    .part2 .svg{
-      width: 60%;
+      width: 40%;
    }
    .part2 .svg img {
       width: 100%;
@@ -438,7 +468,7 @@ footer{
       height: 100vh;
       display: grid;
       grid-template-columns: 1fr;
-      grid-template-rows: 40% 60%;
+      grid-template-rows: 50% 50%;
    }
    .part1 .header h1 {
       font-size: 1.5rem;
@@ -450,13 +480,10 @@ footer{
       width: 100%;
    }
    .part2 .svg {
-      width: 75%;
+      width: 60%;
    }
    .items {
       width: 70%;
-   }
-   li.dropdown ul.dropdown-list{
-      width: 120px;
    }
    #about .box {
       width: 100%;

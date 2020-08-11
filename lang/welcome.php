@@ -10,8 +10,8 @@
         'Contacts'=>['EN'=>'Contacts',
                     'TM'=>'Salgymyz',
                     'RU'=>'Контакты'],
-        'Sign Up'=>[    'EN'=>'Sign Up',
-                    'TM'=>'Registrasiýa',
+        'Sign Up'=>['EN'=>'Sign Up',
+                    'TM'=>'Ýazylmak',
                     'RU'=>'Регистрация'],
         'Login In'=>[   'EN'=>'Log in',
                     'TM'=>'Girmek',
@@ -19,7 +19,7 @@
         'Get Started'=>['EN'=>'Get Started',
                     'TM'=>'Başla',
                     'RU'=>'Начать'],
-        'Proverb1'=>[    'EN'=>'Improve your knowledge with us!',
+        'Proverb1'=>['EN'=>'Improve your knowledge with us!',
                     'TM'=>'Biz bilen bilimiňizi kämmilleşdiriň!',
                     'RU'=>'Улучшите своё знание вместе с нами!'],
         'Proverb2'=>[    'EN'=>'Repetition is the mother of all learning!',
@@ -37,7 +37,7 @@
             'RU'=>'Вебсайт работает с Октября месяца 2020 года. Вы имеете возможность создать тесты, посредством тестов этого вебсайта вы сможете проверить уровень вашего знания, а так же усовершенствовать их. По любым вопросам отправьте нам письмо по электронному адресу mysal@gmail.com. Вебсайт был разработан GeekSpace.'
             ],
         //contacts page
-        'SendaMessage'=>[  'EN'=>'Send a message',
+        'SendMessage'=>[  'EN'=>'Send a message',
             'TM'=>'Hat ugrat',
             'RU'=>'Отправить письмо'],
         'Name'=>[  'EN'=>'Name',
