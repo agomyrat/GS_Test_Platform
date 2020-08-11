@@ -16,7 +16,7 @@ let textarea = document.getElementById("textarea");
 // getting form from dom
 let form = document.getElementById("form");
 
-// getting all globe icons to toggle their classes
+// getting all globe icons to toggle their classes (isGlobal is depending on class "inactive" on icon fa fa-globe)
 let globes = document.getElementsByClassName("fa-globe");
 
 // getting datas from all inputs
@@ -29,7 +29,7 @@ let upperAlert = document.querySelector(".alert");
 
 // creating globals array with objects (default) -> need to connect with DB
 for (let i = 0; i < globes.length; i++) {
-  globals.push({ name: globes[i].id, value: false });
+  globals.push({ name: globes[i].id, value: 0 });
   globals[i].name = globals[i].name.replace(/\s/g, "");
 }
 
@@ -54,7 +54,7 @@ for (let x = 0; x < globes.length; x++) {
 }
 
 // changing image with validation of size
-avatar.addEventListener("change", function (event) {
+avatar.addEventListener("change", function(event) {
   let newImage = event.target.files[0];
   // validation of file size => max 2mb
   if (newImage.size > 2000000) {
@@ -67,19 +67,21 @@ avatar.addEventListener("change", function (event) {
     let oldImage = document.getElementById("output");
     // setting new image
     oldImage.src = URL.createObjectURL(event.target.files[0]);
+
+    formdata.append("avatar", newImage);
   }
 });
 
 if (textarea.addEventListener) {
   textarea.addEventListener(
     "input",
-    function () {
+    function() {
       datas.textarea.value = textarea.value;
     },
     false
   );
 } else if (textarea.attachEvent) {
-  textarea.attachEvent("onpropertychange", function () {
+  textarea.attachEvent("onpropertychange", function() {
     datas.textarea.value = textarea.value;
   });
 }
@@ -103,19 +105,24 @@ form.addEventListener("submit", (event) => {
       };
     }
   }
-  formdata.append("datas", inputs);
+  formdata.append("datas", JSON.stringify(inputs));
+  // if you want to see formdata =>
 
-  // sending formdata to backend
-  // if you want to see what do i send => console.log(inputs)
-  async function sendData() {
-    let response = await fetch("/path/to/somewhere", {
-      method: "POST",
-      body: formdata,
-    });
-    // test
-    let result = await response.json();
-    console.log(result);
+  for (var pair of formdata.entries()) {
+    console.log(pair[0] + ", " + pair[1]);
   }
 
-  sendData();
+  // sending formdata to backend
+  //   async function sendData() {
+  //     let response = await fetch("/path/to/somewhere", {
+  //       method: "POST",
+  //       body: formdata,
+  //     });
+  //     // test
+  //   let result = await response.json();
+  //   console.log(result);
+  // }
+
+  // sendData();
 });
+
