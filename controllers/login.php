@@ -19,6 +19,7 @@
                 $hasPassword = false;
 
                 $column = filter_var($user, FILTER_VALIDATE_EMAIL) ? 'E_MAIL' : 'USER_NAME';
+                $mailORuser = filter_var($user, FILTER_VALIDATE_EMAIL) ? 'Email' : 'Username';
 
                 if($this->model->check($user,$column)){
                     if($this->model->check($password,'PASSWORD')){
@@ -32,7 +33,6 @@
                 if($hasPassword){
                     if($remember){ 
                         Cookie::set(USER_ID,$user_id);}
-
                     if($isActive){
                         Session::set(USER_ID,$user_id);
                         $this->redirect('main');
@@ -41,7 +41,8 @@
                     }
     
                 }else{
-                    echo "Incorrect username/email or password";
+                    echo "<script>alert('Incorrect ".$mailORuser." or password!')</script>";
+                    echo "<script>window.location.href = '../login';</script>";
                 }
             }
         }

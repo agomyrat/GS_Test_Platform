@@ -40,6 +40,10 @@
 			Session::set(ERROR_TRIAL,$new_trial_number);
 		}
 
+		public function changeLanguage(){
+			Polyglot::changeLanguage();
+		}
+
 
 	}
 	

@@ -5,7 +5,8 @@
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>testSpace</title>
    <link rel="stylesheet" href="source/welcome/css/style.css">
-   <link rel="stylesheet" href="source/general/icon/icons/all.min.css">
+   <link rel="stylesheet" href="source/general/icons/icons/all.min.css">
+   
 </head>
 <body>
    <section>
@@ -20,16 +21,16 @@
          <div class="items">
             <ul>
                <li class="links">
-                  <a href="#home">Home</a>
+                  <a href="#home"><?=Polyglot::translate('Home')?></a>
                </li>
                <li class="links">
-                  <a href="#about">About</a>
+                  <a href="#about"><?=Polyglot::translate('About')?></a>
                </li>
                <li class="links">
-                  <a href="#contact">Contact</a>
+                  <a href="#contact"><?=Polyglot::translate('ContactUs')?></a>
                </li>
                <li class="dropdown">
-                  Turkmen
+                  <?=Polyglot::translate('CurrentLanguage')?>
                   <ul class="dropdown-list">
                         <li class="dr" onclick="changeLanguage('TM')">Türkmençe</li>
                         <li class="dr" onclick="changeLanguage('RU')">Русский</li>
@@ -37,10 +38,10 @@
                   </ul>
                </li>
                <li class="sign-up">
-                  <a href="signup">Sign-Up</a>
+                  <a href="signup"><?=Polyglot::translate('Sign Up')?></a>
                </li>
                <li class="login">
-                  <a href="login">Login</a>
+                  <a href="login"><?=Polyglot::translate('Login')?></a>
                </li>
             </ul>
          </div>
@@ -48,23 +49,26 @@
 
             <?php require 'views/'.$content.'.php';?>
 
-      <footer>
+     <footer>
                <div class="phone">
-                  Phone: +993 62 776655
-                  Tel: +993 12 555858
-                  Email: info@testspace.com
+                  <?=Polyglot::translate('Mobile')?>: +993 62 776655
+                  |<?=Polyglot::translate('Tel')?>: +993 12 555858
+                  |<?=Polyglot::translate('OurEmail')?>: info@testspace.com
                </div>
                <div class="info">
-                  Powered by Geek Space <i style="color:#FF5903 ;" class="fas fa-lightbulb"></i> | All rights reserved
+                  <?=Polyglot::translate('PoweredBy')?> Geek Space <i style="color:#FF5903 ;" class="fas fa-lightbulb"></i> | <?=Polyglot::translate('Rights')?>
                </div>
             </footer>
+         </div>
+      </div>
+  
    </section>
 
    <div class="bg">
 
    </div>
 
-   
+   <script src="source/general/js/jquery/jquery-3.4.1.min.js"></script>
    <!-- Navbar Animation -->
    <script src="source/welcome/js/welcome.js"></script>
    <script type="text/javascript" src="source/general/validator/validator.js"></script>

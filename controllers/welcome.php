@@ -31,14 +31,6 @@ class Welcome extends Controller
 
 	}
 
-	public function changeLanguage(){
-		if(isset($_POST['language'])){
-			Session::set(LANG,$_POST['language']);
-		}else{
-			echo "Error : Language couldn't change";
-		}
-	}
-
 	/*public function test(){
 		$variable = User_model::get();
 	}*/
