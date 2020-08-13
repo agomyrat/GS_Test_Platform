@@ -19,6 +19,7 @@ class Signup extends Controller
 	}
 
 	public function index(){
+		Polyglot::setPage('signup');
 		$this->view->render('signup/index');
 	}
 

@@ -1,30 +1,27 @@
-$('#form_').submit(function(event){
-        event.preventDefault();
-        var formData = new FormData();
-    $.ajax({
-        url:'login/checkLogin',
-        method:'POST',
-        data: formData,
-        success:function(data){
-            switch(data){
-                case 0:
-                    $('.incorrect').fadeIn(750);
-                    break;
-                case 1:
-                    window.location.href = 'main';
-                    break;
-                case 2:
-                    window.location.href = 'mailnotification';
-                    break;
-                default:
+$('#form_').on('submit',(function(e) {
+       		  e.preventDefault();
+        	  var data = {
+                  user : $('#user').val(),
+                  password : $('#password').val()
+              }
+        $.ajax({
+            type: 'post',
+            url: 'login/checkLogin',
+            data: data,
+            success: function(result){     
+            if(result == 0){
+                $('.incorrect').fadeIn(750);
+            }else if(result == 1){
+                 window.location.href = 'main';    
+            }else{
+                window.location.href = 'mailnotification';
             }
-        },
-        error: function(){
-            console.log('Error bolda hoooow');
-            return false;
-        }
-    });
-    return false;
-})
+            },
+            error: function(error){
+                console.log("error: checklogin error");
+            }
+        });
+    	
+    }));
     
  

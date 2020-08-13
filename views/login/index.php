@@ -17,9 +17,9 @@
             <form id="form_" action="login/checkLogin" method="post">
                 <h1 id="logintxt"><?=Polyglot::translate('LogIn')?></h1>
                 <label class="formlbl"><?=Polyglot::translate('Username')?></label><br>
-                <input type="text" class='user' name="user" required="" title="Bu  meydanca bos goyulmaly dal"><br>
+                <input type="text" class='user' name="user" required="" title="Bu  meydanca bos goyulmaly dal" id="user"><br>
                 <label class="formlbl"><?=Polyglot::translate('Password')?></label><br>
-                <input type="password" class='user' name="password " required><br>
+                <input type="password" class='user' name="password " required id="password"><br>
                <div class="remember-line">
                   <input type="checkbox" class="check" name="remember">
                   <label class="remember"><?=Polyglot::translate('RememberMe')?></label>

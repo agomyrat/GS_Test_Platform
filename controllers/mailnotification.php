@@ -10,6 +10,7 @@
 	}
 
 	public function index(){
+		Polyglot::setPage('mail_notification');
 		$this->view->render('mail_notification/index');
 	}
 

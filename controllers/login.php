@@ -31,18 +31,17 @@
                 $isActive = $this->model->getUserActive($user , $column);
                
                 if($hasPassword){
-                    if($remember){ 
-                        Cookie::set(USER_ID,$user_id);}
                     if($isActive){
                         Session::set(USER_ID,$user_id);
-                        $this->redirect('main');
+                        if($remember){ 
+                        Cookie::set(USER_ID,$user_id);}
+                        echo 1;//goto main
                     }else{
-                        $this->redirect('welcome/mailnotification');
+                        echo 2;//goto mailnotification
                     }
     
                 }else{
-                    echo "<script>alert('Incorrect ".$mailORuser." or password!')</script>";
-                    echo "<script>window.location.href = '../login';</script>";
+                   echo 0;//goto nowhere :-)
                 }
             }
         }

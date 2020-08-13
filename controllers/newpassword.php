@@ -10,6 +10,7 @@
 	}
 
 	public function index(){
+		Polyglot::setPage('new_password');
 		$this->view->render('new_password/index');
 	}
 

@@ -18,7 +18,7 @@
 <?php require 'views/'.$content.'.php';?>
 </div>
 
-<script> src="source/general/js/jquery/jquery-3.4.1.min.js"</script>  
-<script> src="source/login/js/main.js"</script>
+<script src="source/general/js/jquery/jquery-3.4.1.min.js"></script>  
+<script src="source/login/js/main.js"></script>
 </body>
 </html>

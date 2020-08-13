@@ -4,7 +4,7 @@
 
 		Session::init();
 		$this->url = $this->getUrl();
-		if(Session::isNumber(USER_ID) || Cookie::isNumber(USER_ID)){ //isNUMBER diyip barlamaly
+		if(Session::isNumber(USER_ID) || Cookie::isNumber(USER_ID)){
 			if($this->url){
 				$this->runURL($this->url);
 				return;

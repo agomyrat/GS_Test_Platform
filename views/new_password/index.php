@@ -7,13 +7,13 @@
         </div>
         <div id="form">
             <form action="#">
-                <h1 id="txt">New Password</h1>
+                <h1 id="txt"> <?=Polyglot::translate('New Password')?></h1>
                 
-                <label class="formlbl">New Password</label><br>
-                <input type="password" class='user' name="password " required><br> <label class="formlbl">Confirm Password</label><br>
+                <label class="formlbl"><?=Polyglot::translate('Enter new Password')?></label><br>
+                <input type="password" class='user' name="password " required><br> <label class="formlbl"> <?=Polyglot::translate('Confirm Password')?></label><br>
                 <input type="password" class='user' name="password " required><br>
                
-                <input type="submit" value="Save" class='savebtn'><br>
+                <input type="submit" value=" <?=Polyglot::translate('Save')?>" class='savebtn'><br>
                 
             </form>
         </div>
