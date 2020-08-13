@@ -27,12 +27,4 @@
 		}
 
 	}
-
-
-
-[
-	'Home'=>'Baş sahypa'
-	'About'=>'Biz barada'
-	'Çontaçts'=>'Habarlaşmak'
-]
  ?>

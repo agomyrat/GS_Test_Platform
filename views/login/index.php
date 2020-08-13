@@ -1,32 +1,36 @@
  <div id="container">
         <div id="image">
-            <h5 class="name">
-                testSpace
-            </h5>
-            <div class="letter">
-                <h1 class="quote">"</h1>
-                <p class="know">Knowledge is a treasure,
-                    <br> but practice is
-                    <br>the key to it</p>
+           <div class="left-side">
+               <h5 class="name">
+                  <a href="welcome">testSpace</a>
+               </h5>
+               <div class="letter">
+                  <p class="know">
+                     <?=Polyglot::translate('Proverb')?></p>
+               </div>
             </div>
         </div>
         <div class="imgmobile">
-            <img src="img/authentication.svg" alt="">
+            <img src="source/login/img/authentication.svg" alt="">
         </div>
         <div id="form">
-            <form action="login/checkLogin" method="post">
-                <h1 id="logintxt">Log in</h1>
-                <label class="formlbl">Username or Email</label><br>
-                <input type="text" class='user' name="user" required=" " title="Bu  meydanca bos goyulmaly dal"><br>
-                <label class="formlbl">Password</label><br>
-                <input type="password" class='user' name="password" required><br>
-                <input type="checkbox" name="remember">
-                <label class="remember">Remember me</label>
-                <a href="# " class="remember"> Forgot Password?</a><br>
-                <input type="submit" value="Login" class='loginbtn'><br>
-                <label class="txtlogin">Don' t have an accaunt</label><br>
-                <a href="#" class="sign">Sign Up</a>
-
+            <form id="form_" action="login/checkLogin" method="post">
+                <h1 id="logintxt"><?=Polyglot::translate('LogIn')?></h1>
+                <label class="formlbl"><?=Polyglot::translate('Username')?></label><br>
+                <input type="text" class='user' name="user" required="" title="Bu  meydanca bos goyulmaly dal" id="user"><br>
+                <label class="formlbl"><?=Polyglot::translate('Password')?></label><br>
+                <input type="password" class='user' name="password " required id="password"><br>
+               <div class="remember-line">
+                  <input type="checkbox" class="check" name="remember">
+                  <label class="remember"><?=Polyglot::translate('RememberMe')?></label>
+                  <a href="forgotpassword" class="forgot"><?=Polyglot::translate('ForgotPassword')?></a><br>
+               </div>
+                <input type="submit" value="<?=Polyglot::translate('LogIn')?>" class='loginbtn'><br>
+                <div class="incorrect" style="display:none;color:red;">Incorrect username/email or password</div>
+               <div class="sign-up">
+                <label class="txtlogin"><?=Polyglot::translate('NotAccount')?></label><br>
+                <a href="signup" class="sign"><?=Polyglot::translate('SignUp')?></a>
+               </div>
             </form>
         </div>
     </div>

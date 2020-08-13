@@ -10,11 +10,8 @@ class Welcome extends Controller
 	}
 
 	public function index(){
+		Polyglot::setPage('welcome');
 		$this->view->render('welcome/index');
-	}
-	
-	public function mailNotification(){
-		$this->view->render('welcome/mailnotification');
 	}
 
 	public function activateUser($verificationCodeArray = null){
@@ -33,6 +30,11 @@ class Welcome extends Controller
 		$verificationCode = $verificationCodeArray[0];
 
 	}
+
+	/*public function test(){
+		$variable = User_model::get();
+	}*/
+		
 }
 
  ?>

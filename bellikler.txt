@@ -2,5 +2,4 @@ In sonunda edilmeli ishler:
 	Internede yuklenmezden on:
 		SOURCE papkada hemme ulanylmajak zatlary ayyrmaly
 
-
-Subjects gerk dal...
+shu wagtlykca signupda dateler insert edilenok

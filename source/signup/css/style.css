@@ -1,6 +1,6 @@
 @font-face{
    font-family: myfont;
-   src: url('../fonts/Poppins/Poppins-Regular.ttf');
+   src: url('../../general/fonts/montserrat/Montserrat-Regular.otf');
 }
 *{
    font-family: myfont;

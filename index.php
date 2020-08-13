@@ -11,6 +11,7 @@
 	require 'libs/Session.php';
 	require 'libs/Cookie.php';
 	require 'libs/Cryptography.php';
+	require 'libs/Polyglot.php';
 
 	//configurations
 	require 'config/paths.php';
