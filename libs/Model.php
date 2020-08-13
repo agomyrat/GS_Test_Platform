@@ -10,14 +10,6 @@ class Model
 	{
 		$this->db = new Database();
 	}
-
-	function get(){
-
-	}
-
-	function set(){
-		
-	}
 }
 
  ?>
