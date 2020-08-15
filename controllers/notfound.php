@@ -8,6 +8,7 @@
 
         public function index(){
             $this->incrementErrorTrial();
+            Polyglot::setPage('not_found');
             $this->view->render('error/notfound');
             
         }

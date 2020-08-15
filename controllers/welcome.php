@@ -15,26 +15,21 @@ class Welcome extends Controller
 	}
 
 	public function activateUser($verificationCodeArray = null){
-    	$user_id = isset($verificationCode) ? $this->model->activateUser($verificationCodeArray[0]) : null;
-		if(isset($user_id)){
-			echo "hemme zat gul yaly tamamlandy huh<br>";
-       	 	Session::set(USER_ID,$user_id);
-        	$this->redirect();
-		}else{
-			echo "__user ID alnyp bilmedi__";
-			$this->error();
-		}     
+    	$user_id = isset($verificationCodeArray) ? User::_activateUser($verificationCodeArray[0]) : null;
+		Session::set(USER_ID,$user_id);	
+		isset($user_id) ? $this->redirect('main') : $this->error();      
     }
 
 	public function setNewPassword($verificationCodeArray = []){
 		$verificationCode = $verificationCodeArray[0];
-
 	}
 
-	/*public function test(){
-		$variable = User_model::get();
-	}*/
-		
+	public function test(){
+		$tests = $this->user->getTests();
+		echo '<pre>';
+		var_dump($tests);
+	}
+
 }
 
  ?>

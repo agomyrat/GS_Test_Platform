@@ -1,10 +1,11 @@
 <?php 
 	class Bootstrap {
 		function __construct(){
-
 		Session::init();
 		$this->url = $this->getUrl();
 		if(Session::isNumber(USER_ID) || Cookie::isNumber(USER_ID)){
+			if(!Session::has(USER_ID)){Session::set(USER_ID,Cookie::get(USER_ID));}
+			
 			if($this->url){
 				$this->runURL($this->url);
 				return;
@@ -45,7 +46,9 @@
 			if(file_exists($file)){
 				require $file;
 				$controller = new $controllerName;
-				$controller->loadModel($controllerName);
+				if(Session::isNumber(USER_ID))
+				{$controller->createUser(Session::get(USER_ID));}
+
 			}else{
 				require 'controllers/notfound.php';
 				$controller = new Notfound;
@@ -81,9 +84,7 @@
 	//---------------------------goTo methods-------------------------------
 
 	private function goToPage($pageName){
-		require 'controllers/'.$pageName.'.php';
-		$controller = new $pageName;
-		$controller->loadModel($pageName);
+		$controller = $this->selectController($pageName);
 		$controller->index();
 	}
 

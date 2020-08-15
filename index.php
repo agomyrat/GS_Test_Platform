@@ -19,5 +19,10 @@
 	require 'config/cookie_session.php';
 	require 'config/cryptography.php';
 
+	//models
+	require 'models/user_model.php';
+	require 'models/test_model.php';
+	require 'models/question_model.php';
+
 	$app = new Bootstrap();
  ?>

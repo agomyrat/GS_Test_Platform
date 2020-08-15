@@ -19,16 +19,15 @@
                 $hasPassword = false;
 
                 $column = filter_var($user, FILTER_VALIDATE_EMAIL) ? 'E_MAIL' : 'USER_NAME';
-                $mailORuser = filter_var($user, FILTER_VALIDATE_EMAIL) ? 'Email' : 'Username';
 
-                if($this->model->check($user,$column)){
-                    if($this->model->check($password,'PASSWORD')){
+                if(User::_has($user,$column)){
+                    if(User::_has($password,'PASSWORD')){
                         $hasPassword = true;
                     }
                 }
                 
-                $user_id = $this->model->getUserId($user , $column);
-                $isActive = $this->model->getUserActive($user , $column);
+                $user_id = User::_getUserId($column , $user);
+                $isActive = User::_isActive($user_id);
                
                 if($hasPassword){
                     if($isActive){

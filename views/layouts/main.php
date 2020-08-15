@@ -2,7 +2,6 @@
 <html>
 <head>
 	<title>Test</title>
-	<link rel="stylesheet" href="source/css/default.css">
 </head>
 <body>
 
@@ -17,7 +16,5 @@
 <?php require 'views/'.$content.'.php';?>
 </div>
 <div id="footer"> (C)Footer</div>
-
-<script src="public/js/jquery-3.4.1.min.js"></script>
 </body>
 </html>
