@@ -2,17 +2,9 @@
 	class Bootstrap {
 		function __construct(){
 
-	//10 gezek yalnysh yazsa bloklamaly
-		
-		//echo $_SERVER['REMOTE_ADDR'];
-		//echo $_SERVER['HTTP_CLIENT_IP'];
-		/*echo "<pre>";
-		print_r($_SERVER);*/
-
 		Session::init();
 		$this->url = $this->getUrl();
-		//$externalIp = file_get_contents('http://ip4only.me/api/'); getIP address
-		if(Session::isNumber(USER_ID) || Cookie::isNumber(USER_ID)){ //isNUMBER diyip barlamaly
+		if(Session::isNumber(USER_ID) || Cookie::isNumber(USER_ID)){
 			if($this->url){
 				$this->runURL($this->url);
 				return;
@@ -20,7 +12,7 @@
 			$this->goToPage('main');
 			return;
 
-		}else if($this->url[0] == 'signup' || $this->url[0] == 'login' || $this->url[0] == 'welcome'){
+		}else if($this->isAllowed()){
 			$this->runURL($this->url);
 			return;
 		}
@@ -55,8 +47,8 @@
 				$controller = new $controllerName;
 				$controller->loadModel($controllerName);
 			}else{
-				require 'controllers/error.php';
-				$controller = new Error;
+				require 'controllers/notfound.php';
+				$controller = new Notfound;
 			}
 
 			return $controller;
@@ -93,6 +85,26 @@
 		$controller = new $pageName;
 		$controller->loadModel($pageName);
 		$controller->index();
+	}
+
+	//--------------------------is functions--------------------------------
+
+	private function isAllowed(){
+		$allowedArray = [
+			'signup',
+			'login',
+			'welcome',
+			'forgotpassword',
+			'newpassword',
+			'mailnotification',
+		];
+
+		foreach($allowedArray as $allowed){
+			if($this->url[0]==$allowed){
+				return true;
+			}
+		}
+		return false;
 	}
 	
 }

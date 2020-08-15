@@ -1,115 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>testSpace</title>
    <link rel="stylesheet" href="source/welcome/css/style.css">
-   <link rel="stylesheet" href="source/welcome/icon/icons/all.css">
+   <link rel="stylesheet" href="source/general/icons/icons/all.min.css">
+   <link rel="icon" href="source/welcome/images/Logo-orange.svg">
+
 </head>
+
 <body>
    <section>
       <!-- Container 80% -->
-      <div class="container">
-         <!-- Home -->
-         <nav>
-            <div class="logo">
-               <h3>testSpace</h3>
-               <div class="collapse">
-                  <i class="fas fa-bars"></i>
-               </div>
-            </div>
-            <div class="items">
-               <ul>
-                  <li>
-                     <a href="#home">Home</a>
-                  </li>
-                  <li>
-                     <a href="#about">About</a>
-                  </li>
-                  <li>
-                     <a href="#contact">Contact</a>
-                  </li>
-                  <li class="dropdown">
-                     Turkmen
-                     <ul class="dropdown-list">
-                        <li class="dr">Türkmençe</li>
-                        <li class="dr">Russian</li>
-                        <li class="dr">English</li>
-                     </ul>
-                  </li>
-                  <li class="sign-up">
-                     <a href="signup">Sign-Up</a>
-                  </li>
-                  <li class="login">
-                     <a href="login">Login</a>
-                  </li>
-               </ul>
-            </div>
-         </nav>
+      <nav>
+         <div class=" logo">
+   <h3>testSpace</h3>
+   <div class="collapse">
+      <i class="fas fa-bars"></i>
+   </div>
+   </div>
+   <div class="items">
+      <ul>
+         <li class="links">
+            <a href="#home"><?= Polyglot::translate('Home') ?></a>
+         </li>
+         <li class="links">
+            <a href="#about"><?= Polyglot::translate('About') ?></a>
+         </li>
+         <li class="links">
+            <a href="#contact"><?= Polyglot::translate('ContactUs') ?></a>
+         </li>
+         <li class="dropdown">
+            <?= Polyglot::translate('CurrentLanguage') ?>
+            <ul class="dropdown-list">
+               <li class="dr" onclick="changeLanguage('TM')">Türkmençe</li>
+               <li class="dr" onclick="changeLanguage('RU')">Русский</li>
+               <li class="dr" onclick="changeLanguage('EN')">English</li>
+            </ul>
+         </li>
+         <li class="sign-up">
+            <a href="signup"><?= Polyglot::translate('Sign Up') ?></a>
+         </li>
+         <li class="login">
+            <a href="login"><?= Polyglot::translate('Login') ?></a>
+         </li>
+      </ul>
+   </div>
+   </nav>
 
-<div id="content">
-<?php require 'views/'.$content.'.php';?>
-</div>
+   <?php require 'views/' . $content . '.php'; ?>
 
-            <footer>
-               <div class="phone">
-                  Phone: +993 62 776655
-                  Tel: +993 12 555858
-                  Email: info@testspace.com
-               </div>
-               <div class="info">
-                  Powered by Geek Space <i style="color:#FF5903 ;" class="fas fa-lightbulb"></i> | All rights reserved
-               </div>
-            </footer>
-         </div>
-
+   <footer>
+      <div class="phone">
+         <?= Polyglot::translate('Mobile') ?>: +993 62 776655
+         |<?= Polyglot::translate('Tel') ?>: +993 12 555858
+         |<?= Polyglot::translate('OurEmail') ?>: info@testspace.com
       </div>
-   </section>
-
-   <div class="bg">
-
+      <div class="info">
+         <?= Polyglot::translate('PoweredBy') ?> Geek Space <i style="color:#FF5903 ;" class="fas fa-lightbulb"></i> | <?= Polyglot::translate('Rights') ?>
+      </div>
+   </footer>
+   </div>
    </div>
 
-	  <!-- Navbar Animation -->
-   <script>
+   </section>
 
-      const collapse = document.querySelector('.collapse');
-      const items = document.querySelector('.items');
+   <div class="bg"></div>
 
-      collapse.onclick = () => {
-         items.classList.toggle('active')
-      }
-      window.onclick = function (event) {
-         if (event.target == items) {
-            items.classList.remove('active')
-         }
-         console.log('outside')
-      }
+   <!-- Loader -->
+   <div class="loader">
+      <div class="box">
+         <img src="source/welcome/images/testSpace-logo-loader.svg" alt="">
+      </div>
+   </div>
 
-      window.onresize = screen;
-      window.onpageshow = screen;
-      function screen() {
-         const width = window.innerWidth;
-         if(width <= "760"){
-            document.querySelector('.home-1').src = "images/Group.svg";
-            console.log('actice')
-         } 
-         else{
-            document.querySelector('.home-1').src = "images/home-1.svg";
-         }
-      }
-      document.querySelector('.dropdown').addEventListener('mouseover',function(){
+   <script src="source/general/js/jquery/jquery-3.4.1.min.js"></script>
+   <!-- Navbar Animation -->
+   <script type="text/javascript" src="source/general/validator/validator.js"></script>
+   <script src="source/welcome/js/welcome.js"></script>
 
-                  document.querySelector('.dropdown-list').style.display = "block";
 
-            });
-            document.querySelector('.dropdown').addEventListener('mouseout',function(){
+   <!-- GSAP Animations -->
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.4.2/gsap.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.4.2/ScrollTrigger.min.js"></script>
+   <script src="source/welcome/js/gsap.js"></script>
+   </body>
 
-                  document.querySelector('.dropdown-list').style.display = "none";
-
-            });
-
-   </script>
-</body>
 </html>

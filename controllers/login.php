@@ -7,6 +7,7 @@
         }
 
         public function index(){
+            Polyglot::setPage('login');
             $this->view->render('login/index');
         }
 
@@ -18,6 +19,7 @@
                 $hasPassword = false;
 
                 $column = filter_var($user, FILTER_VALIDATE_EMAIL) ? 'E_MAIL' : 'USER_NAME';
+                $mailORuser = filter_var($user, FILTER_VALIDATE_EMAIL) ? 'Email' : 'Username';
 
                 if($this->model->check($user,$column)){
                     if($this->model->check($password,'PASSWORD')){
@@ -29,18 +31,17 @@
                 $isActive = $this->model->getUserActive($user , $column);
                
                 if($hasPassword){
-                    if($remember){ 
-                        Cookie::set(USER_ID,$user_id);}
-
                     if($isActive){
                         Session::set(USER_ID,$user_id);
-                        $this->redirect('main');
+                        if($remember){ 
+                        Cookie::set(USER_ID,$user_id);}
+                        echo 1;//goto main
                     }else{
-                        $this->redirect('welcome/mailnotification');
+                        echo 2;//goto mailnotification
                     }
     
                 }else{
-                    echo "Incorrect username/email or password";
+                   echo 0;//goto nowhere :-)
                 }
             }
         }
