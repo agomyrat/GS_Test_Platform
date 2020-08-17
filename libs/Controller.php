@@ -23,7 +23,7 @@
 
 		public function error(){
 			$this->view->layout='welcome';
-			$this->view->render('error/notfound');
+			$this->view->render('not_found/index');
 		}
 
 		public function getUserId(){

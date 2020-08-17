@@ -3,12 +3,12 @@
     class Notfound extends Controller{
         public function __construct(){
             parent::__construct();
-            $this->view->layout = 'notfound';
+            $this->view->layout = 'icon_navbar';
         }
 
         public function index(){
             $this->incrementErrorTrial();
-            $this->view->render('error/notfound');
+            $this->view->render('not_found/index');
             
         }
     }

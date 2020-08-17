@@ -6,7 +6,7 @@
 	function __construct()
 	{
 		parent::__construct();
-        $this->view->layout = "mail_notification";
+        $this->view->layout = "icon_navbar";
 	}
 
 	public function index(){
