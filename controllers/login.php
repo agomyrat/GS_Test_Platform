@@ -3,7 +3,7 @@
     class Login extends Controller{
         public function __construct(){
             parent::__construct();
-            $this->view->layout = "login";
+            $this->view->layout = "logo";
         }
 
         public function index(){

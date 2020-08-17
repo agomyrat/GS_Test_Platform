@@ -6,7 +6,7 @@ class Signup extends Controller
 	function __construct()
 	{
 		parent::__construct();
-        $this->view->layout = "signup";
+        $this->view->layout = "logo";
 	}
 
 	public function index(){

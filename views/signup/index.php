@@ -1,15 +1,4 @@
    <section>
-
-      <!-- Navbar -->
-      <nav>
-         <div class="logo">
-            <a href="index.php">
-               testSpace
-            </a>
-         </div>
-      </nav>
-
-
       <div class="circles">
          <span id="page" class="active-circle">1</span>
          <span id="page">2</span>

@@ -6,7 +6,7 @@
 	function __construct()
 	{
 		parent::__construct();
-        	$this->view->layout = "icon_navbar";
+        	$this->view->layout = "logo";
 	}
 
 	public function index(){

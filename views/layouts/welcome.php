@@ -7,7 +7,6 @@
    <title>testSpace</title>
    <link rel="stylesheet" href="source/welcome/css/style.css">
    <link rel="stylesheet" href="source/general/icons/icons/all.min.css">
-   <link rel="icon" href="source/general/img/Logo-orange.svg">
 </head>
 
 <body>
