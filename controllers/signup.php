@@ -14,7 +14,7 @@ class Signup extends Controller
 		$this->view->render('signup/index');
 	}
 
-	public function check_for_input(){//$_POST arrayi controllerin ichinde barlap son gechirmeli
+	public function check_for_input(){
 		if(isset($_POST)){
 			$column = $_POST['column'];
 			$value = $_POST['value'];
