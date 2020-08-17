@@ -19,6 +19,7 @@
                 $hasPassword = false;
 
                 $column = filter_var($user, FILTER_VALIDATE_EMAIL) ? 'E_MAIL' : 'USER_NAME';
+                $mailORuser = filter_var($user, FILTER_VALIDATE_EMAIL) ? 'Email' : 'Username';
 
                 if(User::_has($user,$column)){
                     if(User::_has($password,'PASSWORD')){

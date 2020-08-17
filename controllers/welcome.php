@@ -30,6 +30,11 @@ class Welcome extends Controller
 		var_dump($tests);
 	}
 
+
+	/*public function test(){
+		$variable = User_model::get();
+	}*/
+
 }
 
  ?>

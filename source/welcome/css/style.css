@@ -6,6 +6,22 @@
    src: url('../../general/fonts/montserrat/Montserrat-Bold.otf');
    font-family: Montserrat-Bold;
 }
+.loader{
+   width: 100%;
+   height: 100%;
+   position: fixed;
+   top: 0;
+   bottom: 0;
+   background-color: white;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   z-index: 9999;
+}
+.loader .box{
+   width: 100px;
+   height: 100px;
+}
 *{
    font-family: Montserrat;
    box-sizing: border-box;
@@ -86,6 +102,10 @@ nav{
    padding: 11px;
    cursor:pointer;
 }
+.items>ul li.links:hover{
+   opacity: 0.7;
+   cursor: pointer;
+}
 .items >ul >li a {
    text-decoration: none;
    color: #032535;
@@ -110,6 +130,9 @@ nav{
 li.dropdown{
    position: relative;
    margin-right: 10px;
+}
+li.dropdown:hover{
+   cursor: pointer;
 }
 li.dropdown::after{
    content: '';
@@ -179,6 +202,17 @@ li.dropdown ul.dropdown-list>li.dr:hover{
    border: none;
    border-radius: 5px ;
 }
+.part1 .header .orange-btn button a{
+   text-decoration:none;
+   color: white;
+}
+.part1 .header .orange-btn button:hover,
+.items >ul> li.sign-up a:hover,
+.items >ul >li.login a:hover
+{
+   opacity: 0.7;
+   cursor: pointer;
+}
 .part2{
    display: grid;
    align-items: center;
@@ -227,8 +261,10 @@ li.dropdown ul.dropdown-list>li.dr:hover{
    align-items: center;
 }
 #about .box .box2 article {
+   padding-top: 1rem;
    width: 80%;
-   line-height: 1.5rem;
+   line-height: 2rem;
+   font-size: 2rem;
 }
 
 /* Contact */
@@ -318,6 +354,7 @@ form div>input.send{
 footer{
    text-align: center;
    font-size: 1rem;
+   padding-top:2rem;
 }
 
 
@@ -372,6 +409,9 @@ footer{
    }
    #contact .box .box2 aside {
       width: 100%;
+   }
+   footer{
+      padding-top: 0;
    }
 }
 @media screen and (max-width:760px) {

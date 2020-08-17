@@ -5,4 +5,3 @@ In sonunda edilmeli ishler:
 shu wagtlykca signupda dateler insert edilenok
 
 Teste create button basylanda pop chykmaly 'dineje testin adyny girizmek uchin'
-

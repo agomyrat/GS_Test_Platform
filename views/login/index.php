@@ -1,9 +1,6 @@
  <div id="container">
         <div id="image">
            <div class="left-side">
-               <h5 class="name">
-                  <a href="welcome">testSpace</a>
-               </h5>
                <div class="letter">
                   <p class="know">
                      <?=Polyglot::translate('Proverb')?></p>

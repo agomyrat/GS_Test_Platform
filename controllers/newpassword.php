@@ -6,7 +6,7 @@
 	function __construct()
 	{
 		parent::__construct();
-        $this->view->layout = "new_password";
+        	$this->view->layout = "icon_navbar";
 	}
 
 	public function index(){

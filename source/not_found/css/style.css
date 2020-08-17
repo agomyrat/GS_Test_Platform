@@ -1,106 +1,113 @@
-    body {
-        margin: 0;
-        padding: 0;
-        font-family: 'Poppins', sans-serif;
-        overflow: hidden;
-        box-sizing: border-box;
-    }
-    
-    .name {
-        color: #ff570c;
-        font-style: bold;
-        font-size: 2.5rem;
-        margin-left: 3vw;
-        margin-top: 5vh;
-        margin-bottom: 0;
-    }
-    
-    .name a {
-        color: #ff570c;
-        text-decoration: none;
-        display: fixed;
-    }
-    
-    .image {
-        height: 60vh;
-        width: 100vw;
-        background-image: url('../img/404.jpg');
-        background-size: contain;
-        background-repeat: no-repeat;
-        background-position: center center;
-        margin-top: 0;
-        margin-bottom: 0;
-    }
-    
-    .bottom {
-        display: grid;
-        grid-template-columns: 1fr;
-        grid-template-rows: 1fr 1fr;
-        margin-top: 10px;
-    }
-    
-    .h {
-        display: flex;
-        justify-content: center;
-    }
-    
-    .error {
-        font-size: 30px;
-        color: #ff570c;
-        text-align: center;
-        padding-bottom: 0;
-        line-height: 10px;
-    }
-    
-    .btn {
-        width: 100%;
-        display: flex;
-        justify-content: center;
-    }
-    .btn a {
+body {
+   margin: 0;
+   padding: 0;
+   overflow: hidden;
+   box-sizing: border-box;
+}
 
-        text-decoration: none;
-        color: white;
-        background-color: #ff570c;
-        color: white;
-        border-radius: 5px;
-        display: block;
-        width: 200px;
-        height: 50px;
-        line-height: 50px;
-        text-align: center;
-    }
-    
-    @media screen and (max-width:768px) {
-        .image {
-            background-image: url('../img/mobile.png');
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-position: center center;
-            height: 60vh;
-            width: 75vw;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        .name {
-            font-size: 2rem;
-            padding-top: 1vh;
-            padding-left: 4vw;
-        }
-    }
-    
-    @media screen and (max-width:440px) {
-        .error {
-            font-size: 22px;
-        }
-        .bottom {
-            margin-top: 0;
-            padding-top: 0;
-        }
-        .error {
-            line-height: 12px;
-        }
-        .h {
-            margin-top: 0rem;
-        }
-    }
+.name {
+   color: #ff570c;
+   font-style: bold;
+   font-size: 2.5rem;
+   margin-bottom: 0;
+}
+
+.name a {
+   color: #ff570c;
+   text-decoration: none;
+   display: fixed;
+}
+.svg{
+   height: 60vh;
+   width: 100%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+.image {
+   width: 60%;
+   height: 60%;
+   background-image: url('img/404.jpg');
+   background-size: contain;
+   background-repeat: no-repeat;
+   background-position: center center;
+   padding-top: 2rem;
+}
+
+.bottom {
+   display: grid;
+   height: 30vh;
+   grid-template-columns: 1fr;
+   grid-template-rows: 1fr 1fr;
+   margin-top: 10px;
+}
+
+.h {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.error {
+   font-size: 30px;
+   color: #ff570c;
+   text-align: center;
+   padding-bottom: 0;
+   line-height: 10px;
+}
+
+.btn {
+   width: 100%;
+   display: flex;
+   justify-content: center;
+}
+.btn a {
+
+   text-decoration: none;
+   color: white;
+   background-color: #ff570c;
+   color: white;
+   border-radius: 5px;
+   display: block;
+   width: 200px;
+   height: 50px;
+   line-height: 50px;
+   text-align: center;
+}
+.btn a:hover{
+   opacity: 0.7;
+}
+
+@media screen and (max-width:768px) {
+   .image {
+      background-image: url('img/mobile.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center center;
+      width: 60%;
+      height: 60%;
+      margin-left: auto;
+      margin-right: auto;
+   }
+   .name {
+      font-size: 2rem;
+      padding-top: 1vh;
+      padding-left: 4vw;
+   }
+}
+
+@media screen and (max-width:440px) {
+   .error {
+      font-size: 22px;
+   }
+   .bottom {
+      margin-top: 0;
+      padding-top: 0;
+   }
+   .error {
+      line-height: 12px;
+   }
+   .h {
+      margin-top: 0rem;
+   }
+}

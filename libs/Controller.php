@@ -16,8 +16,8 @@
 
 		public function error(){
 			Polyglot::setPage('not_found');
-			$this->view->layout='notfound';
-			$this->view->render('error/notfound');
+			$this->view->layout='icon_navbar';
+			$this->view->render('not_found/index');
 		}
 
 		public function getUserId(){
@@ -96,7 +96,6 @@
 			echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
     	}	
 	}
-
 
 	}
 	
