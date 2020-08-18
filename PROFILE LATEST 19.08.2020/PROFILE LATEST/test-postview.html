@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Test Constructor Preview</title>
+    <link rel="stylesheet" href="./css/profile.css" />
+    <link rel="stylesheet" href="./css/postview.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  </head>
+
+  <body>
+    <div style="top: -50px; opacity: 0;" class="alert error">
+      <i class="fa fa-times"></i>
+    </div>
+
+    <header>
+      <div class="container">
+        <div class="header">
+          <div class="left">
+            <a href="#">
+              <div class="header-logo">
+                <h1>testSpace</h1>
+              </div>
+            </a>
+          </div>
+          <div class="right">
+            <div class="header-notif">
+              <i class="fa fa-bell web"></i>
+              <div class="notif-count web">2</div>
+              <div class="hamburger-notif">
+                <span
+                  >Notifications<i class="fa fa-bell mob"></i>
+                  <div class="notif-count mob">2</div>
+                </span>
+              </div>
+            </div>
+            <div class="header-avatar">
+              <img src="./img/profile.jpg" alt="" />
+              <i class="fa fa-sort-down"></i>
+              <h3 class="username">Username</h3>
+              <ul class="dropdown dropdown-avatar">
+                <li><i class="fa fa-cog"></i> Settings</li>
+                <li><i class="far fa-sign-out-alt"></i>Log out</li>
+              </ul>
+            </div>
+            <div class="header-language">
+              <span>English</span>
+              <i class="fa fa-sort-down"></i>
+              <ul class="dropdown dropdown-language">
+                <li>English</li>
+                <li>Russian</li>
+                <li>Turkmen</li>
+              </ul>
+            </div>
+          </div>
+          <div class="hamburger-wrapper inactive">
+            <div class="hamburger">
+              <span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <div class="container">
+        <form id="form">
+          <div class="postview-wrapper">
+            <div class="left">
+              <h1>Information about test</h1>
+
+              <div class="input">
+                <label for="name">Name</label>
+                <input type="text" id="name" placeholder="Intro to exam" />
+              </div>
+              <div class="input language">
+                <label for="lang">Language</label>
+                <select name="langs" id="lang">
+                  <option value="english">English</option>
+                  <option value="english">Russian</option>
+                  <option value="english">Turkmen</option>
+                </select>
+              </div>
+              <div class="input">
+                <label for="description">Description</label>
+                <textarea
+                  name="description"
+                  id="description"
+                  cols="30"
+                  rows="10"
+                ></textarea>
+              </div>
+              <div class="row">
+                <div class="input">
+                  <label for="status">Status</label>
+                  <select name="status" id="status">
+                    <option value="public">Public</option>
+                    <option value="private">Private</option>
+                  </select>
+                </div>
+                <div class="input">
+                  <label for="password">Password</label>
+                  <input type="password" id="password" />
+                </div>
+              </div>
+            </div>
+            <div class="right">
+              <div class="test-img-wrapper">
+                <img src="./img/profile.jpg" alt="" id="photo" />
+              </div>
+              <div class="input">
+                <label for="photo">Photo of test</label>
+                <div class="input-file">
+                  <i class="fa fa-plus-circle"></i>
+                  <input type="file" name="photo" id="photoInput" />
+                </div>
+              </div>
+              <div class="row">
+                <div class="input">
+                  <label for="time">Given time(min)</label>
+                  <input type="number" name="time" id="time" />
+                </div>
+                <div class="input">
+                  <label for="deadline">Deadline</label>
+                  <input type="date" name="deadline" id="deadline" />
+                </div>
+              </div>
+              <div class="row btns">
+                <button class="btn">Check Test</button>
+                <button type="submit" class="btn">Publish Test</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </main>
+
+    <script type="module" src="./js/profile.js"></script>
+    <script type="module" src="./js/postview.js"></script>
+  </body>
+</html>
