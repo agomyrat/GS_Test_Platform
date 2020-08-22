@@ -1,5 +1,5 @@
 <?php 
-
+	
 	class Controller {
 		function __construct(){
 			// "Main controller<br>";
@@ -16,7 +16,7 @@
 
 		public function error(){
 			Polyglot::setPage('not_found');
-			$this->view->layout='icon_navbar';
+			$this->view->layout='logo';
 			$this->view->render('not_found/index');
 		}
 

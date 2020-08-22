@@ -15,7 +15,7 @@
 				}
 			}
 			
-			echo '<link rel="icon" href="source/general/img/Logo-orange.svg">';
+			echo '<link rel="icon" href="'.URL.'source/general/img/Logo-orange.svg">';
 			require "views/layouts/".$this->layout.".php";
 		}
 

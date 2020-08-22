@@ -2,7 +2,6 @@
 
     class User extends Model{
 
-        
         public $data = array();
 
         public function __construct($user_id){
@@ -12,7 +11,6 @@
                 $query = $this->db->prepare($sql);
                 $query->execute([$user_id]);
                 if($query->rowCount() > 0){
-                    //$sql_data = 
                     $this->data = $query->fetch(PDO::FETCH_ASSOC);
                 }
             }catch(Exception $e){
@@ -173,10 +171,42 @@
             return false;
 
         }
-       
 
-        
-       
+        public function getVarableNameWithColumnName($columnName){
+            $da = array('USER_ID'=>'userId', 'FIRST_NAME'=>'firstName', 'SURNAME'=>'surname', 'E_MAIL'=>'email', 'USER_NAME'=>'userName', 'PASSWORD'=>'password', 'BIRTH_DATE'=>'birthDate', 'PHONE_NUMBER'=>'phoneNumber', 'COUNTRY'=>'country', 'CITY'=>'city', 'ACTIVE'=>'active', 'IMAGE'=>'image', 'GENDER'=>'gender', 'JOB'=>'job', 'BIO'=>'bio', 'STATUS'=>'status', 'VERIFY_CODE'=>'verifyCode', 'CREATE_TIME'=>'createTime', 'ISADMIN'=>'isAdmin', 'EMAIL_SUBSCRIBE'=>'email_subscribe', 'GMT'=>'gmt', 'LANGUAGE'=>'language');
+            return $da[$columnName];
+            
+        }
+        /**
+         * public bolmaly maglumatlary alyar
+         * 
+         * @author Agamyrat C.
+         * 
+         */
+        public static function _getPublicDatas($id){
+            try{
+                $sql = 'SELECT * FROM users WHERE (users.USER_ID = ?) LIMIT 1';
+                $query = self::$_db_->prepare($sql);
+                $query->execute([$id]);
+                if($query->rowCount() > 0){
+                    $data = $query->fetch(PDO::FETCH_ASSOC);
+                    $data_ = array();
+                    foreach ($data as $key => $value){
+                        if(array_key_exists($key.'_A',$data)){
+                            if($data[$key.'_A'] == 1){
+                                $data_[self::getVarableNameWithColumnName($key)] = $value;
+                            }
+                        }
+                    }
+
+                    return  $data_;
+                }
+                return false;
+            }catch(Exception $e){
+                echo $e;
+            }
+            return false;
+        }
 
         /**
          * USERYN DOLY ADY FAMILYASY GELYAR
@@ -286,7 +316,8 @@
 					':country'=>$country,
 					':password'=>$password]);
 				    
-                    return  self::_getUserId('E_MAIL',$email);
+                    return self::$_db_->lastInsertId();
+
 
 			}catch(PDOException $e) {
                   echo $sql . "<br>" . $e->getMessage();

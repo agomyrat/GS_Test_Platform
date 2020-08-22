@@ -13,7 +13,7 @@
 			$this->goToPage('main');
 			return;
 
-		}else if($this->isAllowed()){
+		}else if(isset($this->url[0]) && $this->isAllowed()){
 			$this->runURL($this->url);
 			return;
 		}

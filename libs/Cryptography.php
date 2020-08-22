@@ -1,5 +1,4 @@
 <?php 
-
 /*
     all configurations are in config folder
 */
