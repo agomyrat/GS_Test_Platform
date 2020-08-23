@@ -39,5 +39,8 @@ class Welcome extends Controller
 		// Mail::setMail('Agamyrat Chariyev', 'agamyrat.chariyev@gmail.com', 'Salam Platformanyz gaty gowy bolupdyr programmistlara minnetdar!!!');
 
 		// Mail::mailReaded(1);
+		print_r(_Test::getPopularTests(1));
+		echo '<br><br>';
+		print_r(_Test::getMyPinnedTests());
 	}
 }

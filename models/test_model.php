@@ -124,18 +124,146 @@ class _Test extends Model
         return $query->fetch()[0];
     }
 
-    public static function getPopularTests()
+    /**
+     * Popular sanyna gora order by  
+     * 
+     * @param int $limit Test sany. Egerde bosh ugratsan hemmesini alyp berya
+     * @return array 
+     * @author Agamyrat C.
+     * 
+     */
+    public static function getPopularTests($limit = 0)
     {
-        $db = new Database;
-        //return array of objects  e.g. ['test_id'=>object] //sanyny ozuniz kesgitlan belki 5 object belki 4
+        try {
+            $data_all = [];
+            $db = new Database;
+            $limit_text = '';
+            if ($limit != 0) {
+                $limit_text = ' LIMIT ' . $limit;
+            }
+            $sql = 'SELECT 
+                    users.USER_ID, 
+                    CONCAT("@",users.USER_NAME) USER_NAME, 
+                    tests.TEST_ID, 
+                    tests.TEST_NAME, 
+                    tests.DESCRIPTION, 
+                    LIKE_COUNT, 
+                    DISLIKE_COUNT, 
+                    SOLVING_COUNT, 
+                    DATE_FORMAT(tests.CREATE_TIME,\'%d.%m.%Y\') CREATED_DATE
+            FROM tests
+            LEFT JOIN users ON users.USER_ID = tests.CREATED_BY
+            WHERE tests.IS_PUBLIC = 1 AND tests.IS_ALLOWED = 1
+            ORDER BY (LIKE_COUNT - DISLIKE_COUNT) * 2 + SOLVING_COUNT DESC
+            ' . $limit_text;
+            $query = $db->prepare($sql);
+            $query->execute();
+            while ($row = $query->fetch(PDO::FETCH_OBJ)) {
+                $data = null;
+                $data['USER_ID'] = $row->USER_ID;
+                $data['USER_NAME'] = $row->USER_NAME;
+                $data['TEST_ID'] = $row->TEST_ID;
+                $data['TEST_NAME'] = $row->TEST_NAME;
+                $data['LIKE_COUNT'] = $row->LIKE_COUNT;
+                $data['SOLVING_COUNT'] = $row->SOLVING_COUNT;
+                $data['CREATED_DATE'] = $row->CREATED_DATE;
+                $data_all[] = $data;
+            }
+            return $data_all;
+        } catch (Exception $e) {
+            echo $e;
+            return false;
+        }
     }
 
-    public static function getRecentTests()
+    public static function getRecentTests($limit = 0)
     {
-        $db = new Database;
-        //return array of objects  e.g. ['test_id'=>object] //sanyny ozuniz kesgitlan belki 5 object belki 4
+        try {
+            $data_all = [];
+            $db = new Database;
+            $limit_text = '';
+            if ($limit != 0) {
+                $limit_text = ' LIMIT ' . $limit;
+            }
+            $sql = 'SELECT 
+                    users.USER_ID, 
+                    CONCAT("@",users.USER_NAME) USER_NAME, 
+                    tests.TEST_ID, 
+                    tests.TEST_NAME, 
+                    tests.DESCRIPTION, 
+                    LIKE_COUNT, 
+                    DISLIKE_COUNT, 
+                    SOLVING_COUNT, 
+                    DATE_FORMAT(tests.LAST_UPDATE_TIME,\'%d.%m.%Y\') CREATED_DATE
+            FROM tests
+            LEFT JOIN users ON users.USER_ID = tests.CREATED_BY
+            WHERE tests.IS_PUBLIC = 1 AND tests.IS_ALLOWED = 1
+            ORDER BY LAST_UPDATE_TIME DESC
+            ' . $limit_text;
+            $query = $db->prepare($sql);
+            $query->execute();
+            while ($row = $query->fetch(PDO::FETCH_OBJ)) {
+                $data = null;
+                $data['USER_ID'] = $row->USER_ID;
+                $data['USER_NAME'] = $row->USER_NAME;
+                $data['TEST_ID'] = $row->TEST_ID;
+                $data['TEST_NAME'] = $row->TEST_NAME;
+                $data['LIKE_COUNT'] = $row->LIKE_COUNT;
+                $data['SOLVING_COUNT'] = $row->SOLVING_COUNT;
+                $data['CREATED_DATE'] = $row->CREATED_DATE;
+                $data_all[] = $data;
+            }
+            return $data_all;
+        } catch (Exception $e) {
+            echo $e;
+            return false;
+        }
     }
 
+    public static function getMyPinnedTests($limit = 0)
+    {
+        try {
+            $data_all = [];
+            $db = new Database;
+            $limit_text = '';
+            if ($limit != 0) {
+                $limit_text = ' LIMIT ' . $limit;
+            }
+            $sql = 'SELECT 
+                        tests.CREATED_BY, 
+                        CONCAT("@", users.USER_NAME) USER_NAME,
+                        tests.TEST_ID, 
+                        tests.TEST_NAME, 
+                        tests.DESCRIPTION, 
+                        LIKE_COUNT, 
+                        DISLIKE_COUNT, 
+                        SOLVING_COUNT, 
+                        DATE_FORMAT(pinned_test.CREATE_TIME,\'%d.%m.%Y\') CREATED_DATE
+           FROM pinned_test
+           LEFT JOIN tests on tests.TEST_ID = pinned_test.TEST_ID
+           LEFT JOIN users ON tests.CREATED_BY = users.USER_ID
+           WHERE pinned_test.USER_ID = 1
+           ORDER BY pinned_test.CREATE_TIME DESC
+            ' . $limit_text;
+            $query = $db->prepare($sql);
+            $query->execute();
+            while ($row = $query->fetch(PDO::FETCH_OBJ)) {
+                $data = null;
+                $data['USER_ID'] = $row->CREATED_BY;
+                $data['USER_NAME'] = $row->USER_NAME;
+                $data['TEST_ID'] = $row->TEST_ID;
+                $data['TEST_NAME'] = $row->TEST_NAME;
+                $data['LIKE_COUNT'] = $row->LIKE_COUNT;
+                $data['SOLVING_COUNT'] = $row->SOLVING_COUNT;
+                $data['CREATED_DATE'] = $row->CREATED_DATE;
+                $data_all[] = $data;
+            }
+            return $data_all;
+        } catch (Exception $e) {
+            echo $e;
+            return false;
+        }
+    }
     public function increment(/*VIEWS, LIKES*/)
     {
         //berlen columndaky sana 1 goshmaly
