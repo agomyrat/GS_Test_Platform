@@ -631,7 +631,7 @@ class Questions {
                formData.append("data", JSON.stringify(data));
 //-------------------------------------------------------------------------------
                $.ajax({
-                  url:'../test/saveQuestion',
+                  url:'http://localhost/TestPlatform/GS_Test_Platform/test/saveQuestion',
                   type:'post',
                   processData: false,
                   contentType: false,

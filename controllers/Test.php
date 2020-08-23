@@ -111,7 +111,6 @@ class _Object{
 			$extractedDatasArray['isRandom'] = isset($object->isRandom) ? $object->isRandom : 0; 
 			$extractedDatasArray['hasImage'] = isset($object->hasImage) ? $object->hasImage : 0;
 		}
-
 		return $extractedDatasArray;
 	}
 
@@ -212,7 +211,9 @@ class _Object{
 		$imagePathsArray = json_decode($jsonImagePathsArray);
 		if(!empty($arrayWithPathKeys) && !empty($imagePathsArray)){
 			for ($i=0; $i < count($arrayWithPathKeys); $i++) {
-				$arrayWithPathKeys[$i]->path = $imagePathsArray[$i];
+				if(isset($imagePathsArray[$i])){
+					$arrayWithPathKeys[$i]->path = $imagePathsArray[$i];
+				}
 			}
 			return json_encode($arrayWithPathKeys);
 		}

@@ -24,16 +24,17 @@ class Welcome extends Controller
 		$verificationCode = $verificationCodeArray[0];
 	}
 
-	public function test(){
+/* 	public function test(){
 		$tests = $this->user->getTests();
 		echo '<pre>';
 		var_dump($tests);
+	} */
+
+
+	public function test(){
+		$variable = User::_get(1,['USER_NAME']);
+		print_r($variable);
 	}
-
-
-	/*public function test(){
-		$variable = User_model::get();
-	}*/
 
 }
 

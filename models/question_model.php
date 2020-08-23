@@ -21,14 +21,14 @@
                 // var_dump($this->db);
                 if($query->rowCount() > 0){
                     $this->data = $query->fetch(PDO::FETCH_ASSOC);
-                    $this->$questionId = $this->data['QUESTIONS_ID'];
-                    $this->$testId = $this->data['TEST_ID'];
-                    $this->$question = $this->data['QUESTION'];
-                    $this->$questionImage = $this->data['QUESTIONS_IMAGE'];
-                    $this->$questionData = $this->data['QUESTIONS_DATA'];
-                    $this->$answers = $this->data['ANSWERS'];
-                    $this->$questionType = $this->data['QUESTIONS_TYPE'];
-                    $this->$isRandom = $this->data['ISRANDOM'];    
+                    $this->questionId = $this->data['QUESTIONS_ID'];
+                    $this->testId = $this->data['TEST_ID'];
+                    $this->question = $this->data['QUESTION'];
+                    $this->questionImage = $this->data['QUESTIONS_IMAGE'];
+                    $this->questionData = $this->data['QUESTIONS_DATA'];
+                    $this->answers = $this->data['ANSWERS'];
+                    $this->questionType = $this->data['QUESTIONS_TYPE'];
+                    $this->isRandom = $this->data['ISRANDOM'];    
                 }
             }catch(Exception $e){
                 echo $e;
