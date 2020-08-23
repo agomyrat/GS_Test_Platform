@@ -1,7 +1,7 @@
 <?php 
 
-    class _Test extends Model{      
- 
+    class _Test extends Model{    
+
         public static function getTestId($column, $value){
             try{
                 $sql = 'SELECT TEST_ID FROM tests WHERE ('.htmlspecialchars($column).' = ?) LIMIT 1';
@@ -17,10 +17,11 @@
         } 
          
         public static function get($test_id, $columns){
+            $_db_ = new Database();
             try{
                 $ar_as = array();
                 $sql = 'SELECT '.htmlspecialchars(implode(', ',$columns)).' FROM tests WHERE (tests.TEST_ID = ?) LIMIT 1';
-                $query = self::$_db_->prepare($sql);
+                $query = $_db_->prepare($sql);
                 $query->execute([$test_id]);
                 if($query->rowCount() > 0){
                     $data = $query->fetch();
