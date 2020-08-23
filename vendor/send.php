@@ -48,12 +48,12 @@ try {
                         style="
                             background-color: #fff;
                             max-width: 600px;
-                            width: 90%;
+                            width: 98%;
                             margin: 2em auto;
                         "
                         >
                         <div style="text-align: center;">
-                            <img src="http:mail-img.png" alt="" style="width: 90%; max-width: 400px;" />
+                            <img src="http:mail-img.png" alt="" style="width: 98%; max-width: 400px;" />
                         </div>
                         <h2 style="text-align: center;">Lorem, ipsum dolor.</h2>
                         <p style="text-align: center;">
