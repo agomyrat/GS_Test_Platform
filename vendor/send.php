@@ -53,16 +53,22 @@ try {
                         "
                         >
                         <div style="text-align: center;">
-                            <img src="http:mail-img.png" alt="" style="width: 98%; max-width: 400px;" />
+                            <img src="https://previews.123rf.com/images/bbtreesubmission/bbtreesubmission1711/bbtreesubmission171104909/90802424-postman-delivery-mail-vector-illustration-.jpg" alt="" style="width: 98%; max-width: 400px;" />
                         </div>
                         <h2 style="text-align: center;">Lorem, ipsum dolor.</h2>
                         <p style="text-align: center;">
                             Bu Email TestSpace test platformasy tarapyndan iberildi. Test
                             platformasynda acan hasabynyzy aktiwlesdirmek ucin asakdaky duwma
                             basmagynyzy hayys edyaris
-                        <div style="font-size: 14px;line-height: 2; display: inline-block;margin:10px auto;color:#fff;border-radius: 5px; padding:10px 10px; background-color:#fc7318;"><strong><a href="""></a> AKTIW ET</strong></div>
+                        <div style="font-size: 14px; display: inline-block; margin:10px auto;color:#fff;border-radius: 5px; padding:10px 10px; background-color:#fc7318;"><strong><a href="""></a> AKTIW ET</strong></div>
                         </p>
                         </div>
+                        <p class="footer" style="text-align: center; padding-top:15px">
+                        
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus odit impe
+                        <hr>
+                        Turkmenistar Ashgabat tel:+993 63384289
+                        </p>
                     </body>
                     </html>
                     ';
