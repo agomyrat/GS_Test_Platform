@@ -1,41 +1,43 @@
-<?php 
+<?php
 
 class Welcome extends Controller
 {
-	
+
 	function __construct()
 	{
 		parent::__construct();
-        $this->view->layout = "welcome";	
+		$this->view->layout = "welcome";
 	}
 
-	public function index(){
+	public function index()
+	{
 		Polyglot::setPage('welcome');
 		$this->view->render('welcome/index');
 	}
 
-	public function activateUser($verificationCodeArray = null){
-    	$user_id = isset($verificationCodeArray) ? User::_activateUser($verificationCodeArray[0]) : null;
-		Session::set(USER_ID,$user_id);	
-		isset($user_id) ? $this->redirect('main') : $this->error();      
-    }
+	public function activateUser($verificationCodeArray = null)
+	{
+		$user_id = isset($verificationCodeArray) ? User::_activateUser($verificationCodeArray[0]) : null;
+		Session::set(USER_ID, $user_id);
+		isset($user_id) ? $this->redirect('main') : $this->error();
+	}
 
-	public function setNewPassword($verificationCodeArray = []){
+	public function setNewPassword($verificationCodeArray = [])
+	{
 		$verificationCode = $verificationCodeArray[0];
 	}
 
-/* 	public function test(){
+	/* 	public function test(){
 		$tests = $this->user->getTests();
 		echo '<pre>';
 		var_dump($tests);
 	} */
 
 
-	public function test(){
-		$variable = User::_get(1,['USER_NAME']);
-		print_r($variable);
+	public function test()
+	{
+		// Mail::setMail('Agamyrat Chariyev', 'agamyrat.chariyev@gmail.com', 'Salam Platformanyz gaty gowy bolupdyr programmistlara minnetdar!!!');
+
+		// Mail::mailReaded(1);
 	}
-
 }
-
- ?>
