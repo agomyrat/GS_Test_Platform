@@ -1,0 +1,15 @@
+<?php 
+     return[
+        'css'=>[
+            "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css",
+            'source/general/css/header.css',
+            'source/profile/css/style.css'
+        ],
+        'js'=>[
+            "source/general/js/header.js",
+            "source/profile/js/main.js",
+            "source/profile/js/functions.js",
+            "source/profile/js/password.js"
+        ]
+    ];
+?>

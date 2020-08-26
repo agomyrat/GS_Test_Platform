@@ -1,9 +1,6 @@
  <div id="container">
         <div id="image">
            <div class="left-side">
-               <h5 class="name">
-                  <a href="welcome">testSpace</a>
-               </h5>
                <div class="letter">
                   <p class="know">
                      <?=Polyglot::translate('Proverb')?></p>
@@ -23,7 +20,7 @@
                <div class="remember-line">
                   <input type="checkbox" class="check" name="remember">
                   <label class="remember"><?=Polyglot::translate('RememberMe')?></label>
-                  <a href="forgotpassword" class="forgot"><?=Polyglot::translate('ForgotPassword')?></a><br>
+                  <a href="password" class="forgot"><?=Polyglot::translate('ForgotPassword')?></a><br>
                </div>
                 <input type="submit" value="<?=Polyglot::translate('LogIn')?>" class='loginbtn'><br>
                 <div class="incorrect" style="display:none;color:red;">Incorrect username/email or password</div>

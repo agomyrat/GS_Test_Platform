@@ -9,13 +9,13 @@ $('#form_').on('submit',(function(e) {
             url: 'login/checkLogin',
             data: data,
             success: function(result){     
-            if(result == 0){
-                $('.incorrect').fadeIn(750);
-            }else if(result == 1){
-                 window.location.href = 'main';    
-            }else{
-                window.location.href = 'mailnotification';
-            }
+                if(result == 1){
+                    window.location.href = 'main';    
+                }else if(result == 2){
+                    window.location.href = 'mailnotification';
+                }else{
+                    $('.incorrect').fadeIn(750);
+                }
             },
             error: function(error){
                 console.log("error: checklogin error");

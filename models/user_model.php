@@ -1,417 +1,388 @@
-<?php 
-namespace model\user_model;
-
-    class User_model extends Model{
-
-        public $id;
-
-        public function __construct($user_id){
-            parent::__construct();
-
-            $this->id = $user_id;
-        }
-
-        //bu functionlaryn hemmesini $this->id bilen select etmeli 
-        public function getUsername(){
-        
-        }
-
-        public function getFirstName(){
-            return $firstName;
-        }
-
-        public function getLastName(){
-            return $lastName;
-        }
-
-        public function getFullName(){
-            return $this->getFirstName()." ".$this->getLastName();
-        }
-
-        public function getMail(){
-            return $mail;
-        }
-
-        public function getPassword(){
-
-        }
-
-        public function getBirthDate(){
-
-        }
-
-        public function getPhoneNumber(){
-            
-        }
-
-        public function getCountry(){
-            
-        }
-
-        public function getCity(){
-            
-        }
-
-        public function getImage(){
-            
-        }
-
-        public function getGender(){
-            //return 'male', 'female', 'others' sheklinde bolmaly
-        }
-
-        public function getJob(){
-            
-        }
-
-        public function getBio(){
-            
-        }
-
-        public function getStatus(){
-           // return 'teacher','student', 'others' sheklinde bolmaly
-        }
-         
-        public function getVerifyCode(){
-            
-        }
-
-        public function getCreatedTime(){
-            
-        }
-
-        public function getGMT(){
-            
-        }
-
-        public function getLanguage(){
-            
-        } 
-
-        public function getProfileDatas(){
-            return [];
-        }
-
-        public function getUserType(){
-            //return admin/moderator/general sheklinde
-        }
-
-        public function getPublicDatas(){
-            return [];
-        }
-
-        public function isAdmin(){
-            
-        }
-
-        public function isModerator(){
-            
-        }
-
-        public function isGeneral(){
-            
-        }
-
-        public function isActive(){
-            
-        }
-
-        public function doMailNotify(){
-
-        }
-
-        //static functions
-
-         //columndan user id almaly
-        public static function getUserId($column, $value){
-            //bellik: gerek bolsa $column uchin config papkada birnache constantlar bellars
-        } 
-
-        //bu functionlaryn hemmesini $this->id bilen select etmeli 
-        public static function getUsername($user_id){
-        
-        }
-
-        public static function getFirstName($user_id){
-            return $firstName;
-        }
-
-        public static function getLastName($user_id){
-            return $lastName;
-        }
-
-        public static function getFullName($user_id){
-            return self::setFirstName($user_id)." ".self::setLastName($user_id);
-        }
-
-        public static function getMail($user_id){
-            return $mail;
-        }
-
-        public static function getPassword($user_id){
-
-        }
-
-        public static function getBirthDate($user_id){
-
-        }
-
-        public static function getPhoneNumber($user_id){
-            
-        }
-
-        public static function getCountry($user_id){
-            
-        }
-
-        public static function setCity($user_id){
-            
-        }
-
-        public static function setImage($user_id){
-            
-        }
-
-        public static function setGender($user_id){
-            //return 'male', 'female', 'others' sheklinde bolmaly
-        }
-
-        public static function setJob($user_id){
-            
-        }
-
-        public static function setBio($user_id){
-            
-        }
-
-        public static function setStatus($user_id){
-           // return 'teacher','student', 'others' sheklinde bolmaly
-        }
-         
-        public static function setVerifyCode($user_id){
-            
-        }
-
-        public static function setCreatedTime($user_id){
-            
-        }
-
-        public static function setGMT($user_id){
-            
-        }
-
-        public static function setLanguage($user_id){
-            
-        }
-
-        public static function setUserType($user_id){
-            //return admin/moderator/general sheklinde
-        }
-
-        public function setUsername($value){
-        
+<?php
+
+class User extends Model
+{
+
+    public $data = array();
+
+    public function __construct($user_id)
+    {
+        parent::__construct();
+        try {
+            $sql = 'SELECT * FROM users WHERE (users.USER_ID = ?) LIMIT 1';
+            $query = $this->db->prepare($sql);
+            $query->execute([$user_id]);
+            if ($query->rowCount() > 0) {
+                $this->data = $query->fetch(PDO::FETCH_ASSOC);
+            }
+        } catch (Exception $e) {
+            echo $e;
         }
-
-        public function setFirstName($value){
-            return $firstName;
-        }
-
-        public function setLastName($value){
-            return $lastName;
-        }
-
-        public function setFullName($value){
-            return $this->setFirstName($value)." ".$this->setLastName($value);
-        }
-
-        public function setMail($value){
-            return $mail;
-        }
-
-        public function setPassword($value){
-
-        }
-
-        public function setBirthDate($value){
-
-        }
-
-        public function setPhoneNumber($value){
-            
-        }
-
-        public function setCountry($value){
-            
-        }
-
-        public function setCity($value){
-            
-        }
-
-        public function setImage($value){
-            
-        }
-
-        public function setGender($value){
-            //return 'male', 'female', 'others' sheklinde bolmaly
-        }
-
-        public function setJob($value){
-            
-        }
-
-        public function setBio($value){
-            
-        }
-
-        public function setStatus($value){
-           // return 'teacher','student', 'others' sheklinde bolmaly
-        }
-         
-        public function setVerifyCode($value){
-            
-        }
-
-        public function setCreatedTime($value){
-            
-        }
-
-        public function setGMT($value){
-            
-        }
-
-        public function setLanguage($value){
-            
-        }
-
-        public function setUserType($value){
-            //return admin/moderator/general sheklinde
-        }
-
-        public function isAdmin($value){
-            
-        }
-
-        public function isModerator($value){
-            
-        }
-
-        public function isGeneral($value){
-            
-        }
-
-        public function isActive($value){
-            
-        }
-
-        public function isPublic($column){
-            //return true/false sheklinde bolmaly
-        }
-
-        public function doMailNotify($value){
-
-        }
-
-        public static function InsertDatas(){
-
-        }
-
-        User_model::InsertDatas();
-
-
-        //static functions
-
-  /*       //columndan user id almaly
-        public static function setUserId($column, $value){
-            //bellik: gerek bolsa $column uchin config papkada birnache constantlar bellars
-        } 
-
-        //bu functionlaryn hemmesini $this->id bilen select etmeli 
-        public static function setUsername($user_id){
-        
-        }
-
-        public static function setFirstName($user_id){
-            return $firstName;
-        }
-
-        public static function setLastName($user_id){
-            return $lastName;
-        }
-
-        public static function setFullName($user_id){
-            return self::setFirstName($user_id)." ".self::setLastName($user_id);
-        }
-
-        public static function setMail($user_id){
-            return $mail;
-        }
-
-        public static function setPassword($user_id){
-
-        }
-
-        public static function setBirthDate($user_id){
-
-        }
-
-        public static function setPhoneNumber($user_id){
-            
-        }
-
-        public static function setCountry($user_id){
-            
-        }
-
-        public static function setCity($user_id){
-            
-        }
-
-        public static function setImage($user_id){
-            
-        }
-
-        public static function setGender($user_id){
-            //return 'male', 'female', 'others' sheklinde bolmaly
-        }
-
-        public static function setJob($user_id){
-            
-        }
-
-        public static function setBio($user_id){
-            
-        }
-
-        public static function setStatus($user_id){
-           // return 'teacher','student', 'others' sheklinde bolmaly
-        }
-         
-        public static function setVerifyCode($user_id){
-            
-        }
-
-        public static function setCreatedTime($user_id){
-            
-        }
-
-        public static function setGMT($user_id){
-            
-        }
-
-        public static function setLanguage($user_id){
-            
-        }
-
-        public static function setUserType($user_id){
-            //return admin/moderator/general sheklinde
-        }
-*/
-        
-
-
-
-
-
     }
-?>
+
+    /**
+     * UGRATYAN COLUMN VALUE GETIRIP BERYAR 
+     * 
+     * @param string $column Column name
+     * @author Agamyrat C.
+     * 
+     */
+    public function get($column)
+    { //mana array berilyar
+        try {
+            return $this->data[$column];
+        } catch (Exception $e) {
+            echo $e;
+        }
+        return false;
+    }
+    /**
+     * ULANYJY ADY VE FAMILYASY
+     * 
+     * @author Agamyrat C.
+     * 
+     */
+    public function getFullName()
+    {
+        try {
+            return $this->data['FIRST_NAME'] . " " . $this->data['SURNAME'];
+        } catch (Exception $e) {
+            echo $e;
+        }
+        return false;
+    }
+
+    /**
+     * public bolmaly maglumatlary alyar
+     * 
+     * @author Agamyrat C.
+     * 
+     */
+    public function getPublicDatas()
+    {
+        try {
+            $data_ = array();
+            foreach ($this->data as $key => $value) {
+                if (array_key_exists($key . '_A', $this->data)) {
+                    if ($this->data[$key . '_A'] == 1) {
+                        $data_[$key] = $value;
+                    }
+                }
+            }
+            return $data_;
+        } catch (Exception $e) {
+            echo $e;
+        }
+        return false;
+    }
+
+    /**
+     * UGRATYAN COLUMN VALUE GETIRIP BERYAR 
+     * 
+     * @param string $column Column name
+     * @param str_or_int $new_value Uytgediljek value
+     * @author Agamyrat C.
+     * 
+     */
+    public function set($column, $new_value)
+    {
+        try {
+            if (array_key_exists($column, $this->data)) {
+                $this->data[$column] = $new_value;
+                return $this;
+            }
+        } catch (Exception $e) {
+            echo $e;
+        }
+        return false;
+    }
+
+    /**
+     * DB YAZDYRMALY 
+     * 
+     */
+    public function writeDB()
+    {
+        try {
+            $sql = 'UPDATE users SET ';
+            $arr = array();
+            foreach ($this->data as $key => $value) {
+                $sql .=  'users.' . htmlspecialchars($key) . ' = ?, ';
+                $arr[] = $value;
+            }
+            $arr[] = $this->data['USER_ID'];
+            $sql = substr($sql, 0, -2) . ' WHERE (users.USER_ID = ?) LIMIT 1';
+            $query = $this->db->prepare($sql);
+            $query->execute($arr);
+            if ($query->rowCount() > 0) {
+                return true;
+            }
+        } catch (Exception $e) {
+            echo $e;
+        }
+        return false;
+    }
+
+
+    /**
+     * SELECT USER_ID WHERE $column = $value 
+     * 
+     * @param string $column Column name
+     * @param string $value Deňeşdiriljek maglumat
+     * @return int User ID
+     * @author Agamyrat C.
+     * 
+     */
+    public static function _getUserId($column, $value)
+    {
+        $db = new Database;
+        try {
+            $sql = 'SELECT USER_ID FROM users WHERE (' . htmlspecialchars($column) . ' = ?) LIMIT 1';
+            $query = $db->prepare($sql);
+            $query->execute([$value]);
+            if ($query->rowCount() > 0) {
+                return $query->fetch()[0];
+            }
+        } catch (Exception $e) {
+            echo $e;
+        }
+        return false;
+    }
+
+
+
+    /**
+     * SELECT [$columns] WHERE USER_ID = $user_id 
+     * 
+     * @param int $user_id user_id
+     * @param array $columns DB columns name
+     * @return array_associative ['column'=>'value','column'=>'value' ...] 
+     * @author Agamyrat C.
+     * 
+     */
+    public static function _get($user_id, $columns)
+    {
+        $db = new Database;
+        try {
+            $ar_as = array();
+            $sql = 'SELECT ' . htmlspecialchars(implode(', ', $columns)) . ' FROM users WHERE (users.USER_ID = ?) LIMIT 1';
+            $query = $db->prepare($sql);
+            $query->execute([$user_id]);
+            if ($query->rowCount() > 0) {
+                $data = $query->fetch();
+                $column_count = count($columns);
+                for ($i = 0; $i < $column_count; $i++) {
+                    $ar_as[$query->getColumnMeta($i)['name']] = $data[$i];
+                }
+                return $ar_as;
+            }
+        } catch (Exception $e) {
+            echo $e;
+        }
+        return false;
+    }
+
+    public function getVarableNameWithColumnName($columnName)
+    {
+        $da = array('USER_ID' => 'userId', 'FIRST_NAME' => 'firstName', 'SURNAME' => 'surname', 'E_MAIL' => 'email', 'USER_NAME' => 'userName', 'PASSWORD' => 'password', 'BIRTH_DATE' => 'birthDate', 'PHONE_NUMBER' => 'phoneNumber', 'COUNTRY' => 'country', 'CITY' => 'city', 'ACTIVE' => 'active', 'IMAGE' => 'image', 'GENDER' => 'gender', 'JOB' => 'job', 'BIO' => 'bio', 'STATUS' => 'status', 'VERIFY_CODE' => 'verifyCode', 'CREATE_TIME' => 'createTime', 'ISADMIN' => 'isAdmin', 'EMAIL_SUBSCRIBE' => 'email_subscribe', 'GMT' => 'gmt', 'LANGUAGE' => 'language');
+        return $da[$columnName];
+    }
+    /**
+     * public bolmaly maglumatlary alyar
+     * 
+     * @author Agamyrat C.
+     * 
+     */
+    public static function _getPublicDatas($id)
+    {
+        $db = new Database;
+        try {
+            $sql = 'SELECT * FROM users WHERE (users.USER_ID = ?) LIMIT 1';
+            $query = $db->prepare($sql);
+            $query->execute([$id]);
+            if ($query->rowCount() > 0) {
+                $data = $query->fetch(PDO::FETCH_ASSOC);
+                $data_ = array();
+                foreach ($data as $key => $value) {
+                    if (array_key_exists($key . '_A', $data)) {
+                        if ($data[$key . '_A'] == 1) {
+                            $data_[self::getVarableNameWithColumnName($key)] = $value;
+                        }
+                    }
+                }
+
+                return  $data_;
+            }
+            return false;
+        } catch (Exception $e) {
+            echo $e;
+        }
+        return false;
+    }
+
+    /**
+     * USERYN DOLY ADY FAMILYASY GELYAR
+     * 
+     * @param int $user_id User ID-sy
+     * @return string Ady Familyasy
+     * @author Agamyrat C.
+     * 
+     */
+    public static function _getFullName($user_id)
+    {
+        $db = new Database;
+        try {
+            $sql = 'SELECT FIRST_NAME, SURNAME FROM users WHERE (users.USER_ID = ?) LIMIT 1';
+            $query = $db->prepare($sql);
+            $query->execute([$user_id]);
+            $data = $query->fetch();
+            if ($query->rowCount() > 0) {
+                return $data[0] . ' ' . $data[1];
+            }
+        } catch (Exception $e) {
+            echo $e;
+        }
+        return false;
+    }
+
+
+    /**
+     * UPDATE users SET $column = $new_value WHERE USER_ID = $user_id
+     * 
+     * @param int $user_id User ID-sy
+     * @param string $column User ID-sy
+     * @param string $new_value User ID-sy
+     * @return bool true or false
+     * @author Agamyrat C.
+     * 
+     */
+    public static function _set($user_id, $column, $new_value)
+    {
+        $db = new Database;
+        try {
+            $sql = 'UPDATE users SET  ' . htmlspecialchars($column) . ' = :new_value WHERE (users.USER_ID = :user_id) LIMIT 1';
+            $query = $db->prepare($sql);
+            $query->bindParam(':new_value', $new_value, PDO::PARAM_STR);
+            $query->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+            $query->execute();
+            if ($query->rowCount() > 0) {
+                return true;
+            }
+        } catch (Exception $e) {
+            echo $e;
+        }
+        return false;
+    }
+
+    /**
+     * UPDATE users SET $associative WHERE USER_ID = $user_id 
+     * 
+     * @param int $user_id Column name
+     * @param array_associative $associative ['column'=>'value','column'=>'value' ...]
+     * @return bool true or false
+     * @author Agamyrat C.
+     * 
+     */
+    public static function _setPublicDatas($user_id, $associative)
+    {
+        $db = new Database;
+        try {
+            $sql = 'UPDATE users SET ';
+            $arr = array();
+            foreach ($associative as $key => $value) {
+                $sql .=  'users.' . htmlspecialchars($key) . ' = ?, ';
+                $arr[] = $value;
+            }
+            $arr[] = $user_id;
+            $sql = substr($sql, 0, -2) . ' WHERE (users.USER_ID = ?) LIMIT 1';
+            $query = $db->prepare($sql);
+            $query->execute($arr);
+            if ($query->rowCount() > 0) {
+                return true;
+            }
+        } catch (Exception $e) {
+            echo $e;
+        }
+        return false;
+    }
+
+
+
+    // on edilenler
+    public static function _registrate($array = null)
+    {
+        $db = new Database;
+        $firstname = $array['user']['firstname'];
+        $lastname = $array['user']['lastname'];
+        $username = $array['user']['username'];
+        $country = $array['user']['country'];
+        $phoneNumber = $array['user']['phoneNumber'];
+        $birthDate = $array['user']['birthDate']; //duzetmeli (int-int-int) formada gechirmeli
+        $email = $array['user']['email'];
+        $password = md5($array['user']['password']);
+
+        try {
+            $sql = "INSERT INTO `test_platform`.`users`(`FIRST_NAME`, `SURNAME`, `E_MAIL`, `USER_NAME`, `PHONE_NUMBER`, `COUNTRY`,`ACTIVE`,`PASSWORD`,`VERIFY_CODE`)"
+                . " VALUES (:firstname, :lastname, :email, :username, :phoneNumber, :country, 0, :password, UUID());";
+            $query = $db->prepare($sql);
+            $query->execute([
+                ':firstname' => $firstname,
+                ':lastname' => $lastname,
+                ':email' => $email,
+                ':username' => $username,
+                //':birthDate'=>$birthDate,
+                ':phoneNumber' => $phoneNumber,
+                ':country' => $country,
+                ':password' => $password
+            ]);
+
+            return $db->lastInsertId();
+        } catch (PDOException $e) {
+            echo $sql . "<br>" . $e->getMessage();
+            return false;
+        }
+    }
+
+    public static function _activateUser($verifyCode)
+    {
+        $db = new Database;
+        $update_sql = "UPDATE users SET ACTIVE = 1 WHERE (VERIFY_CODE = ?) LIMIT 1";
+        $update_stmt = $db->prepare($update_sql);
+
+        $select_sql = 'SELECT USER_ID FROM users WHERE (VERIFY_CODE = ?) LIMIT 1';
+        $select_query = $db->prepare($select_sql);
+
+        $update_stmt->execute([$verifyCode]);
+        $select_query->execute([$verifyCode]);
+
+        return $select_query->fetch()[0]; //eger user_id tapylmasa boljak zatlary pikirlenmeli
+    }
+
+    public static function _has($value, $column)
+    {
+        $db = new Database;
+        $sql = "SELECT COUNT(*) FROM users WHERE $column = ?";
+        $query = $db->prepare($sql);
+        $query->execute([$value]);
+        return (bool) $query->fetch()[0];
+    }
+
+    public static function _isActive($user_id)
+    {
+        $db = new Database;
+        $sql = "SELECT ACTIVE FROM users WHERE USER_ID = ?";
+        $query = $db->prepare($sql);
+        $query->execute([$user_id]);
+        return (bool) $query->fetch()[0];
+    }
+
+    public function getTests()
+    {
+        $testObjectsArray = [];
+        $testsArray = $this->hasMany('users_tests', ['USER_ID' => 'TEST_ID'], $this->data['USER_ID']);
+        foreach ($testsArray as $test) {
+            array_push($testObjectsArray, new Test($test['TEST_ID']));
+        }
+        return $testObjectsArray;
+    }
+}

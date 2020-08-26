@@ -11,7 +11,7 @@
 	}
 
 	public function index(){
-		$user_name = $this->model->getUsername($this->getUserId());
+		$user_name = $this->user->data['USER_NAME'];
 		$this->view->render('main/index' , [
 			'username' => $user_name
 		]);

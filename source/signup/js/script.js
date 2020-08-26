@@ -98,7 +98,7 @@ const birthDateSelector = () => {
 }
 window.onload = birthDateSelector;
 
-/************************Check Database */
+/************************Check Database **************************/
 
 let check_username = false;
 let check_email = false;
@@ -111,29 +111,26 @@ function throttle(fun, delay){
                 timer = window.setTimeout(function(){
                     fun.apply(context, args);
                 },
-                delay || 800);
+                delay || 300);
             };
         }
 function check(column_name,text){
-            if((column_name == "E_MAIL" && text.indexOf('@') == -1) || text.indexOf(' ') != -1){
-                return false;
-            }
-// type_checking: USER_NAME, E_MAIL
+            if((column_name == "E_MAIL" && text.indexOf('@') == -1) || text.indexOf(' ') != -1) {return false;}
+
             $.ajax({
-                url:'signup/check_database_for_sign_up_input',
+                url:'signup/check_for_input',
                 method:'POST',
-                data:{column_name:column_name,text:text},
+                data:{column:column_name, value:text},
                 success:function(data){
-                    console.log(data);
-                   if(data == 1){
-                        console.log('gul yaly on yok eken basyber', text);
+                    if(data == 0){
+                        console.log(data,'gul yaly on yok eken basyber', text);
                         if(column_name == 'USER_NAME'){check_username= true; $(".check-username").fadeOut(600);}
                         else if(column_name == 'E_MAIL'){check_email = true; $(".check-email").fadeOut(600);}
-                   }else{
-                        console.log('Onem bara', text);
+                    }else{
+                        console.log(data, 'Onem bara', text);
                         if(column_name == 'USER_NAME'){check_username= false;$(".check-username").fadeIn(300);}
                         else if(column_name == 'E_MAIL'){check_email = false;$(".check-email").fadeIn(300);}
-                   }
+                    }
                 },
                 error: function(){
                     console.log('Error bolda hoooow');
@@ -142,18 +139,15 @@ function check(column_name,text){
             });
         }
 
-
         // user name control 
         $('.username').keyup(throttle(function(){
             check('USER_NAME',$(this).val());
         }));
 
-
         // email control
         $('.email').keyup(throttle(function(){
             check('E_MAIL',$(this).val());
         }));
-
 
 
 
@@ -321,7 +315,7 @@ createBtn.addEventListener("click", () => {
                     console.log('Something went wrong! Cant registrate user');
                 }
             });    
-            //window.location.href = "mailnotification";
+            window.location.href = "mailnotification";
             return false;
    }
    else{

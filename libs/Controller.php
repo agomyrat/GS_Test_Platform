@@ -1,5 +1,5 @@
 <?php 
-
+	
 	class Controller {
 		function __construct(){
 			// "Main controller<br>";
@@ -10,20 +10,14 @@
 			}
 		}
 
-		public function loadModel($name){
-			$path = 'models/'.$name.'_model.php';
-
-			if(file_exists($path)){
-				require 'models/'.$name.'_model.php';
-
-				$modelName = $name.'_Model';
-				$this->model = new $modelName();
-			}else{}
+		public function createUser($id){
+			$this->user = new User($id);
 		}
 
 		public function error(){
-			$this->view->layout='welcome';
-			$this->view->render('error/notfound');
+			Polyglot::setPage('not_found');
+			$this->view->layout='logo';
+			$this->view->render('not_found/index');
 		}
 
 		public function getUserId(){
@@ -31,7 +25,7 @@
 		}
 
 		public function redirect($address = ""){
-			header("Location: ".URL.$address);
+			echo "<script>window.location.href = '".URL.$address."'</script>";
 		}
 
 		public function incrementErrorTrial(){
@@ -44,6 +38,13 @@
 			Polyglot::changeLanguage();
 		}
 
+		public function sendMail($address,$elementsArray){
+			$elementsArray['html'] = View::getHtmlTemplate($elementsArray['templateName'],['link'=>$elementsArray['link']]);
+			$elementsArray['text'] = View::getTextTemplate($elementsArray['templateName'],['link'=>$elementsArray['link']]);
+			require "libs/Mail.php";
+			sendMail($address,$elementsArray);
+		}
+			
 
 	}
 	

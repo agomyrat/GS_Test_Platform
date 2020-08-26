@@ -14,7 +14,9 @@
         }
 
 		public static function setPage($page){	
-			self::$page = require "lang/".$page.".php";
+			if(file_exists("lang/".$page.".php")){
+				self::$page = require "lang/".$page.".php";
+			}
 		}
 
 		public static function changeLanguage(){

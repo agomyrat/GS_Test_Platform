@@ -11,7 +11,10 @@
                 'RU'=>'Подтвердите пароль'],
     'Save'=>['EN'=>'Save',
              'TM'=>'Ýazdyr',
-             'RU'=>'Сохранить'],              
+             'RU'=>'Сохранить'], 
+    'DoesntMatch'=>['EN'=>"Your confirm password doesn't match with your new password!",
+                    'TM'=>'Siziň tassyklaýjy açar sözüňiz bilen täze açar sözüňiz gabat gelenok!',
+                    'RU'=>'Ваш подтверждающий пароль не совпадает с вашим новым паролем!'],              
     ]
 
 ?>

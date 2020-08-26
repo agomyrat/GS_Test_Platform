@@ -1,0 +1,14 @@
+<?php 
+     return[
+        'css'=>[
+            "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css",
+            'source/general/css/header.css',
+            'source/main/css/style.css',
+            'https://use.fontawesome.com/releases/v5.0.6/css/all.css'
+        ],
+        'js'=>[
+            "source/general/js/header.js",
+            'source/main/js/main.js'
+        ]
+    ];
+?>

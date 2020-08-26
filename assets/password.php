@@ -1,0 +1,13 @@
+<?php 
+     return[
+        'css'=>[
+            'source/new_password/css/style.css',
+            'source/forgot_password/css/style.css',
+            'source/general/css/navbar.css'
+        ],
+        'js'=>[
+            'source/general/js/jquery/jquery-3.4.1.min.js',
+            'source/new_password/js/script.js'
+        ]
+    ];
+?>

@@ -2,6 +2,10 @@
    font-family: myfont;
    src: url('../../general/fonts/montserrat/Montserrat-Regular.otf');
 }
+@font-face {
+   src: url('../../general/fonts/montserrat/Montserrat-Bold.otf');
+   font-family: Montserrat-Bold;
+}
 *{
    font-family: myfont;
 }
@@ -11,6 +15,29 @@ body{
    background-color: #FFCC05;
    color: #032535;
    font-size: 18px;
+}
+nav {
+   width: 100%;
+   height: 80px;
+   line-height: 80px;
+   padding-left: 5%;
+   position: fixed;
+   top: 0;
+   left: 0;
+}
+
+nav .logo a {
+   font-size: 2rem;
+   font-family: Montserrat-Bold;
+   text-decoration: none;
+   color: white;
+
+}
+
+@media screen and (max-width:700px) {
+   nav .logo a {
+      font-size: 1.5rem;
+   }
 }
 .background{
    position: absolute;
@@ -25,6 +52,7 @@ body{
    width: 100%;
    text-align: center;
    padding-top: 60px;
+   padding-top: 6rem;
 }
 
 .circles > span {
@@ -39,19 +67,9 @@ body{
    font-size: 20px;
    background-color: white;
 }
-/* .circles>span:nth-child(1)::after,
-.circles>span:nth-child(2)::after {
-   content: '';
-   position: absolute;
-   width: 49px;
-   height: 4px;
-   left: 40px;
-   top: 45%;
-   background-color: white;
-} */
 .container{
    width: 100%;
-   padding-top: 40px;
+   padding-top: 4rem;
    display: flex;
    justify-content: center;
    align-items: center;
@@ -114,6 +132,10 @@ form > div {
    border: none;
    border-radius: 5px;
    color: white;
+   cursor: pointer;
+}
+.next-button:hover {
+   opacity: 0.7;
 }
 .prev-button{
    width: 15%;
@@ -121,6 +143,10 @@ form > div {
    border: none;
    border-radius: 5px;
    color: black;
+   cursor: pointer;
+}
+.prev-button:hover {
+   opacity: 0.7;
 }
 
 
