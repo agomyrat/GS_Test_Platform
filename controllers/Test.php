@@ -1,13 +1,4 @@
 <?php
-
-class _Object{
-	public $param;
-
-	function __construct(){
-		$param = 'halal';
-	}
-}
-
     class Test extends Controller
 {
 	
@@ -24,13 +15,13 @@ class _Object{
 	}
 
 	public function constructor($array = null){
-		if(!empty($array)){
+		/* if(!empty($array)){
 			$test_id = $array[0];
 			$this->view->render('test_constructor/index',['test_id'=>$test_id]);
 		}else{
 			$test_id = _Test::createTest(SESSION::get(USER_ID));
 			$this->redirect('test/constructor/'.$test_id);
-		}
+		} */
 	}
 
 	public function getQuestions(){
@@ -43,11 +34,11 @@ class _Object{
 	}
 
 	public function saveQuestion(){
-		//print_r((json_decode($_POST['data'])));
-		//print_r($_FILES);
+		print_r(($_POST['data']));
+		//print_r(json_encode($_FILES));
 		//print_r(json_decode($_POST['data']));
 
-		$extractedDatas = $this->extractDatas(json_decode($_POST['data']));
+		/* $extractedDatas = $this->extractDatas(json_decode($_POST['data']));
 
 		$questionId = $extractedDatas['questionId'];
 		$question = $extractedDatas['question'];
@@ -95,7 +86,7 @@ class _Object{
 			];
 			
 			echo json_encode($response_array);
-			}else{ echo 'Suratlar we datalar save edilmedi!';}
+			}else{ echo 'Suratlar we datalar save edilmedi!';} */
 	}
 
 	public function extractDatas($object){
@@ -232,9 +223,24 @@ class _Object{
 	}
 
 	public function practice(){
-		// echo "<pre>";
-		// print_r(_Test::getQuestions(1));
-		print_r(_Test::get(4,['TEST_ID','CREATED_BY','TEST_NAME']));
+		$link = 'adf';
+		// // echo "<pre>";
+		// // print_r(_Test::getQuestions(1));
+		// //print_r(_Test::get(4,['TEST_ID','CREATED_BY','TEST_NAME']));
+		/* $username = 'ERIC';
+		
+		$file = View::getHtmlTemplate('register',['link'=>$link]);;
+		echo ($file)."<br>"; */
+		// use PHPMailer\PHPMailer\Exception;
+		/* require "libs/Mail.php";
+		sendMail(); */
+
+		Polyglot::setPage('signup');
+		$address = 'rejepowerkin@gmail.com';
+		$this->sendMail($address,['templateName'=>'register',
+								  'link'=>$link,
+								  'subject'=>Polyglot::translate('Registration letter')
+									]);
 		
 	}
 

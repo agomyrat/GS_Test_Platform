@@ -9,7 +9,7 @@
    <?php
    if(isset($asset_array['css'])){
         foreach($asset_array['css'] as $css){
-            echo "<link rel='stylesheet' href='".$css."'>";
+            echo "<link rel='stylesheet' href='".URL.$css."'>";
         }
     }
    ?>
@@ -72,7 +72,7 @@
     <?php
     if(isset($asset_array['js'])){
             foreach($asset_array['js'] as $js){
-                echo "<script type='module' src='".$js."'></script>";
+                echo "<script type='module' src='".URL.$js."'></script>";
             }
         }
    ?>

@@ -37,8 +37,8 @@ function init () {
 /// ANIMATIONS FOR NOTIFICATIONS
 const displayError = (err) => {
    const errorBlock = document.querySelector('.error-block')
-   questionsClass.error = err;
-   errorBlock.innerHTML = questionsClass.error
+   question.error = err;
+   errorBlock.innerHTML = question.error
    errorBlock.style.marginRight = "0px"
    setTimeout(() => {
       errorBlock.style.marginRight = "-50%"
@@ -46,8 +46,8 @@ const displayError = (err) => {
 }
 const notify = (n) => {
    const note = document.querySelector('.note')
-   questionsClass.error = n;
-   note.innerHTML = questionsClass.error
+   question.error = n;
+   note.innerHTML = question.error
    note.style.marginRight = "0px"
    setTimeout(() => {
       note.style.marginRight = "-50%"

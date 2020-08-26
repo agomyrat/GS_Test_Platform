@@ -9,7 +9,7 @@ require 'phpmailer/SMTP.php';
 
 //atyljak mail maglumatlary
 $username = 'Agamyrat Chariyev';
-$email = 'agamyrat.chariyev@gmail.com';
+$email = 'erejepow00@mail.ru';
 $link = '/access/verifymailaddress/dj8j8d28dn3Hs2355dDA';
 $url = 'http://testspace.com.tm';
 
@@ -53,7 +53,7 @@ try {
                         "
                         >
                         <div style="text-align: center;">
-                            <img src="http:mail-img.png" alt="" style="width: 90%; max-width: 400px;" />
+                            <img src="" alt="" style="width: 90%; max-width: 400px;" />
                         </div>
                         <h2 style="text-align: center;">Lorem, ipsum dolor.</h2>
                         <p style="text-align: center;">

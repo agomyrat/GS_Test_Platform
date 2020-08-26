@@ -8,7 +8,7 @@
         ],
         'js'=>[
             "source/general/js/jquery/jquery-3.4.1.min.js",
-            "vendor/validator/validator.min.js",
+            "source/general/validator/validator.min.js",
             "source/signup/build/js/intlTelInput.js",
             "source/signup/build/js/utils.js",
             "source/signup/js/script.js"

@@ -20,7 +20,7 @@
                <div class="remember-line">
                   <input type="checkbox" class="check" name="remember">
                   <label class="remember"><?=Polyglot::translate('RememberMe')?></label>
-                  <a href="forgotpassword" class="forgot"><?=Polyglot::translate('ForgotPassword')?></a><br>
+                  <a href="password" class="forgot"><?=Polyglot::translate('ForgotPassword')?></a><br>
                </div>
                 <input type="submit" value="<?=Polyglot::translate('LogIn')?>" class='loginbtn'><br>
                 <div class="incorrect" style="display:none;color:red;">Incorrect username/email or password</div>

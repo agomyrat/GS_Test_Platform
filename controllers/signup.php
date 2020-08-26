@@ -24,10 +24,16 @@ class Signup extends Controller
 
 	
 	public function registrate_user(){ 
-		if(isset($_POST)){
+		if(!empty($_POST)){
 			$user_id = User::_registrate($_POST); //registrate edilen userin idini return edyar
 			$data = User::_get($user_id,['E_MAIL','VERIFY_CODE']);
-			print_r($data);
+			$address = $data['E_MAIL'];
+			$link = URL."welcome/activateUser/".$data['VERIFY_CODE'];
+			Polyglot::setPage('signup');
+			$this->sendMail($address,['templateName'=>'register',
+									  'link'=>$link,
+									  'subject'=>Polyglot::translate('Registration letter')
+									]);
 		}
 	}
 	

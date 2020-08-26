@@ -53,7 +53,10 @@
             'RU'=>'Создать'],           
 'HaveAccount'=>['EN'=>'Already have an account? Login',
             'TM'=>'Eýýäm hasabyňyz barmy? Giriş',
-            'RU'=>'Уже есть аккаунт? Войти']
+            'RU'=>'Уже есть аккаунт? Войти'],
+'Registration letter'=>['EN'=>'Registration letter',
+                       'TM'=>'Registrasiýa haty',
+                       'RU'=>'Регистрационное письмо']
 
 ];
 

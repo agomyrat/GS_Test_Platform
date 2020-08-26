@@ -95,8 +95,7 @@
 			'signup',
 			'login',
 			'welcome',
-			'forgotpassword',
-			'newpassword',
+			'password',
 			'mailnotification',
 		];
 

@@ -1,0 +1,1 @@
+<?php return "Bu mail testSpace.com.tm sahypasyndan atyldy. Sizin linkynyz: ".$link; ?>

@@ -1,6 +1,7 @@
 <div class="container">
       <aside>
          <div id="questions">
+               <!-- QUESTIONS SIDEBAR  -->
          </div>
          <div class="add-question">
             <button id="add-question-btn">Add question +</button>
