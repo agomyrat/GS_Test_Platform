@@ -29,42 +29,49 @@ try {
     //mail boldy
     $mail->isHTML(true);
     $mail->Subject = 'Here is the subject';
-    $mail->Body    = '<!DOCTYPE html>
-                    <html lang="en">
-                    <head>
-                        <meta charset="UTF-8" />
-                        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-                        <link rel="stylesheet" href="css/verification.css" />
-                        <link
-                        href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;700&display=swap"
-                        rel="stylesheet"
-                        />
-                        <title>Verify Email</title>
-                    </head>
-                    
-                    <body style="background-color: #f5f5f5;">
-                        <div
-                        class="content"
-                        style="
-                            background-color: #fff;
-                            max-width: 600px;
-                            width: 90%;
-                            margin: 2em auto;
-                        "
-                        >
-                        <div style="text-align: center;">
-                            <img src="" alt="" style="width: 90%; max-width: 400px;" />
-                        </div>
-                        <h2 style="text-align: center;">Lorem, ipsum dolor.</h2>
-                        <p style="text-align: center;">
-                            Bu Email TestSpace test platformasy tarapyndan iberildi. Test
-                            platformasynda acan hasabynyzy aktiwlesdirmek ucin asakdaky duwma
-                            basmagynyzy hayys edyaris
-                        <div style="font-size: 14px;line-height: 2; display: inline-block;margin:10px auto;color:#fff;border-radius: 5px; padding:10px 10px; background-color:#fc7318;"><strong><a href="""></a> AKTIW ET</strong></div>
-                        </p>
-                        </div>
-                    </body>
-                    </html>
+    $mail->Body    = '
+                    <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Verify Email</title>
+  </head>
+
+<body style="background-color: #f5f5f5;padding-bottom:20px;">
+  <div class="content" style="background-color: #fff; max-width: 600px; width: 98%; margin: 2em auto; padding:10px; ">
+    <div style="text-align: center;">
+      <img src="https://previews.123rf.com/images/bbtreesubmission/bbtreesubmission1711/bbtreesubmission171104909/90802424-postman-delivery-mail-vector-illustration-.jpg" alt="" style="width: 98%; max-width: 400px;" />
+    </div>
+    <div style="text-align: center; text-transform: uppercase; font-size: 35px; word-break: break-word;    font-family: Roboto, Tahoma, Verdana, Segoe, sans-serif; color: #052d3d;">
+      Lorem, ipsum dolor.
+    </div>
+    <div style="text-align: center; font-size: 20px;margin: 15px auto; font-weight: bold; word-break: break-word;    font-family: Roboto, Tahoma, Verdana, Segoe, sans-serif; color: #2190e3;">
+      Agamyrat Chariyev.
+    </div>
+    <p style="text-align: center; font-family: Roboto, Tahoma, Verdana, Segoe, sans-serif;font-size:14px;">
+      Bu Email TestSpace test platformasy tarapyndan iberildi. Test
+      platformasynda acan hasabynyzy aktiwlesdirmek ucin asakdaky duwma
+      basmagynyzy hayys edyaris
+      <br><br>
+      <div style="display: inherit; margin:10px auto; border-radius: 5px; padding:10px 20px; background-color:#fc7318; width:80px; text-align: center;">
+        <a href="" style="font-size: 13px; text-decoration: none; color:#fff;font-family: Roboto, Tahoma, Verdana, Segoe, sans-serif;font-weight: bold;">
+          AKTIW ET
+        </a>
+      </div>
+    </p>  
+  </div>
+  <div class="footer" style="text-align: center; padding:14px 5px;font-size:14px; max-width: 400px; width: 98%; margin: 2em auto; color:#555555;font-family: Roboto, Tahoma, Verdana, Segoe, sans-serif;">
+    Bu mail testSpace platformasyndan atomatiki şekilde atyldy. Mumkin bolsa bu  maily jogaplamaň
+    <br>
+    <br>
+    <hr>
+    <br>
+
+    Turkmenistar | Ashgabat | +993 63384289
+  </div>
+</body>
+</html>
                     ';
     $mail->AltBody = 'Bu mail testSpace.com.tm sahypasyndan atyldy. Sizin linkynyz:' . $url . $link;
 
