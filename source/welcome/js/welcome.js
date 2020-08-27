@@ -34,7 +34,7 @@ function loader() {
    document.querySelector('.loader').style.display = "none"
 }
 
-setTimeout(loader, 3000)
+// setTimeout(loader, 3000)
 
 ///Changes Home page image
 window.onresize = screen;

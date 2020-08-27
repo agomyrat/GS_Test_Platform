@@ -7,7 +7,7 @@
             <h1 class="anim1"><?= Polyglot::translate('Proverb1') ?></h1>
             <h3 class="anim1"><?= Polyglot::translate('Proverb2') ?></h3>
             <div class="orange-btn">
-               <button class="anim1"><a href="signup"><?= Polyglot::translate('Get Started') ?><i class="fas fa-angle-right"></i></a></button>
+               <a href="signup"><button class="anim1"><?= Polyglot::translate('Get Started') ?> &nbsp; <i class="fas fa-angle-right"></i></button></a>
             </div>
          </div>
       </div>

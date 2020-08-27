@@ -12,13 +12,15 @@
 <body>
    <section>
       <!-- Container 80% -->
-      <nav>
-         <div class=" logo">
-   <h3>testSpace</h3>
-   <div class="collapse">
-      <i class="fas fa-bars"></i>
-   </div>
-   </div>
+   <nav>
+      <div class=" logo">
+         <h3>
+            <a href="welcome"><img src="source/general/img/LogoText-Orange.svg"></a>
+         </h3>
+         <div class="collapse">
+            <i class="fas fa-bars"></i>
+         </div>
+      </div>
    <div class="items">
       <ul>
          <li class="links">
