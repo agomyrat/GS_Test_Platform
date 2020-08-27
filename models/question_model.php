@@ -82,28 +82,28 @@ class Question extends Model
         $db = new Database;
         $testId = $array['testId'];
         $question = $array['question'];
-        $questionImages = $array['questionImages'];
+        $questionImage = $array['qFileName'];
         $questionData = $array['questionData'];
-        $choiceImages = $array['choiceImages'];
         $answers = $array['answers'];
         $questionType = $array['questionType'];
         $isRandom = $array['isRandom'];
+        $order = $array['order'];
         //print_r($array);
         try {
-            $sql = "INSERT INTO questions (`TEST_ID`, `QUESTION`, `QUESTION_IMAGE`, `QUESTION_DATA`, `CHOICE_IMAGES`, `ANSWERS`,`QUESTION_TYPE`,`ISRANDOM`)"
-                . " VALUES (:testId,:question,:questionImages,:questionData,:choiceImages,:answers,:questionType,:isRandom);";
+            $sql = "INSERT INTO questions (`TEST_ID`, `QUESTION`, `QUESTION_IMAGE`, `QUESTION_DATA`, `ANSWERS`,`QUESTION_TYPE`,`ISRANDOM`,`QUESTION_ORDER`)"
+                . " VALUES (:testId,:question,:questionImage,:questionData,:answers,:questionType,:isRandom,:order);";
             $query = $db->prepare($sql);
             //var_dump($query);
             $query->execute(
                 [
-                    ':testId' => htmlspecialchars($testId),
-                    ':question' => htmlspecialchars($question),
-                    ':questionImages' => htmlspecialchars($questionImages),
-                    ':questionData' => htmlspecialchars($questionData),
-                    ':choiceImages' => htmlspecialchars($choiceImages),
-                    ':answers' => htmlspecialchars($answers),
-                    ':questionType' => htmlspecialchars($questionType),
-                    ':isRandom' => htmlspecialchars($isRandom),
+                    ':testId' => htmlspecialchars(json_encode($testId)),
+                    ':question' => htmlspecialchars(json_encode($question)),
+                    ':questionImage' => htmlspecialchars(json_encode($questionImage)),
+                    ':questionData' => htmlspecialchars(json_encode($questionData)),
+                    ':answers' => htmlspecialchars(json_encode($answers)),
+                    ':questionType' => htmlspecialchars(json_encode($questionType)),
+                    ':isRandom' => htmlspecialchars(json_encode($isRandom)),
+                    ':order'=>htmlspecialchars(json_encode($order))
                 ]
             );
         } catch (PDOException $e) {

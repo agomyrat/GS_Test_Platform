@@ -282,12 +282,12 @@ class _Test extends Model
             $questionsArray = $query->fetchAll();
             for ($i = 0; $i < count($questionsArray); $i++) {
                 $response_array[$i]['test_id'] = $test_id;
-                $response_array[$i]['question'] = htmlspecialchars_decode($questionsArray[$i]['QUESTION']);
+                $response_array[$i]['question'] = json_decode(htmlspecialchars_decode($questionsArray[$i]['QUESTION']));
                 $response_array[$i]['choices'] = json_decode(htmlspecialchars_decode($questionsArray[$i]['QUESTION_DATA']));
                 $response_array[$i]['answer'] = json_decode(htmlspecialchars_decode($questionsArray[$i]['ANSWERS']));
-                $response_array[$i]['type'] = htmlspecialchars_decode($questionsArray[$i]['QUESTION_TYPE']);
-                $response_array[$i]['isRandom'] = htmlspecialchars_decode($questionsArray[$i]['ISRANDOM']);
-                $response_array[$i]['id'] = htmlspecialchars_decode($questionsArray[$i]['QUESTIONS_ID']);
+                $response_array[$i]['type'] = json_decode(htmlspecialchars_decode($questionsArray[$i]['QUESTION_TYPE']));
+                $response_array[$i]['isRandom'] = json_decode(htmlspecialchars_decode($questionsArray[$i]['ISRANDOM']));
+                $response_array[$i]['id'] = json_decode(htmlspecialchars_decode($questionsArray[$i]['QUESTIONS_ID']));
                 $response_array[$i]['qFiles'] = json_decode(htmlspecialchars_decode($questionsArray[$i]['QUESTION_IMAGE']));
                 $response_array[$i]['cFiles'] = json_decode(htmlspecialchars_decode($questionsArray[$i]['CHOICE_IMAGES']));
                 $response_array[$i]['hasImage'] = !empty($response_array[$i]['qFiles']);

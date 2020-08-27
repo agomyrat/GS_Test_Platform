@@ -527,6 +527,7 @@ class Question{
                      hasImage : main.questions[x].hasImage,
                      id: main.questions[x].id,
                      isRandom: main.questions[x].isRandom,
+                     order : main.questions[x].order,
                   };
                }
                if(main.questions[x].type == "input"){
@@ -536,6 +537,7 @@ class Question{
                      type: main.questions[x].type,
                      hasImage: main.questions[x].hasImage,
                      id: main.questions[x].id,
+                     order : main.questions[x].order,
                   }
                }
                if (main.questions[x].type == "true-false" || main.questions[x].type == "matching") {
@@ -545,7 +547,8 @@ class Question{
                      type: main.questions[x].type,
                      hasImage: main.questions[x].hasImage,
                      id: main.questions[x].id,
-                     choices: main.questions[x].choices
+                     choices: main.questions[x].choices,
+                     order : main.questions[x].order,
                   }
                }
                if(main.questions[x].type == "blank"){
@@ -554,13 +557,13 @@ class Question{
                      type: main.questions[x].type,
                      hasImage: main.questions[x].hasImage,
                      id: main.questions[x].id,
-                     answers: main.questions[x].answers
+                     answers: main.questions[x].answers,
+                     order : main.questions[x].order,
                   }
                }
                // Hacanda id bar bolsa questionda shonda deleted file ugratmaly
                if (main.questions[x].id){
-                  formData.append("deletedQuestionFile",this.deletedQuestionFile)
-                  
+                  formData.append("deletedQuestionFile",this.deletedQuestionFile)                 
                }
                formData.append("data", JSON.stringify(data));
 
@@ -568,7 +571,7 @@ class Question{
                console.log('prevQuestions' , main.questions)
 
                // POST QUESTION HERE
-
+               
 
                const addBtn = document.getElementById('add-question-btn');
                addBtn.setAttribute("disabled", "");
@@ -578,7 +581,7 @@ class Question{
                async function fetchQuestions() {
                   // Question y Databasedan alyancam garashyan we menin objectime dakyan
                   notify('Saving your quesion ...')
-                  //-------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------
                $.ajax({
                   url:'http://localhost/TestPlatform/GS_Test_Platform/test/saveQuestion',
                   type:'post',
@@ -586,7 +589,7 @@ class Question{
                   contentType: false,
                   data: formData,
                   success: function(data){
-                     console.log(JSON.parse(data));
+                     //console.log(JSON.parse(data));
                      addNewQuestion()
                      singleChoice.count = 3
                      blank.countBlank = 0
