@@ -1,0 +1,584 @@
+@font-face{
+   src: url('../../general/fonts/montserrat/Montserrat-Regular.otf');
+   font-family: Montserrat;
+}
+@font-face {
+   src: url('../../general/fonts/montserrat/Montserrat-Bold.otf');
+   font-family: Montserrat-Bold;
+}
+.loader{
+   width: 100%;
+   height: 100%;
+   position: fixed;
+   top: 0;
+   bottom: 0;
+   background-color: white;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   z-index: 9999;
+}
+.loader .box{
+   width: 100px;
+   height: 100px;
+}
+*{
+   font-family: Montserrat;
+   box-sizing: border-box;
+   max-height: 300vh;
+}
+html{
+   scroll-behavior: smooth;
+}
+body{
+   /* box-sizing: border-box; */
+   margin: 0;
+   padding: 0;
+   color: #032535;
+   height: 300vh;
+}
+section{
+   display: grid;
+   justify-items: center;
+   width: 100%;
+   /* height: auto; */
+}
+.container{
+   width: 90%;
+   overflow: hidden;
+   height: 300vh;
+}
+.bg {
+   position: fixed;
+   top: 0;
+   bottom: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   background-color: black;
+   opacity: 0.5;
+   /* transition: 0.5s; */
+}
+.bg-active{
+   display: block;
+}
+/* Navbar */
+nav{
+   position: fixed;
+   width: 100%;
+   background-color: white ;
+   height: 80px;
+   top: 0;
+   display: grid;
+   grid-template-columns: 20% 80%;
+   align-items: center;
+   z-index: 100;
+   padding: 0 5% 0 5%;
+}
+.logo{
+   display: flex;
+   justify-content: space-between;
+}
+.logo .collapse{
+   line-height: 40px;
+   font-size: 1.6rem;
+   display: none;
+   cursor: pointer;
+   z-index: 100;
+}
+.logo h3{
+   margin: 0;
+}
+.logo h3 a {
+   cursor: pointer;
+   text-decoration: none;
+}
+.logo h3 a img{
+   width: 110px;
+   height: auto;
+}
+.items> ul{
+   float: right;  
+   margin: 0;
+   padding: 0;
+}
+.items >ul li{
+   display: inline;
+   padding: 11px;
+   cursor:pointer;
+}
+.items>ul li.links:hover{
+   opacity: 0.7;
+   cursor: pointer;
+}
+.items >ul >li a {
+   text-decoration: none;
+   color: #032535;
+   font-size: 14px;
+}
+.items >ul> li.sign-up a{
+   background-color: #FF5903;
+   padding: .4rem 1rem  ;
+   border-radius: 5px;
+   color: white;
+}
+.items> ul> li.login{
+   padding-right: 0;
+}
+.items ul li.login a {
+   background-color: white;
+   border: #FF5903 solid 1.5px;
+   padding: .4rem 1.6rem;
+   border-radius: 5px;
+   color: #FF5903;
+}
+li.dropdown{
+   position: relative;
+   margin-right: 10px;
+}
+li.dropdown:hover{
+   cursor: pointer;
+}
+li.dropdown::after{
+   content: '';
+   width: 0px;
+   position: absolute;
+   top: 20px;
+   height: 0px;
+   border-left: 6px solid transparent;
+   border-right: 6px solid transparent;
+   border-top: 6px solid #032535;
+}
+li.dropdown ul.dropdown-list {
+   display: none;
+   color: #032535;
+   box-shadow: 0px 0px 5px -1px rgb(111 111 111);
+   background: white;
+   position: absolute;
+   top: 40px;
+   right: 0px;
+   width: 120px;
+   cursor: pointer;
+   padding: 0
+}
+li.dropdown ul.dropdown-list>li.dr {
+   display: block;
+   padding: 0.5rem;
+   /* text-align: center; */
+}
+li.dropdown ul.dropdown-list>li.dr:hover{
+   background-color: #0325351f;
+}
+
+
+
+
+/* Home */
+#home{
+   width: 100%;
+   height: 100vh;
+   display: grid;
+   grid-template-columns: 1fr 1fr;
+}
+.part1{
+   display: grid;
+   align-items: center;
+}
+.part1 .header {
+   padding-top: 2rem;
+}
+.part1 .header h1 {
+   font-size: 3rem;
+   font-family: Montserrat-Bold;
+   margin: 0;
+   line-height: 4rem;
+}
+.part1 .header h3{
+   margin: 0;
+   padding: 2.5rem 0 ;
+   width: 80%;
+}
+.part1 .header .orange-btn button{
+   font-family: Montserrat-Bold;
+   color: white;
+   font-size: 1.2rem;
+   padding: 0.8rem 4rem;
+   background-color: #FF5903;
+   border: none;
+   border-radius: 5px ;
+}
+.part1 .header .orange-btn a{
+   text-decoration:none;
+   color: white;
+}
+.part1 .header .orange-btn button:hover,
+.items >ul> li.sign-up a:hover,
+.items >ul >li.login a:hover
+{
+   opacity: 0.7;
+   cursor: pointer;
+}
+.part2{
+   display: grid;
+   align-items: center;
+}
+.part2 .svg img{
+   width: 90%;
+   height: auto;
+}
+
+/* About */
+#about{
+   height: 100vh;
+   width: 100%;
+   display: grid;
+   grid-template-rows: 20% 80%;
+   z-index: -1;
+   overflow: hidden;
+}
+#about header {
+   width: 100%;
+   display: grid;
+   align-items: flex-end;
+   font-size: 2rem;
+
+}
+#about .box{
+   width: 100%;
+   display: grid;
+   grid-template-columns: 1fr 1fr;
+}
+#about .box .box1 {
+   display: grid;
+   justify-items: center;
+}
+#about .box .box1 .svg {
+   width: 100%;
+   padding-top: 4rem;
+}
+#about .box .box1 .svg img {
+   width: 100%;
+   height: auto;
+}
+#about .box .box2 {
+   display: grid;
+   justify-items: center;
+   align-items: center;
+}
+#about .box .box2 article {
+   padding-top: 1rem;
+   width: 80%;
+   line-height: 2rem;
+   font-size: 1.2rem;
+}
+#about .box .box2 article h1 {
+   padding-top: 1rem;
+   width: 80%;
+   line-height: 2rem;
+   font-size: 2rem;
+}
+
+/* Contact */
+#contact {
+   height: 100vh;
+   width: 100%;
+   display: grid;
+   grid-template-rows: 20% 70% 10%;
+}
+
+#contact header {
+   width: 100%;
+   display: grid;
+   align-items: flex-end;
+   font-size: 2rem;
+
+}
+
+#contact .box {
+   width: 100%;
+   display: grid;
+   grid-template-columns: 1fr 1fr;
+}
+
+#contact .box .box1 {
+   display: grid;
+   justify-items: center;
+}
+
+#contact .box .box1 .svg {
+   width: 100%;
+   padding-top: 6rem;
+}
+
+#contact .box .box1 .svg img {
+   width: 100%;
+   height: auto;
+}
+
+#contact .box .box2 {
+   display: grid;
+   justify-items: center;
+   align-items: center;
+}
+
+#contact .box .box2 aside {
+   width: 70%;
+   display: grid;
+   justify-items: center;
+}
+aside form {
+   width: 100%;
+   display: grid;
+   justify-content: center;
+}
+form div{
+   padding: 0.2rem 0;
+}
+form div h3{
+   margin-top: 0;
+}
+form div>input{
+   height: 40px;
+   padding: 0.2rem 0.5rem;
+   font-size: 1rem;
+}
+form div > input , textarea{
+   width: 320px;
+   border: #FF5903 1.5px solid;
+   border-radius: 5px;
+}
+form div>input.send{
+   background-color: #FF5903;
+   border: none;
+   color: white;
+   font-size: 1.2rem;
+
+}
+.error p {
+   padding: 0;
+   margin: 0;
+   margin-bottom: 0;
+   color: red;
+}
+
+/* Footer */
+footer{
+   text-align: center;
+   font-size: 1rem;
+   padding-top:2rem;
+}
+
+
+
+/* Media */
+@media screen and (max-width:1025px){
+   nav {
+      grid-template-columns: 100%;
+   }
+
+   .items {
+      position: fixed;
+      top: 80px;
+      right: 0;
+      bottom: 0;
+      width: 400px;
+      height: 100vh;
+      background-color: white;
+      margin-right: -100%;
+      transition: 0.5s;
+      z-index: 2;
+   }
+
+   .items ul {
+      width: 100%;
+   }
+
+   .items ul li {
+      display: block;
+      text-align: center;
+      padding: 1.5rem 0;
+   }
+
+   .logo .collapse {
+      display: block;
+   }
+
+   li.dropdown::after {
+      top: 31px;
+      margin-left: 3px;
+   }
+
+   li.dropdown ul.dropdown-list {
+      top: 63px;
+      text-align: left;
+      right: 8rem;
+   }
+   .part1 .header h1 {
+      font-size: 2.6rem;
+   }
+   .part1 .header h3 {
+      margin: 0;
+      padding: 2rem 0;
+      font-size: 1rem;
+   }
+   .part1 .header .orange-btn button{
+      padding: 0.8rem 4rem;
+      font-size: 1rem;
+   }
+   #about .box {
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-rows: 1.5fr 1fr;
+      grid-template-areas: "box2"
+                           "box1";
+   }
+   #about .box .box1 {
+      grid-area: box1;
+   }
+   #about .box .box1 .svg {
+      width: 60%;
+      padding-top: 0rem;
+   }
+   #about .box .box2 {
+      grid-area: box2;
+      align-items: flex-start;
+   }
+
+   #about .box .box2 article {
+      width: 100%;
+      font-size: 1rem;
+   }
+   #contact .box {
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr;
+   }
+   #contact .box .box1{
+      display: none;
+   }
+   #contact .box .box2 aside {
+      width: 100%;
+   }
+   footer{
+      padding-top: 0;
+   }
+}
+@media screen and (max-width:760px) {
+  
+   
+   /* Home */
+   #home {
+      width: 100%;
+      height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-rows: 40% 60% ;
+   }
+   /* .part1{
+      align-items: flex-end;
+   } */
+   .part1 .header {
+      padding-top: 6rem;
+      text-align: center;
+   }
+   .part1 .header h1 {
+      font-size: 2rem;
+   }
+   .part1 .header h3 {
+      margin: 0;
+      padding: 1rem 0;
+      width: 100%;
+   }
+   .part1 .header .orange-btn{
+      display: flex;
+      justify-content: center;
+   }
+   .part1 .header .orange-btn button {
+      padding: 0.5rem 3rem;
+      font-size: 1rem;
+   }
+   .part2 {
+      display: flex;
+      overflow: hidden;
+      justify-content: center;
+      align-items: center;
+   }
+   .part2 .svg{
+      width: 40%;
+   }
+   .part2 .svg img {
+      width: 100%;
+      height: auto;
+   }
+   footer {
+      text-align: center;
+      font-size: 0.8rem;
+   }
+}
+@media screen and (max-width:560px) {
+   #home {
+      width: 100%;
+      height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-rows: 50% 50%;
+   }
+   .part1 .header h1 {
+      font-size: 1.5rem;
+      line-height: 2.5rem;
+   }
+   .part1 .header h3 {
+      margin: 0;
+      padding: 0.8rem 0;
+      width: 100%;
+   }
+   .part2 .svg {
+      width: 60%;
+   }
+   .items {
+      width: 200px;
+   }
+   li.dropdown ul.dropdown-list {
+      right: 2rem;
+   }
+   #about .box {
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-rows: 1fr;
+   }
+   #about .box .box1 {
+      display: none;
+   }
+   footer {
+      text-align: center;
+      font-size: 0.6rem;
+   }
+}
+@media screen and (max-width:420px) {
+   #home {
+      width: 100%;
+      height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-rows: 50% 50%;
+   }
+   .part2 .svg {
+      width: 80%;
+   }
+   .part1 .header h3 {
+      padding: 1rem 0;
+   }
+   form div>input{
+      height: 40px;
+   }
+   form div>input,
+   textarea {
+      width: 280px;
+   }
+}
+
+.active {
+   margin-right: 0%;
+}
