@@ -77,7 +77,7 @@ class Question extends Model
         return false;
     }
 
-    public static function insertQuestion($array = null)
+    public static function insertQuestion($array)
     {
         $db = new Database;
         $testId = $array['testId'];
@@ -88,7 +88,7 @@ class Question extends Model
         $questionType = $array['questionType'];
         $isRandom = $array['isRandom'];
         $order = $array['order'];
-        //print_r($array);
+        // print_r($array);
         try {
             $sql = "INSERT INTO questions (`TEST_ID`, `QUESTION`, `QUESTION_IMAGE`, `QUESTION_DATA`, `ANSWERS`,`QUESTION_TYPE`,`ISRANDOM`,`QUESTION_ORDER`)"
                 . " VALUES (:testId,:question,:questionImage,:questionData,:answers,:questionType,:isRandom,:order);";
@@ -111,6 +111,49 @@ class Question extends Model
             return false;
         }
         return $db->lastInsertId();
+    }
+
+    public static function updateQuestion($questionId,$array)
+    {
+        $db = new Database;
+        $testId = $array['testId'];
+        $question = $array['question'];
+        $questionImage = $array['qFileName'];
+        $questionData = $array['questionData'];
+        $answers = $array['answers'];
+        $questionType = $array['questionType'];
+        $isRandom = $array['isRandom'];
+        $order = $array['order'];
+        // print_r($array);die;
+        try {
+            $sql = "UPDATE questions set `QUESTION`= :question,
+                                         `QUESTION_IMAGE`=:questionImage,
+                                         `QUESTION_DATA`=:questionData,
+                                         `ANSWERS`=:answers,
+                                         `QUESTION_TYPE`=:questionType,
+                                         `ISRANDOM`= :isRandom,
+                                         `QUESTION_ORDER`=:order
+                                    WHERE QUESTIONS_ID = :questionId";
+            
+            $query = $db->prepare($sql);
+            //var_dump($query);
+            $query->execute(
+                [
+                    ':questionId' => $questionId,
+                    ':question' => htmlspecialchars(json_encode($question)),
+                    ':questionImage' => htmlspecialchars(json_encode($questionImage)),
+                    ':questionData' => htmlspecialchars(json_encode($questionData)),
+                    ':answers' => htmlspecialchars(json_encode($answers)),
+                    ':questionType' => htmlspecialchars(json_encode($questionType)),
+                    ':isRandom' => htmlspecialchars(json_encode($isRandom)),
+                    ':order'=>htmlspecialchars(json_encode($order))
+                ]
+            );
+        } catch (PDOException $e) {
+            echo $sql . "<br>" . $e->getMessage();
+            return false;
+        }
+        return $questionId;
     }
 
     public static function getQuestionId($column, $value)

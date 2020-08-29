@@ -42,4 +42,25 @@
 		//account activate edilmezden login boljak bolsa goyberilmeli page
 	}
 
+	public function contactUs(){
+		if(!empty($_POST)){
+			$name = $_POST['name'];
+			$email = $_POST['email'];
+			$message = $_POST['message'];
+
+			Mail::setMail($name,$email,$message);
+
+			$this->sendMail('erejepow00@mail.ru',[
+				'templateName'=>'contact_us',
+				'name'=>$name,
+				'email'=>$email,
+				'message'=>$message
+			]);
+
+			echo "EMAIL HAS BEEN SENT!";
+		}else{
+			echo 0;
+		}
+	}
+
 }

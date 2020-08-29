@@ -59,10 +59,49 @@ document.querySelector('.dropdown').addEventListener('mouseout', function () {
    document.querySelector('.dropdown-list').style.display = "none";
 });
 
-
-document.querySelector('form').onsubmit = (e) => {
+$('form').on('submit',function(e){
    e.preventDefault()
-}
+   var formData = new FormData(this);
+   $.ajax({
+      url:'mailnotification/contactUs',
+      type:'post',
+      processData: false,
+      contentType: false,
+      data: formData,
+      success:function(data){
+         if(data !=0){
+            alert('Thanks for contacting us!');
+         }else{
+            alert("Your message couldn't be sent!");
+         }
+      },
+      error:function(){
+         console('error boldy',data);
+      }
+   });
+});
+/* document.querySelector('form').onsubmit = (e) => {
+   e.preventDefault()
+   var formData = new FormData(this);
+   alert(1);
+   $.ajax({
+      url:'mailnotification/contactUs',
+      type:'post',
+      processData: false,
+      contentType: false,
+      data: formData,
+      success:function(data){
+         if(data !=0){
+            alert('Thanks for contacting us!');
+         }else{
+            alert("Your message couldn't be sent!");
+         }
+      },
+      error:function(){
+         console('error boldy',data);
+      }
+   });
+} */
 
 
 //Validation Inputs

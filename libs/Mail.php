@@ -4,10 +4,14 @@ use PHPMailer\PHPMailer\PHPMailer;
         require 'vendor/phpmailer/Exception.php';
         require 'vendor/phpmailer/PHPMailer.php';
         require 'vendor/phpmailer/SMTP.php';
-
+        // echo $dataArray['html'];
+        // echo ($dataArray['text']);
+        // die;
         if(!empty($dataArray['html']) && !empty($dataArray['text'])){
             $html = $dataArray['html'];
             $text = $dataArray['text'];
+            // echo $html;
+            // echo $text;die;
             $username = isset($dataArray['username']) ? $dataArray['username'] : ''; 
             $subject = isset($dataArray['subject']) ? $dataArray['subject'] : 'testSpace'; 
             try {
@@ -39,7 +43,7 @@ use PHPMailer\PHPMailer\PHPMailer;
                 echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
             }
         }else{
-            'haysy mail template ugratmalydygy belli dal';
+            echo 'haysy mail template ugratmalydygy belli dal';
         }
 
        

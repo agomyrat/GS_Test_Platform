@@ -35,8 +35,8 @@
 		}
 
 		public function sendMail($address,$elementsArray){
-			$elementsArray['html'] = View::getHtmlTemplate($elementsArray['templateName'],['link'=>$elementsArray['link']]);
-			$elementsArray['text'] = View::getTextTemplate($elementsArray['templateName'],['link'=>$elementsArray['link']]);
+			$elementsArray['html'] = View::getHtmlTemplate($elementsArray['templateName'],$elementsArray);
+			$elementsArray['text'] = View::getTextTemplate($elementsArray['templateName'],$elementsArray);
 			require "libs/Mail.php";
 			sendMail($address,$elementsArray);
 		}
