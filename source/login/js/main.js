@@ -1,13 +1,12 @@
 $('#form_').on('submit',(function(e) {
        		  e.preventDefault();
-        	  var data = {
-                  user : $('#user').val(),
-                  password : $('#password').val()
-              }
+        	  formdata = new FormData(this);
         $.ajax({
             type: 'post',
             url: 'login/checkLogin',
-            data: data,
+            processData: false,
+            contentType: false,
+            data: formdata,
             success: function(result){     
                 if(result == 1){
                     window.location.href = 'main';    

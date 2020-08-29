@@ -28,7 +28,7 @@
                 }
                 
                 $user_id = User::_getUserId($column , $user);
-                $isActive = User::_isActive($user_id);
+                $isActive = !empty($user_id) ? User::_isActive($user_id) : false;
                
                 if($hasPassword){
                     if($isActive){

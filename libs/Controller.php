@@ -4,10 +4,6 @@
 		function __construct(){
 			// "Main controller<br>";
 			$this->view = new View();
-
-			if(!isset($_COOKIE[USER_ID])){
-				// header("Location: ".URL."welcome/index");
-			}
 		}
 
 		public function createUser($id){
