@@ -23,6 +23,11 @@
 		} */
 	}
 
+	public function solving(){
+		 $this->view->layout = "test_solving";
+		$this->view->render('test_solving/index');
+	}
+
 	public function editQuestion(){
 
 	}
@@ -51,8 +56,9 @@
 	}
 
 	public function deleteQuestion(){
-		print_r($_POST);
-		Hepler::deleteDatasAndFiles($_POST['questionId']);
+		//print_r($_POST);
+		$questionId = $_POST['questionId'];
+		Helper::deleteDatasAndFiles($questionId);
 	}
 
 	public function saveQuestion(){

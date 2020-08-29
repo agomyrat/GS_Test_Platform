@@ -1,0 +1,21 @@
+/* Input Type*/
+.input-block {
+   width: 100%;
+   padding: 1rem;
+}
+
+.input-block input {
+   height: 35px;
+   width: 100%;
+   font-size: 1rem;
+   border-radius: 5px;
+   box-shadow: 0 0 3px grey;
+   border: none;
+   padding-left: 0.8rem;
+}
+
+.input-block input:hover,
+.input-block input:focus {
+   outline: none;
+   box-shadow: 0 0 5px grey;
+}

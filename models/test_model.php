@@ -308,4 +308,33 @@ class _Test extends Model
             echo $e;
         }
     }
+
+    public static function getQuestionsForSolving($test_id)
+    {
+        $db = new Database;
+        try {
+            $response_array = [];
+            $sql = "SELECT * FROM questions WHERE (TEST_ID = ?)";
+            $query = $db->prepare($sql);
+            $query->execute([$test_id]);
+            $result = $query->setFetchMode(PDO::FETCH_ASSOC);
+
+            $questionsArray = $query->fetchAll();
+            for ($i = 0; $i < count($questionsArray); $i++) {
+                $response_array[$i]['id'] = json_decode(htmlspecialchars_decode($questionsArray[$i]['QUESTIONS_ID']));
+                $response_array[$i]['question'] = json_decode(htmlspecialchars_decode($questionsArray[$i]['QUESTION']));
+                $response_array[$i]['isRandom'] = json_decode(htmlspecialchars_decode($questionsArray[$i]['ISRANDOM']));
+                $response_array[$i]['path'] = json_decode(htmlspecialchars_decode($questionsArray[$i]['QUESTION_IMAGE']));
+                $response_array[$i]['hasImage'] = !empty($response_array[$i]['path']);
+                $response_array[$i]['type'] = json_decode(htmlspecialchars_decode($questionsArray[$i]['QUESTION_TYPE']));
+                $response_array[$i]['choices'] = json_decode(htmlspecialchars_decode($questionsArray[$i]['QUESTION_DATA']));
+                $response_array[$i]['test_id'] = json_decode(htmlspecialchars_decode($test_id));
+            }
+            return $response_array;
+        } catch (Exception $e) {
+            echo $e;
+        }
+    }
+
+
 }

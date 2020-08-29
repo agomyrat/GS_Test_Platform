@@ -178,22 +178,28 @@ class Question extends Model
         $imagesArray = [];
         echo $questionId;
         try {
-            $sql = "SELECT QUESTION_IMAGE, CHOICE_IMAGES FROM questions WHERE QUESTIONS_ID = ?";
+            $sql = "SELECT QUESTION_IMAGE, QUESTION_DATA FROM questions WHERE QUESTIONS_ID = ?";
             $query = $db->prepare($sql);
             $query->execute([$questionId]);
             if ($query->rowCount() > 0) {
                 $images = $query->fetch(PDO::FETCH_ASSOC);
 
-                $questionImages = json_decode(htmlspecialchars_decode($images['QUESTION_IMAGE']));
-                $choiceImages = json_decode(htmlspecialchars_decode($images['CHOICE_IMAGES']));
-
-                foreach ($questionImages as $image) {
-                    array_push($imagesArray, $image);
+                $questionImage = json_decode(htmlspecialchars_decode($images['QUESTION_IMAGE']));
+                $choices = json_decode(htmlspecialchars_decode($images['QUESTION_DATA']));
+                
+                if(!empty($questionImage)){
+                    array_push($imagesArray, $questionImage);
                 }
+               
 
-                foreach ($choiceImages as $image) {
-                    array_push($imagesArray, $image);
+                if(is_array($choices)){
+                        foreach ($choices as $choice) {
+                            if(!empty($choice->path)){
+                                array_push($imagesArray, $choice->path);
+                            }
+                        }
                 }
+              
             }
         } catch (Exception $e) {
             echo $e;

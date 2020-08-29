@@ -1,0 +1,25 @@
+/* Choice Side  */
+.choice {
+   padding-top: 1rem;
+   display: flex;
+   align-items: center ;
+}
+
+.choice span {
+   float: left;
+   padding-left: 0.5rem ;
+}
+
+.choice .question {
+   padding-left: 0.5rem;
+   line-height: 1.5rem;
+}
+
+.image-block {
+   width: 50%;
+}
+
+.image-block img {
+   width: 100%;
+   height: auto;
+}

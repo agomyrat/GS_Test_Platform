@@ -92,10 +92,12 @@
 			$fileNamesArray = Question::getImageNames($questionId);
 			Question::deleteRow($questionId);
 			foreach($fileNamesArray as $fileName){
-				$path = 'uploads/'.$fileName;
-				if(file_exists($path)){
-					unlink($path);
-				}			
+				if($fileName !== null && !empty($fileName)){
+					$path = strpos($fileName, 'uploads/')!==false ? $fileName : 'uploads/'.$fileName;
+					if(file_exists($path)){
+						unlink($path);
+					}
+				}				
 			}
 		}
 
