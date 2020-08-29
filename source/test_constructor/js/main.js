@@ -77,15 +77,15 @@ class Main {
    // For rendering this.createQuestions
    question.sectionRender(this.questions.length - 1);
    // Animations
-   for (let x = 0; x < questions.length; x++) {
-   questions[x].style.opacity = '0.5'
-   };
-   questions[this.questions.length - 1].style.opacity = '1';
+   // for (let x = 0; x < questions.length; x++) {
+   // questions[x].style.opacity = '0.5'
+   // };
+   // questions[this.questions.length - 1].style.opacity = '1';
    addNewQuestion()
    }
    }
    
-   const main = new Main()
+   let main = new Main()
    
    function newQuestion() {
    // If last question saved ,you can create new one
@@ -144,7 +144,7 @@ class Main {
    
    /* Page Load Functions*/
    const onloadFunction = () => {
-   
+      
    const testId = document.querySelector('.test-id').innerHTML;
    main.testId = Number(testId)
    console.log(main.testId)
@@ -154,7 +154,23 @@ class Main {
    data: {testId : main.testId},
    success: function (data) {
    /*...*/
-   //JSON.parse(data)
+      console.log(JSON.parse(data))
+      var response = JSON.parse(data)
+      if(response != 0){
+         main.questions = response.questions;
+         main.orderQuestion = response.orderQuestion;
+         main.testId = response.testId;
+         main.createQuestions();
+         question.sectionRender(0);
+         //singleChoice.renderDOM()
+         document.querySelectorAll('#question')[0].style.opacity = '1'
+         console.log(main);
+      }else{
+         main.createQuestions();
+         question.sectionRender();
+         document.querySelectorAll('#question')[0].style.opacity = '1'
+      }
+      
    },
    error: function (data) {
    displayError('couldn;t get questions')
@@ -163,8 +179,8 @@ class Main {
    })
    
    
-   main.createQuestions();
-   document.querySelectorAll('#question')[0].style.opacity = '1'
+   
+   
    
    if(main.id){
    console.log("YOU HAVE TEST ID")

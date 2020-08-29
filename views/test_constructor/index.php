@@ -23,5 +23,5 @@ Warning
 </div>
 </section>
 </div>
-<div class="test-id">5</div>
+<div class="test-id">4</div>
 <div id="test_id" style="display:none;"><?=$test_id?></div>

@@ -396,9 +396,9 @@ class Question{
    deleteBtn.addEventListener('click', (e) => {
    let currentQstId = Number(e.target.dataset.row) + 1;
    
-   const newQuestions = main.questions.filter((question) => question.id != currentQstId)
+   const newQuestions = main.questions.filter((question) => question.order != currentQstId)
    main.questions = newQuestions
-   questionsClass.countQst -= 1;
+   main.orderQuestion -= 1;
    main.createQuestions()
    this.sectionRender()
    
