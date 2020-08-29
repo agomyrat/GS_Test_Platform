@@ -1,0 +1,20 @@
+<?php 
+     return[
+        'css'=>[
+            'source/test_constructor/css/__questions.css',
+            'source/test_constructor/css/__question_types.css',
+            'source/general/icons/icons/all.min.css'
+        ],
+        'js'=>[
+            'source/test_contructror/js/components/SingleChoice.js',
+            'source/test_contructror/js/components/MultiChoice.js',
+            'source/test_contructror/js/components/Input.js',
+            'source/test_contructror/js/components/TrueFalse.js',
+            'source/test_contructror/js/components/Matching.js',
+            'source/test_contructror/js/components/Blank.js',
+            'source/test_contructror/js/question.js',
+            'source/test_contructror/js/main.js',
+            'source/test_contructror/js/animations.js'
+        ]
+    ];
+?>

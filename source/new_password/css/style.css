@@ -1,0 +1,161 @@
+* {
+   box-sizing: border-box;
+}
+
+body {
+   overflow: hidden;
+   margin: 0;
+}
+
+#container {
+   width: 100%;
+   margin: auto auto;
+   display: grid;
+   grid-template-rows: 100vh;
+   grid-template-columns: 50% 50%;
+}
+#image {
+   height: 100vh;
+   display: grid;
+   justify-items: center;
+   align-items: center;
+}
+#image img {
+   width: 70%;
+}
+#form {
+   display: flex;
+   justify-content: center;
+   color: #032535;
+   align-items: center
+}
+
+.imgmobile {
+   display: none;
+}
+
+#changetxt {
+   color: #032535;
+   font-size: 2rem;
+   margin: 0;
+   margin-bottom: 1.5rem;
+}
+
+#username {
+   display: block;
+   margin-right: 25px;
+}
+
+#password {
+   display: block;
+}
+
+.formlbl {
+   font-style: normal;
+   font-weight: normal;
+   font-size: 18px;
+   line-height: 36px;
+}
+
+.user {
+   width: 100%;
+   height: 40px;
+   padding-left: 10px;
+   border: 2px solid #FF5700;
+   box-sizing: border-box;
+   border-radius: 7px;
+   margin-bottom: 16px;
+   font-weight: bold;
+   margin-top: 5px;
+   font-size: 1.2rem;
+}
+
+form {
+   width: 350px;
+}
+
+form .user:focus {
+   border: 2px solid #e3ee4a;
+   border-radius: 10px;
+}
+
+.savebtn {
+   width: 350px;
+   height: 45px;
+   background: #FF5700;
+   border-radius: 7px;
+   border: 2px solid #FF5700;
+   margin-top: 16px;
+   font-size: 20px;
+   color: white;
+   font-weight: 500;
+   cursor: pointer;
+}
+.savebtn:hover {
+   opacity: 0.7;
+}
+.left-side {
+   width: 80%;
+   height: 50%;
+   padding-top: 2rem;
+
+}
+
+@media screen and (max-width: 440px) {
+   form {
+      padding-top: 1.5rem;
+      width: 280px;
+   }
+   .formlbl {
+      font-size: 14px;
+   }
+   .user {
+      width: 280px;
+   }
+   .savebtn {
+      width: 280px;
+   }
+   h1#txt{
+      font-size: 1.5rem;
+   }
+
+}
+
+@media screen and (max-width: 768px) {
+   #container {
+      grid-template-columns: 1fr;
+      grid-template-rows: 40vh 60vh;
+      
+   }
+   #image {
+      display: none;
+   }
+   .imgmobile {
+      display: flex;
+      margin: 0;
+      justify-content: center;
+      align-items: flex-end;
+      
+   }
+   .imgmobile img {
+      
+      height: 200px;
+   }
+   #txt {
+      color: #032535;
+      font-size: 30px;
+   }
+   #form {
+      color: #032535;
+      width: 100%;
+   }
+   nav>h2{
+      font-size: 28px;margin-left: 0;
+   }
+   nav{
+      height: 6vh;
+      padding-left: 20px;
+      
+   }
+   
+}
