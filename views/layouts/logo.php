@@ -8,7 +8,7 @@
    <?php
    if(isset($asset_array['css'])){
         foreach($asset_array['css'] as $css){
-            echo "<link rel='stylesheet' href='".$css."'>";
+            echo "<link rel='stylesheet' href='".URL.$css."'>";
         }
     }
    ?>
@@ -19,7 +19,7 @@
    <nav>
       <div class="logo">
          <a href="welcome">
-            <img src="source/general/img/LogoText-Orange.svg">
+            <img class="nav-image" src="source/general/img/LogoText-Orange.svg">
          </a>
       </div>
    </nav>

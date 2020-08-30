@@ -39,13 +39,13 @@
                      </div>
                      <div>
                         <label><?= Polyglot::translate('Birthdate') ?></label> <br>
-                        <select class="birth-day birth" name="day" id="">
+                        <select class="birth-day birth" name="day" id="b-day">
                            <option selected hidden value=""><?= Polyglot::translate('Day') ?></option>
                         </select>
-                        <select class="birth-month birth" name="month" id="">
+                        <select class="birth-month birth" name="month" id="b-month">
                            <option selected hidden value=""><?= Polyglot::translate('Month') ?></option>
                         </select>
-                        <select class="birth-year birth" name="year" id="">
+                        <select class="birth-year birth" name="year" id="b-year">
                            <option selected hidden value=""><?= Polyglot::translate('Year') ?></option>
                         </select>
                      </div>
@@ -67,11 +67,11 @@
                      </div>
                      <div>
                         <label><?= Polyglot::translate('Paswrd') ?></label> <br>
-                        <input class="password form-input" type="password" />
+                        <input class="password form-input" autocomplete type="password" />
                      </div>
                      <div>
                         <label><?= Polyglot::translate('Confirm paswrd') ?></label> <br>
-                        <input class="password2 form-input" checked type="password" />
+                        <input class="password2 form-input" autocomplete checked type="password" />
                      </div>
                      <div style="display: flex; align-items: center;">
                         <input type="checkbox" class="check" />
@@ -86,8 +86,12 @@
                   </div>
                </div>
             </div>
+            <!-- Error Block -->
+            <div class="error-block">Boshlugy dogry doldurmagynyzy haysh edyaris</div>
          </div>
       </div>
+
+
 
       <!-- MODAL - POP-UP -->
       <div class="modal">

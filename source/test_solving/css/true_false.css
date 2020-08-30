@@ -1,9 +1,0 @@
-/* True False Type */
-.true-false-block{
-   padding: 1rem;
-   display: flex;
-   font-size: 1.4rem;
-}
-.true-false-block div{
-   padding: 1rem;
-}

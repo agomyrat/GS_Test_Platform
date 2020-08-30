@@ -50,21 +50,21 @@
          </div>
          <div class="box2">
             <aside>
-               <form action="mailnotification/contactUs">
+               <form action="">
                   <div>
                      <h3><?= Polyglot::translate('SendMessage') ?></h3>
                   </div>
                   <div>
                      <label for="name"><?= Polyglot::translate('Name') ?></label><br>
-                     <input name="name" type="text" class="name input" id="name">
+                     <input type="text" class="name input" id="name">
                   </div>
                   <div>
                      <label for="email"><?= Polyglot::translate('YourEmail') ?></label><br>
-                     <input name="email" type="email" class="name input" id="email">
+                     <input type="email" class="name input" id="email">
                   </div>
                   <div>
                      <label for="message"><?= Polyglot::translate('YourMessage') ?></label><br>
-                     <textarea name="message" maxlength="250" name="message" id="message" cols="30" rows="5"></textarea>
+                     <textarea maxlength="250" name="message" id="message" cols="30" rows="5"></textarea>
                   </div>
                   <div class="error">
                      <p></p>
