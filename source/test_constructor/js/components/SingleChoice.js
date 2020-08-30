@@ -6,28 +6,28 @@ class SingleChoice {
       this.count = 3;
    }
 
-   renderDOM () {
+   renderDOM() {
       let html = '';
       this.question.choices.forEach((choice, index) => {
-            let isChecked = choice.isChecked ? 'checked' : '';
-            html += `
-               <div class="choice-container" id=${this.choiceLetter[index]}>
-                  <input class="checkBox" ${isChecked}  type="checkbox" value=${index+1}>
-                  ${this.choiceLetter[index]} )
-                  ${choice.type == 'string' 
-                        ? `<input class="choice"  placeholder="Choice ${this.choiceLetter[index]}" data-choice=${index} type="text" value=${choice.value} >`
-                        : `<img src=${choice.path} class ="choice-image" data-row=${index} >`}
+         let isChecked = choice.isChecked ? 'checked' : '';
+         html += `
+   <div class="choice-container" id=${this.choiceLetter[index]}>
+   <input class="checkBox" ${isChecked} type="checkbox" value=${index+1}>
+   ${this.choiceLetter[index]} )
+   ${choice.type == 'string'
+   ? `<input class="choice" placeholder="Choice ${this.choiceLetter[index]}" data-choice=${index} type="text" value=${choice.value} >`
+   : `<img src=${choice.path} class ="choice-image img-eff" data-row=${index} >`}
+   
+   <div class="custom-file" data-row=${index}>
+   <input type="file" id="file-choice-${index}" accept="image/*" class="file-upload" data-row=${index} value=${choice.path}>
+   <label for="file-choice-${index}"><i class="far fa-image"></i></label>
+   </div>
+   <button class="remove-btn" data-row=${index} ><i class="fas fa-times"></i></button>
+   </div>
+   `
+      });
 
-                  <div class="custom-file" data-row=${index}>
-                     <input type="file" id="file-choice-${index}" accept="image/*" class="file-upload" data-row=${index} value=${choice.path}>
-                     <label for="file-choice-${index}"><i class="far fa-image"></i></label>
-                  </div>
-                  <button class="remove-btn" data-row=${index} ><i class="fas fa-times"></i></button>
-               </div>
-            `
-         });
-      
-      document.querySelector('.output').innerHTML = html ;
+      document.querySelector('.output').innerHTML = html;
 
       // Choice elements take all valueS of this.choiceLetter array
       this.question.choices.forEach((val, index) => {
@@ -41,12 +41,17 @@ class SingleChoice {
             if (rmvBtn.length > 2) {
                let thisElement = this.choiceLetter[x]
                let newChoices = this.question.choices.filter((choice) => choice.id !== thisElement);
+               console.log(this.question.choices[x].path.slice(14, this.question.choices[x].path.length))
+               if (this.question.id) {
+                  question.deletedChoiceFiles[x] = this.question.choices[x].path.slice(14, this.question.choices[x].path.length);
+               }
+
+               console.log(question.deletedChoiceFiles[x])
                this.question.choices = newChoices;
                this.decreaseCount();
                this.renderDOM();
                question.edited = true
-            }
-            else{
+            } else {
                displayError("You can't remove more choice")
             }
          })
@@ -71,23 +76,23 @@ class SingleChoice {
             let size = fileInputValue.size / 1024 / 1024;
 
             if (size < 2) {
-               
-               let data = e.target.parentElement.dataset.row
+
                this.question.choices[j].type = "image";
                this.question.choices[j].path = URL.createObjectURL(fileInputValue);
                this.question.choices[j].pathValue = fileInputValue;
                this.question.choices[j].value = "";
                this.renderDOM()
                question.edited = true
-            }
-            else {
+               console.log(main)
+               imageEffect()
+            } else {
                displayError('Your file muste be less than 2MB')
             }
          })
       }
-      
 
-      // To  answer the question ,[checkboxes]
+
+      // To answer the question ,[checkboxes]
       const checkBoxes = document.querySelectorAll(".checkBox");
       for (let z = 0; z < checkBoxes.length; z++) {
          checkBoxes[z].addEventListener('click', (e) => {
@@ -111,13 +116,13 @@ class SingleChoice {
 
 const singleChoice = new SingleChoice()
 
-/* SINGLE, MULTIPLE CHOICE TYPE  */
+/* SINGLE, MULTIPLE CHOICE TYPE */
 //Add new Choice block to single and multiple choice UI
 const add_choice = (row) => {
    const addBtn = document.getElementById('add-btn');
-   
+
    addBtn.addEventListener('click', () => {
-      
+
       if (singleChoice.count <= 5 && main.questions[row].choices.length !== 6) {
          main.questions[row].choices = [
             ...main.questions[row].choices,

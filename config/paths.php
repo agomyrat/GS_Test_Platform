@@ -1,3 +1,3 @@
 <?php 
-	define('URL', 'http://localhost/testSpace/');
+	define('URL', 'http://localhost/reis/');
  ?>
