@@ -1,0 +1,15 @@
+<?php 
+     return[
+        'css'=>[
+            "source/general/icons/icons/all.css",
+            'source/general/css/header.css',
+            'source/profile/css/style.css'
+        ],
+        'js'=>[
+            "source/general/js/header.js",
+            "source/profile/js/main.js",
+            "source/profile/js/functions.js",
+            "source/profile/js/password.js"
+        ]
+    ];
+?>
