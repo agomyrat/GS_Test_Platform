@@ -14,6 +14,7 @@
 				$extractedDatasArray['isRandom'] = isset($object->isRandom) ? $object->isRandom : 0; 
 				$extractedDatasArray['hasImage'] = isset($object->hasImage) ? $object->hasImage : 0;
 				$extractedDatasArray['order'] = isset($object->order) ? $object->order : 0;
+				$extractedDatasArray['path'] = isset($object->path) ? $object->path : null;
 			}
 			return $extractedDatasArray;
 		}
@@ -66,7 +67,7 @@
 					$fileName = self::checkAndGetFileName($files['file-'.$counter]);
 					$destination = 'uploads/'.$fileName;
 					move_uploaded_file($tmp_name, $destination);
-					array_push($choiceFileNames , $fileName);	
+					$choiceFileNames[$counter] = $fileName;	
 				}
 				$counter++;
 			}
@@ -75,17 +76,55 @@
 		}
 
 		public static function insertFileNamesToChoices($fileNames, $choices){
-			$fileCounter = 0;
+			//$fileCounter = 0;
 			if(!empty($fileNames) && !empty($choices)){
 				for ($i=0; $i < count($choices); $i++) {
-					if(!empty($choices[$i]->path)){
-						$choices[$i]->path = $fileNames[$fileCounter];
-						$fileCounter++;
-						if(!isset($fileNames[$fileCounter])){break;}
+					if(isset($choices[$i]->path) && isset($fileNames[$i])){
+						$choices[$i]->path = strpos($fileNames[$i], 'uploads/')!==false ? trim($fileNames[$i],'uploads/') : $fileNames[$i];
 					}
 				}
 			}
 			return $choices;
+		}
+
+		
+		public static function deleteDatasAndFiles($questionId){
+			$fileNamesArray = Question::getImageNames($questionId);
+			Question::deleteRow($questionId);
+			foreach($fileNamesArray as $fileName){
+				if($fileName !== null && !empty($fileName)){
+					$path = strpos($fileName, 'uploads/')!==false ? $fileName : 'uploads/'.$fileName;
+					if(file_exists($path)){
+						unlink($path);
+					}
+				}				
+			}
+		}
+
+		public static function deleteFiles($fileNamesArray){
+			if(is_array($fileNamesArray)){
+				foreach($fileNamesArray as $fileName){
+					if($fileName !== null && !empty($fileName)){
+						$path = strpos($fileName, 'uploads/')!==false ? $fileName : 'uploads/'.$fileName;
+						// echo 'fileName: '.$fileName;
+						// echo "<br>";
+						// echo 'path: '.$path;
+						// echo "<br>";
+						
+						if(file_exists($path)){
+							unlink($path);
+						}
+					}			
+				}
+			}else{
+				if($fileNamesArray !== null && !empty($fileNamesArray)){
+					$path = strpos($fileNamesArray, 'uploads/')!==false ? $fileNamesArray : 'uploads/'.$fileNamesArray;
+					if(file_exists($path)){
+						unlink($path);
+					}
+				}
+			}
+			
 		}
 	}
 	

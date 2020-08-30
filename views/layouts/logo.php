@@ -8,7 +8,7 @@
    <?php
    if(isset($asset_array['css'])){
         foreach($asset_array['css'] as $css){
-            echo "<link rel='stylesheet' href='".URL.$css."'>";
+            echo "<link rel='stylesheet' href='".$css."'>";
         }
     }
    ?>
