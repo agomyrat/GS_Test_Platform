@@ -2,8 +2,7 @@
         <div class="sidebar">
             <i class="fas fa-th-list" id="sidebar_btn"></i>
             <div class="wrapper" id="sidebar">
-                <button class="create"><a href="test/constructor">Create a test</a></button>
-
+                <a href="test/constructor"><button class="create">Create a test</button></a>
 
                 <div class="test_left">
                     <h4>My tests</h4>

@@ -1,0 +1,64 @@
+
+/* BG DARK */
+.bg-dark {
+   position: fixed;
+   top: 0;
+   bottom: 0;
+   left: 0;
+   right: 0;
+   width: 100%;
+   height: 100vh;
+   background: rgba(0, 0, 0, 0.507);
+   /* display: flex; */
+   align-items: center;
+   justify-content: center;
+   display: none;
+   transition: 1;
+}
+
+.close-btn {
+   position: absolute;
+   right: 30px;
+   top: 20px;
+   font-size: 3rem;
+   color: rgb(255, 255, 255);
+   cursor: pointer;
+   transform: rotate(45deg);
+}
+
+.image-place {
+   width: 60%;
+}
+
+.image-place img {
+   width: 100%;
+   height: auto;
+   z-index: 1000;
+}
+
+
+/* ROTATE */
+.rotate-bg{
+   width: 100%;
+   height: 100vh;
+   position: fixed;
+   top: 0;
+   left: 0;
+   /* display: flex; */
+   align-items:center ;
+   justify-content: center;
+   background-color: rgb(255, 111, 0);
+   display: none;
+}
+.rotate-bg .rotate-block{
+   width: 80%;
+   max-width: 200px;
+}
+.rotate-bg .rotate-block img {
+   width: 100%;
+}
+.rotate-bg .rotate-block h1 {
+   text-align: center;
+   font-size: 1.2rem;
+   color: white;
+}

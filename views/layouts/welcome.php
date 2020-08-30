@@ -12,13 +12,15 @@
 <body>
    <section>
       <!-- Container 80% -->
-      <nav>
-         <div class=" logo">
-   <h3>testSpace</h3>
-   <div class="collapse">
-      <i class="fas fa-bars"></i>
-   </div>
-   </div>
+   <nav>
+      <div class=" logo">
+         <h3>
+            <a href="welcome"><img src="source/general/img/LogoText-Orange.svg"></a>
+         </h3>
+         <div class="collapse">
+            <i class="fas fa-bars"></i>
+         </div>
+      </div>
    <div class="items">
       <ul>
          <li class="links">
@@ -74,6 +76,8 @@
       </div>
    </div>
 
+   <!-- SCRIPTS -->
+
    <script src="source/general/js/jquery/jquery-3.4.1.min.js"></script>
    <!-- Navbar Animation -->
    <script type="text/javascript" src="source/general/validator/validator.js"></script>
@@ -81,8 +85,8 @@
 
 
    <!-- GSAP Animations -->
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.4.2/gsap.min.js"></script>
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.4.2/ScrollTrigger.min.js"></script>
+   <script src="source/general/gsap/gsap.min.js"></script>
+   <script src="source/general/gsap/ScrollTrigger.min.js"></script>
    <script src="source/welcome/js/gsap.js"></script>
    </body>
 </html>

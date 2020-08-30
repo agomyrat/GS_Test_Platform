@@ -9,18 +9,22 @@ body {
 nav{
    width: 100%;
    height: 80px;
-   line-height: 80px;
    padding-left: 5%;
    position: fixed;
    top: 0;
    left: 0;
 }
+nav .logo{
+   display: flex;
+   align-items: center;
+   height: 80px;
+}
 nav .logo a{
-   font-size: 2rem;
-   font-weight: bold;
-   text-decoration: none;
-   color: white;
-
+   height: 40px;
+}
+nav .logo a img {
+   width: 110px;
+   height: auto;
 }
 #container {
       display: grid;
@@ -96,7 +100,7 @@ nav .logo a{
       font-size: 1rem;
 }
 form{
-   width: 350px;
+   width: 370px;
 }
 form .user:focus {
       border: 2px solid #e3ee4a;
@@ -136,6 +140,7 @@ form .user:focus {
 .forgot{
    float: right;
    padding-left: 3rem;
+   font-size: 1rem ;
 }
 .sign-up{
    padding-top: 1.5rem;
@@ -162,7 +167,7 @@ form .user:focus {
 }
 
 .know {
-      font-size: 2rem;
+      font-size: 1.5rem;
       color: white;
 }
 
@@ -183,6 +188,11 @@ form .user:focus {
    .sign-up{
       font-size: 1rem;
    }
+   .forgot {
+      float: right;
+      padding-left: 2rem;
+      font-size: 0.7rem;
+   }
 }
 @media screen and (max-width: 768px) {
       nav .logo a {
@@ -194,18 +204,18 @@ form .user:focus {
    }
       #container {
          grid-template-columns: 1fr;
-         grid-template-rows: 30vh 70vh;
+         grid-template-rows: 100vh;
          /* align-content: center; */
       }
       #image {
          display: none;
       }
-      .imgmobile {
+      /* .imgmobile {
          display: flex;
          margin: 0;
          justify-content: center;
          padding-top: 3rem;
-      }
+      } */
       .imgmobile img {
          /* align-items: center; */
          /* width: 600px; */

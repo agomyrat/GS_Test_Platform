@@ -70,7 +70,7 @@ nav{
    height: 80px;
    top: 0;
    display: grid;
-   grid-template-columns: 30% 70%;
+   grid-template-columns: 20% 80%;
    align-items: center;
    z-index: 100;
    padding: 0 5% 0 5%;
@@ -88,9 +88,14 @@ nav{
 }
 .logo h3{
    margin: 0;
-   color: #FF5903;
-   font-family: Montserrat-Bold;
-   font-size: 1.5rem;
+}
+.logo h3 a {
+   cursor: pointer;
+   text-decoration: none;
+}
+.logo h3 a img{
+   width: 110px;
+   height: auto;
 }
 .items> ul{
    float: right;  
@@ -202,7 +207,7 @@ li.dropdown ul.dropdown-list>li.dr:hover{
    border: none;
    border-radius: 5px ;
 }
-.part1 .header .orange-btn button a{
+.part1 .header .orange-btn a{
    text-decoration:none;
    color: white;
 }
@@ -261,6 +266,12 @@ li.dropdown ul.dropdown-list>li.dr:hover{
    align-items: center;
 }
 #about .box .box2 article {
+   padding-top: 1rem;
+   width: 80%;
+   line-height: 2rem;
+   font-size: 1.2rem;
+}
+#about .box .box2 article h1 {
    padding-top: 1rem;
    width: 80%;
    line-height: 2rem;
@@ -327,7 +338,7 @@ form div h3{
    margin-top: 0;
 }
 form div>input{
-   height: 50px;
+   height: 40px;
    padding: 0.2rem 0.5rem;
    font-size: 1rem;
 }
@@ -362,7 +373,45 @@ footer{
 /* Media */
 @media screen and (max-width:1025px){
    nav {
-      grid-template-columns: 10% 90%;
+      grid-template-columns: 100%;
+   }
+
+   .items {
+      position: fixed;
+      top: 80px;
+      right: 0;
+      bottom: 0;
+      width: 400px;
+      height: 100vh;
+      background-color: white;
+      margin-right: -100%;
+      transition: 0.5s;
+      z-index: 2;
+   }
+
+   .items ul {
+      width: 100%;
+   }
+
+   .items ul li {
+      display: block;
+      text-align: center;
+      padding: 1.5rem 0;
+   }
+
+   .logo .collapse {
+      display: block;
+   }
+
+   li.dropdown::after {
+      top: 31px;
+      margin-left: 3px;
+   }
+
+   li.dropdown ul.dropdown-list {
+      top: 63px;
+      text-align: left;
+      right: 8rem;
    }
    .part1 .header h1 {
       font-size: 2.6rem;
@@ -398,6 +447,7 @@ footer{
 
    #about .box .box2 article {
       width: 100%;
+      font-size: 1rem;
    }
    #contact .box {
       width: 100%;
@@ -416,43 +466,7 @@ footer{
 }
 @media screen and (max-width:760px) {
   
-   nav {
-      grid-template-columns: 100%;
-   }
-   .items{
-      position: fixed;
-      top: 80px;
-      right: 0;
-      bottom: 0;
-      width: 50%;
-      height: 100vh;
-      background-color: white;
-      margin-right: -100%;
-      transition: 0.5s;
-      z-index: 2;
-   }
-   .items ul{
-      width: 100%;
-   }
-   .items ul li{
-      display: block;
-      text-align: center;
-      padding: 1.5rem 0;
-   }
-   .logo .collapse{
-      display: block;
-   }
-    li.dropdown::after {
-       top: 34px;
-       margin-left: 3px;
-    }
-    li.dropdown ul.dropdown-list {
-       top: 63px;
-       text-align: left;
-       right: 20%;
-       /* right: 0px; */
-       /* left: 30%; */
-    }
+   
    /* Home */
    #home {
       width: 100%;
@@ -523,7 +537,10 @@ footer{
       width: 60%;
    }
    .items {
-      width: 70%;
+      width: 200px;
+   }
+   li.dropdown ul.dropdown-list {
+      right: 2rem;
    }
    #about .box {
       width: 100%;

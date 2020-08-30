@@ -1,12 +1,13 @@
 $('#form_').on('submit',(function(e) {
        		  e.preventDefault();
-        	  formdata = new FormData(this);
+        	  var data = {
+                  user : $('#user').val(),
+                  password : $('#password').val()
+              }
         $.ajax({
             type: 'post',
             url: 'login/checkLogin',
-            processData: false,
-            contentType: false,
-            data: formdata,
+            data: data,
             success: function(result){     
                 if(result == 1){
                     window.location.href = 'main';    
@@ -23,4 +24,15 @@ $('#form_').on('submit',(function(e) {
     	
     }));
     
- 
+const navImage = document.querySelector('.nav-image');
+
+navImage.src = 'source/general/img/LogoText-White.svg'
+
+window.onresize = () => {
+   if (window.innerWidth < 768) {
+      navImage.src = 'source/general/img/LogoText-Orange.svg'
+   }
+   else{
+      navImage.src = 'source/general/img/LogoText-White.svg'
+   }
+}
