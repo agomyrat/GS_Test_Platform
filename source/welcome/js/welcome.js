@@ -61,14 +61,8 @@ document.querySelector('.dropdown').addEventListener('mouseout', function () {
 
 
 $('form').on('submit',function(e){	
- @EricDickens
-EricDickens Author Pending
-contact us yerde js bolum overwrite ediljek bolya
-
-@EricDickens	Reply…
-document.querySelector('form').onsubmit = (e) => {
-   e.preventDefault()	   e.preventDefault()
-   $("#name").val(null);	}
+   e.preventDefault()
+   $("#name").val(null);
    $("#email").val(null);	
    $("#message").val(null);	
 
