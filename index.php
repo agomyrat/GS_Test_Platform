@@ -1,6 +1,5 @@
 <?php
 
-
 //use autoloader
 //Library
 require 'libs/Bootstrap.php';
@@ -12,6 +11,7 @@ require 'libs/Session.php';
 require 'libs/Cookie.php';
 require 'libs/Cryptography.php';
 require 'libs/Polyglot.php';
+require 'libs/Helper.php';
 
 //configurations
 require 'config/paths.php';

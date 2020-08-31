@@ -60,9 +60,32 @@ document.querySelector('.dropdown').addEventListener('mouseout', function () {
 });
 
 
-document.querySelector('form').onsubmit = (e) => {
+$('form').on('submit',function(e){	
    e.preventDefault()
-}
+   $("#name").val(null);
+   $("#email").val(null);	
+   $("#message").val(null);	
+
+      var formData = new FormData(this);	
+      $.ajax({	
+         url:'mailnotification/contactUs',	
+         type:'post',	
+         processData: false,	
+         contentType: false,	
+         data: formData,	
+         success:function(data){	
+            if(data !=0){	
+               alert('Thanks for contacting us!');	
+            }else{	
+               alert("Your message couldn't be sent!");	
+            }	
+         },	
+         error:function(){	
+            console('error boldy',data);	
+         }	
+      });	
+
+});
 
 
 //Validation Inputs

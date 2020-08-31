@@ -16,24 +16,24 @@
 			require "views/layouts/".$this->layout.".php";
 		}
 
-		public static function getHtmlTemplate($name,$elementsArray = null){
+		public static function getHtmlTemplate($templateName,$elementsArray = null){		
 			if(!empty($elementsArray)){
 				foreach($elementsArray as $key => $value){
 					$$key = $value;
 				}
 			}
-			$path = "views/mail/html/".$name.".php";
+			$path = "views/mail/html/".$templateName.".php";
 			return file_exists($path) ? require $path : null;
 		}
 
-		public static function getTextTemplate($name,$elementsArray = null){
+		public static function getTextTemplate($templateName,$elementsArray = null){
 			if(!empty($elementsArray)){
 				foreach($elementsArray as $key => $value){
 					$$key = $value;
 				}
 			}
 
-			$path = "views/mail/text/".$name.".php";
+			$path = "views/mail/text/".$templateName.".php";
 			return file_exists($path) ? require $path : null;
 		}
 

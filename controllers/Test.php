@@ -1,248 +1,182 @@
 <?php
-    class Test extends Controller
+class Test extends Controller
 {
-	
-	function __construct()
-	{
-		parent::__construct();
-        $this->view->layout = "test";
-	}
 
-	public function index(){
-		//Polyglot::setPage('test_constructor');
-		$this->view->render('test_constructor/index');
-		
-	}
+   function __construct()
+   {
+      parent::__construct();
+      $this->view->layout = "test";
+   }
 
-	public function constructor($array = null){
-		/* if(!empty($array)){
+   public function index()
+   {
+      //Polyglot::setPage('test_constructor');
+      $this->view->render('test_constructor/index');
+   }
+
+   public function constructor($array = null)
+   {
+      if(!empty($array)){
 			$test_id = $array[0];
 			$this->view->render('test_constructor/index',['test_id'=>$test_id]);
 		}else{
 			$test_id = _Test::createTest(SESSION::get(USER_ID));
 			$this->redirect('test/constructor/'.$test_id);
-		} */
-	}
-
-	public function getQuestions(){
-		echo json_encode(_Test::getQuestions($_POST['data']['test_id']));
-	}
-
-	public function deleteQuestion(){
-		print_r($_POST);
-		$this->deleteDatasAndFiles($_POST['questionId']);
-	}
-
-	public function saveQuestion(){
-		print_r(($_POST['data']));
-		//print_r(json_encode($_FILES));
-		//print_r(json_decode($_POST['data']));
-
-		/* $extractedDatas = $this->extractDatas(json_decode($_POST['data']));
-
-		$questionId = $extractedDatas['questionId'];
-		$question = $extractedDatas['question'];
-		$choices = $extractedDatas['choices'];
-		$answers = $extractedDatas['answers'];
-		$testId = $extractedDatas['testId'];
-		$questionType = $extractedDatas['questionType'];
-		$isRandom = $extractedDatas['isRandom'];
-		$hasImage = $extractedDatas['hasImage'];
-
-		if(Question::has($questionId)){
-			$this->deleteDatasAndFiles($questionId);
 		}
+   }
 
-		$questionImages = $this->extractQuestionImages($_FILES);
-		$choiceImages = $this->extractChoiceImages($_FILES);
-		$questionImagesNames = $this->uploadImages($questionImages);
-		$choiceImagesNames = $this->uploadImages($choiceImages);
-		$questionImagePaths = $this->generatePath($questionImagesNames);
-		$choicesImagePaths = $this->generatePath($choiceImagesNames);
-		$choices = ($this->antiExtractImages($choicesImagePaths,$choices));
+   public function solving()
+   {
+      $this->view->layout = "test_solving";
+      $this->view->render('test_solving/index');
+   }
 
-		if($questionImagesNames !== false  && $choiceImagesNames !== false){
-			$questionId = Question::insertQuestion(['testId' => $testId,
-		 										 'question'=>$question,
-		 										 'questionImages'=>$questionImagesNames,
-		 										 'questionData'=>$choices,
-		 										 'choiceImages'=>$choiceImagesNames,
-		 										 'answers'=>$answers,
-		 										 'questionType'=>$questionType,
-												 'isRandom'=>$isRandom,
-												 'hasImage'=>$hasImage 				 
-												  ]);
+   public function editQuestion()
+   {
+   }
 
-			$response_array = [
-				'question' => $question,
-				'choices' =>json_decode($choices),
-				'answer'=>json_decode($answers),
-				'type'=>$questionType,
-				'hasImage'=>$hasImage,
-				'isRandom'=>$isRandom,
-				'id'=> $questionId,
-				'qFilePaths'=> json_decode($questionImagePaths),
-				'cFilesPaths'=>json_decode($choicesImagePaths)
-			];
-			
-			echo json_encode($response_array);
-			}else{ echo 'Suratlar we datalar save edilmedi!';} */
-	}
+   public function getQuestions()
+   {
+      // echo 'geldi';
+      if (isset($_POST['testId'])) {
+         $testId = (int) $_POST['testId'];
+         $questionsArray = _Test::getQuestions($testId);
+         $orderQuestion = count($questionsArray);
 
-	public function extractDatas($object){
-		$extractedDatasArray = [];
+         if ($orderQuestion > 0) {
+            $response_array = [
+               'questions' => $questionsArray,
+               'orderQuestion' => $orderQuestion,
+               'testId' => $testId
+            ];
+            echo json_encode($response_array);
+         } else {
+            echo 0;
+         }
+      } else {
+         echo "Couldn't get testId";
+      }
+   }
 
-		if(!empty($object)){
-			$extractedDatasArray['questionId'] = isset($object->id) ? $object->id : '0';
-			$extractedDatasArray['question'] = isset($object->question) ? $object->question : '';
-			$extractedDatasArray['choices'] = isset($object->choices) ? json_encode($object->choices) : '';
-			$extractedDatasArray['answers'] = isset($object->answer) ? json_encode($object->answer) : '';
-			$extractedDatasArray['testId'] = isset($object->testId) ? $object->testId : 1;
-			$extractedDatasArray['questionType'] = isset($object->type) ? $object->type : 'single-choice'; 
-			$extractedDatasArray['isRandom'] = isset($object->isRandom) ? $object->isRandom : 0; 
-			$extractedDatasArray['hasImage'] = isset($object->hasImage) ? $object->hasImage : 0;
-		}
-		return $extractedDatasArray;
-	}
+   public function deleteQuestion()
+   {
+      // print_r($_POST);
+      $questionId = $_POST['questionId'];
+      Helper::deleteDatasAndFiles($questionId);
+   }
 
-	public function extractQuestionImages($array=null){
-		$questionImages = [];
-		$counter = 0;
-		while(!empty($array)){
-			if(isset($array['qFile-'.$counter])){
-				array_push($questionImages , $array['qFile-'.$counter]);
-			}else{
-				break;		
-			}
-			$counter++;
-		}
+   public function saveQuestion()
+   {
+      // print_r(json_decode($_POST['data']));
+      // print_r(($_FILES));
+      // //print_r(json_decode($_POST['data']));
+      // !empty($_POST['choiceFiles']) ? print_r(json_decode($_POST['choiceFiles'])) : null;
+      // !empty($_POST['deletedQuestionFile']) ? print_r(json_decode($_POST['deletedQuestionFile'])) : null;
+      // !empty($_POST['deletedChoiceFiles']) ? print_r(json_decode($_POST['deletedChoiceFiles'])) : null;
+      // die;
 
-		return $questionImages;
-	}
+      $extractedDatas = Helper::extractDatas(json_decode($_POST['data']));
 
-	public function extractChoiceImages($array=null){
-		$questionImages = [];
-		$counter = 0;
-		while(!empty($array)){
-			if(isset($array['file-'.$counter])){
-				array_push($questionImages , $array['file-'.$counter]);
-			}else{
-				break;		
-			}
-			$counter++;
-		}
-		
-		return $questionImages;
-	}
+      $questionId = $extractedDatas['questionId'];
+      $question = $extractedDatas['question'];
+      $choices = $extractedDatas['choices'];
+      $answers = $extractedDatas['answers'];
+      $testId = $extractedDatas['testId'];
+      $questionType = $extractedDatas['questionType'];
+      $isRandom = $extractedDatas['isRandom'];
+      $hasImage = $extractedDatas['hasImage'];
+      $order = $extractedDatas['order'];
+      $path = $extractedDatas['path'];
+      $choiceFiles = !empty($_POST['choiceFiles']) ? json_decode($_POST['choiceFiles']) : null;
+      $deletedQuestionFile = !empty($_POST['deletedQuestionFile']) ? json_decode($_POST['deletedQuestionFile']) : null;
+      $deletedChoiceFiles = !empty($_POST['deletedChoiceFiles']) ? json_decode($_POST['deletedChoiceFiles']) : null;
 
-	public function extractImageNames($array){
-		$imagesNames = [];
-		if(!empty($array)){
-			foreach($array as $image){
-				array_push($imagesNames, uniqid($image['size']));
-			}
-		}
-		return json_encode($imagesNames);
-	}
+      $qFileName = Helper::uploadQuestionFile($_FILES);
+      $aFileNames = Helper::uploadChoiceFiles($_FILES);
 
-	public function uploadImages($imagesArray){
-		$imagesNames = [];
-		//birinji hemme suratlary foreach bilen barlamaly
-		//son hemme suratlary foreach bilen upload etmeli
-		if(!empty($imagesArray)){ 
+      $qFileName = !empty($qFileName) ? $qFileName : $path;
 
-			foreach($imagesArray as $image){
-				$type = $image['type'];
-				$error = $image['error'];
-				$size = $image['size'];
-			
-				$type_exploded = explode('/', rtrim($type, '/') );
-				$actualExt = strtolower(end($type_exploded));
-				$permitted = array('jpg', 'jpeg', 'png', 'gif', 'JPG', 'JPEG', 'PNG' , 'GIF');
+      if ($qFileName === null && $aFileNames === null) {
+         echo '0';
+         exit('0');
+      }
 
-				if(!(in_array($actualExt, $permitted) && $error===0 && $size<5000000)){ return false;}
-			}
+      $choices = Helper::insertFileNamesToChoices($choiceFiles, $choices);
+      $choices = Helper::insertFileNamesToChoices($aFileNames, $choices);
 
-			foreach($imagesArray as $image){
-				$type = $image['type'];
-				$tmp_name = $image['tmp_name'];
-				$error = $image['error'];
-				$size = $image['size'];
-				$name = uniqid($size);
+      Helper::deleteFiles($deletedChoiceFiles);
+      Helper::deleteFiles($deletedQuestionFile);
 
-				$type_exploded = explode('/', rtrim($type, '/') );
-				$actualExt = strtolower(end($type_exploded));
-				$permitted = array('jpg', 'jpeg', 'png', 'gif', 'JPG', 'JPEG', 'PNG' , 'GIF');
-				$actualName = $name.'.'.$actualExt;
+      if ($questionId !== null && Question::has($questionId)) {
 
-				$destination = 'uploads/'.$actualName;
-				move_uploaded_file($tmp_name, $destination);
-				array_push($imagesNames, $actualName);
-			}
-		}
+         $questionId = Question::updateQuestion($questionId, [
+            'testId' => $testId,
+            'question' => $question,
+            'qFileName' => $qFileName,
+            'questionData' => $choices,
+            'answers' => $answers,
+            'questionType' => $questionType,
+            'isRandom' => $isRandom,
+            'hasImage' => $hasImage,
+            'order' => $order
+         ]);
+      } else {
 
-		return json_encode($imagesNames);
-	}
+         $questionId = Question::insertQuestion([
+            'testId' => $testId,
+            'question' => $question,
+            'qFileName' => $qFileName,
+            'questionData' => $choices,
+            'answers' => $answers,
+            'questionType' => $questionType,
+            'isRandom' => $isRandom,
+            'hasImage' => $hasImage,
+            'order' => $order,
+         ]);
+      }
+      if ($questionId) {
+         $response_array = [
+            'question' => $question,
+            'choices' => $choices,
+            'answer' => $answers,
+            'type' => $questionType,
+            'hasImage' => $hasImage,
+            'isRandom' => $isRandom,
+            'id' => $questionId,
+            'path' => $qFileName,
+            'aFilesNames' => $aFileNames,
+            'order' => $order
+         ];
+         echo json_encode($response_array);
+      } else {
+         echo "database problem bar!";
+      }
+   }
 
-	public function generatePath($json){
-		$pathArray = [];
-		if(!empty($json)){
-			$array = json_decode($json);
-			foreach ($array as $element) {
-				$path = URL.'uploads/'.$element;
-				array_push($pathArray,$path);
-			}
-		}
-
-		return json_encode($pathArray);
-	}
-
-	public function antiExtractImages($jsonImagePathsArray,$jsonArrayWithPathKeys){
-		$arrayWithPathKeys = json_decode($jsonArrayWithPathKeys);
-		$imagePathsArray = json_decode($jsonImagePathsArray);
-		if(!empty($arrayWithPathKeys) && !empty($imagePathsArray)){
-			for ($i=0; $i < count($arrayWithPathKeys); $i++) {
-				if(isset($imagePathsArray[$i])){
-					$arrayWithPathKeys[$i]->path = $imagePathsArray[$i];
-				}
-			}
-			return json_encode($arrayWithPathKeys);
-		}
-		return $jsonArrayWithPathKeys;
-	}
-
-	public function deleteDatasAndFiles($questionId){
-			$fileNamesArray = Question::getImageNames($questionId);
-			Question::deleteRow($questionId);
-			foreach($fileNamesArray as $fileName){
-				$path = 'uploads/'.$fileName;
-				if(file_exists($path)){
-					unlink('uploads/'.$fileName);
-				}			
-			}
-	}
-
-	public function practice(){
-		$link = 'adf';
-		// // echo "<pre>";
-		// // print_r(_Test::getQuestions(1));
-		// //print_r(_Test::get(4,['TEST_ID','CREATED_BY','TEST_NAME']));
-		/* $username = 'ERIC';
+   public function practice()
+   {
+      $link = 'adf';
+      // // echo "<pre>";
+      // // print_r(_Test::getQuestions(1));
+      // //print_r(_Test::get(4,['TEST_ID','CREATED_BY','TEST_NAME']));
+      /* $username = 'ERIC';
 		
 		$file = View::getHtmlTemplate('register',['link'=>$link]);;
 		echo ($file)."<br>"; */
-		// use PHPMailer\PHPMailer\Exception;
-		/* require "libs/Mail.php";
+      // use PHPMailer\PHPMailer\Exception;
+      /* require "libs/Mail.php";
 		sendMail(); */
 
-		Polyglot::setPage('signup');
-		$address = 'rejepowerkin@gmail.com';
-		$this->sendMail($address,['templateName'=>'register',
-								  'link'=>$link,
-								  'subject'=>Polyglot::translate('Registration letter')
-									]);
-		
-	}
-
-
+      // Polyglot::setPage('signup');
+      // $address = 'rejepowerkin@gmail.com';
+      // $this->sendMail($address, [
+      //    'templateName' => 'register',
+      //    'link' => $link,
+      //    'subject' => Polyglot::translate('Registration letter')
+      // ]);
+         $var = '[{&quot;value&quot;:&quot;&quot;,&quot;type&quot;:&quot;image&quot;,&quot;path&quot;:&quot;..\/..\/uploads\/1370865f4b7df9a25d6.jpeg&quot;,&quot;isChecked&quot;:true,&quot;id&quot;:&quot;a&quot;,&quot;pathValue&quot;:false},{&quot;value&quot;:&quot;asd&quot;,&quot;type&quot;:&quot;string&quot;,&quot;path&quot;:&quot;&quot;,&quot;isChecked&quot;:false,&quot;id&quot;:&quot;b&quot;},{&quot;value&quot;:&quot;asd&quot;,&quot;type&quot;:&quot;string&quot;,&quot;path&quot;:&quot;&quot;,&quot;isChecked&quot;:false,&quot;id&quot;:&quot;c&quot;}]'
+      ;$arr = json_decode(htmlspecialchars_decode($var));
+      echo "<pre>";
+      print_r($arr);
+   }
 }

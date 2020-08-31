@@ -12,6 +12,15 @@ nav{
    align-items: center;
    justify-content: space-between;
 }
+@media (max-width:900px) {
+   nav{
+      width: 95%;
+   }
+   .nav1 h1 {
+      font-size: 1.5rem;
+      padding-left: 50px;
+   }
+}
 .nav1 h1 {
    font-size: 2rem;
 }
@@ -59,8 +68,10 @@ nav{
    box-shadow: 0px 0px 5px #424242;
 }
 .question-image {
-   width: 300px;
+   width: 170px;
    height: auto;
+   cursor: pointer;
+
 }
 /* FILE UPLOAD */
 .custom-file {
@@ -198,8 +209,9 @@ button.remove-btn:focus
    cursor: pointer;
 }
 img.choice-image{
-   width: auto;
-   height: 200px;
+   height: auto;
+   width: 150px;
+   cursor: pointer;
 }
 
 /* Input Choice */

@@ -1,7 +1,6 @@
 class Main {
    constructor() {
       this.questions = [{
-         id: '123asdh',
          order: 1,
          question: '',
          saved: false,
@@ -32,24 +31,30 @@ class Main {
          type: 'single-choice',
          answer: ''
       }];
+      this.testId = null;
       this.orderQuestion = 1;
    }
-   createQuestions() {
-      
-      /*  LEFT SIDE QUESTIONS LIST */
+   createQuestions(currentQ = 0) { 
+
+      // Get new orders
+      this.questions.forEach((question, index) => {
+         question.order = index + 1;
+      })
+
+      /* LEFT SIDE QUESTIONS LIST */
       let html = ''
       this.questions.forEach((qst, index) => {
          html += `
             <div id="question" data-row=${index}>
-               <h3>Question ${qst.order}</h3>
-               <p>${qst.question.substring(0,20)}...</p>
+            <h3>Question ${qst.order}</h3>
+            <p>${qst.question.substring(0,20)}...</p>
             </div>
-         `
+            `
       });
       document.getElementById('questions').innerHTML = html;
 
 
-      //  HAYSY QUESTIONA BASSAN SHONA AKIDYA
+      // HAYSY QUESTIONA BASSAN SHONA AKIDYA
       const questions = document.querySelectorAll('#question');
 
       for (let x = 0; x < questions.length; x++) {
@@ -60,7 +65,7 @@ class Main {
                question.sectionRender(x);
 
                // Animations
-               for (let x = 0; x < questions.length; x++) { 
+               for (let x = 0; x < questions.length; x++) {
                   questions[x].style.opacity = '0.5'
                };
                questions[x].style.opacity = '1';
@@ -70,25 +75,31 @@ class Main {
             } else {
                displayError('You need to save this question !')
             }
-            
+
          })
       }
       // For rendering this.createQuestions
-      question.sectionRender()
+      question.sectionRender(currentQ);
+      // Animations
+      for (let x = 0; x < questions.length; x++) {
+      questions[x].style.opacity = '0.5'
+      };
+      questions[currentQ].style.opacity = '1';
       addNewQuestion()
    }
 }
 
-const main =  new Main()
+let main = new Main()
 
 function newQuestion() {
    // If last question saved ,you can create new one
    if (main.questions[main.questions.length - 1].saved && !question.edited) {
+      console.log('asadsad')
       main.orderQuestion += 1;
       main.questions = [
          ...main.questions,
          {
-            order : main.orderQuestion,
+            order: main.orderQuestion,
             question: ' ',
             saved: false,
             isRandom: false,
@@ -122,8 +133,7 @@ function newQuestion() {
       document.querySelectorAll('#question')[main.questions.length - 1].style.opacity = '1'
       document.querySelectorAll('#question')[0].style.opacity = '0.5'
       opacityEffect()
-   }
-   else{
+   } else {
       displayError('Please SAVE question')
    }
 }
@@ -134,9 +144,65 @@ const addNewQuestion = () => {
 }
 
 
-/* Page Load Functions */
+/* Page Load Functions*/
 const onloadFunction = () => {
-   main.createQuestions();
-   document.querySelectorAll('#question')[0].style.opacity = '1'
+   const testId = document.querySelector('.test-id').innerHTML;
+   main.testId = Number(testId)
+   $.ajax({
+      url: '../getQuestions',
+      type: 'post',
+      data: {
+         testId: main.testId
+      },
+      success: function (data) {
+         /*...*/
+         var response = JSON.parse(data)
+         if (response != 0) {
+            main.questions = response.questions;
+            main.orderQuestion = response.orderQuestion;
+            main.testId = response.testId;
+
+            response.questions.forEach((question) => {
+               if(question.hasImage){
+                  question.path = `../../uploads/${question.path}`
+               }
+               if (question.type === "single-choice" || question.type === "multi-choice"){
+                  question.choices.forEach((choice) => {
+                     console.log(choice.path )
+                     if (choice.type == "image"){
+                        choice.path = `../../uploads/${choice.path}`
+                        choice.pathValue = false;
+                     }
+                  })
+               }
+            })
+
+
+            main.createQuestions();
+            question.sectionRender(0);
+
+            document.querySelectorAll('#question')[0].style.opacity = '1'
+            console.log(main);
+         } else {
+            main.createQuestions();
+            question.sectionRender();
+            document.querySelectorAll('#question')[0].style.opacity = '1'
+         }
+      imageEffect()
+
+      },
+      error: function (data) {
+         displayError("Couldn't get questions")
+      }
+
+   })
+
+
+
+
+   if (main.id) {
+      console.log("YOU HAVE TEST ID")
+   }
+
 }
 window.onload = onloadFunction()
