@@ -24,4 +24,15 @@ $('#form_').on('submit',(function(e) {
     	
     }));
     
- 
+const navImage = document.querySelector('.nav-image');
+
+navImage.src = 'source/general/img/LogoText-White.svg'
+
+window.onresize = () => {
+   if (window.innerWidth < 768) {
+      navImage.src = 'source/general/img/LogoText-Orange.svg'
+   }
+   else{
+      navImage.src = 'source/general/img/LogoText-White.svg'
+   }
+}

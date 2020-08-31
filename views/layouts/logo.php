@@ -19,7 +19,7 @@
    <nav>
       <div class="logo">
          <a href="welcome">
-            <img src="source/general/img/LogoText-Orange.svg">
+            <img class="nav-image" src="source/general/img/LogoText-Orange.svg">
          </a>
       </div>
    </nav>

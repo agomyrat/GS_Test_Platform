@@ -88,12 +88,16 @@ function send() {
       document.querySelector('.error p').innerText = errors[0]
    }
    else {
-      console.log('ckrea')
+      console.log('SENT')
+      alert('message has been sent')
       errors = []
-      document.querySelector('.error p').innerText = ""
+      document.querySelector('.error p').innerText = "";
+      const inputs = document.querySelectorAll('.input');
+      inputs.forEach((e) => {
+         e.value = ""
+      })
+      document.querySelector('#message').value = ""
    }
-   console.log(errors)
-   console.log(data)
 }
 
 

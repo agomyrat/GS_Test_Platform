@@ -10,6 +10,12 @@ const terms =  document.querySelector('.terms');
 const modal = document.querySelector(".modal");
 const close = document.querySelector('.close');
 const countPage = document.querySelectorAll('#page')
+const navImage = document.querySelector('.nav-image');
+const errorBlock = document.querySelector('.error-block');
+
+console.log(errorBlock)
+
+navImage.src = "source/general/img/LogoText-White.svg"
 
 countPage[0].style.backgroundColor = "#FF570C"
 countPage[0].style.color = "white"
@@ -123,17 +129,14 @@ function check(column_name,text){
                 data:{column:column_name, value:text},
                 success:function(data){
                     if(data == 0){
-                        console.log(data,'gul yaly on yok eken basyber', text);
                         if(column_name == 'USER_NAME'){check_username= true; $(".check-username").fadeOut(600);}
                         else if(column_name == 'E_MAIL'){check_email = true; $(".check-email").fadeOut(600);}
                     }else{
-                        console.log(data, 'Onem bara', text);
                         if(column_name == 'USER_NAME'){check_username= false;$(".check-username").fadeIn(300);}
                         else if(column_name == 'E_MAIL'){check_email = false;$(".check-email").fadeIn(300);}
                     }
                 },
                 error: function(){
-                    console.log('Error bolda hoooow');
                     return false;
                 }
             });
@@ -199,7 +202,7 @@ nextBtnFirst.addEventListener("click", () => {
    const lastname = document.querySelector('.lastname').value;
    const username = document.querySelector('.username').value;
 
-   const checkValid = validator.isAlpha(firstname) && validator.isAlpha(lastname) && !validator.isNumeric(username);
+   const checkValid = !validator.isNumeric(firstname) && !validator.isNumeric(lastname) && !validator.isNumeric(username);
    const checkValid2 = validator.isAlphanumeric(username) || validator.isAlpha(username);
    const checkData = userData.username.toLowerCase() !== username.toLowerCase() ; 
 
@@ -212,10 +215,10 @@ nextBtnFirst.addEventListener("click", () => {
       firstFormAnimation();
       getFirstForm(firstname, lastname, username);
       firstForm = true;
-
+      errorBlock.style.display = "none"
    }
    else {
-      alert('*Please fill out all forms !! ')
+      errorBlock.style.display = "block"
    }
 });
 
@@ -259,7 +262,6 @@ nextBtnSec.addEventListener("click", () => {
    let b_day = validateDate(Number(birth_day), Number(birth_month), Number(birth_year));
 
    let birthDate = ''
-   console.log(Number(b_day), Number(birth_month), Number(birth_year))
    if (Number(b_day) < 10 && Number(birth_month) > 10) {
       birthDate = birth_year + "-" + birth_month + "-0" + b_day;
    }
@@ -280,9 +282,12 @@ nextBtnSec.addEventListener("click", () => {
       getSecondForm(phoneNumber,country,birthDate);
       secondForm = true
       secondFormAnimation();
+      errorBlock.style.display = "none"
+
    }
    else{
-      alert('*Please fill out all forms !! ')
+            errorBlock.style.display = "block"
+
    }
 });
 
@@ -302,14 +307,12 @@ createBtn.addEventListener("click", () => {
 
   if(checkValid){
       getThirdForm(email,password);
-      console.log(user);
-
+      errorBlock.style.display = "none"
        $.ajax({
             url:'signup/registrate_user',
             method:'POST',
             data:{user : user},
             success:function(data){
-                  console.log("success",data);
                 },
             error: function(){
                     console.log('Something went wrong! Cant registrate user');
@@ -317,10 +320,12 @@ createBtn.addEventListener("click", () => {
             });    
             window.location.href = "mailnotification";
             return false;
+            
    }
    else{
-      alert(`*Please fill all forms \n *Password must contain symbols and characters
-         `)
+            errorBlock.style.display = "block"
+
+
    }
 
 

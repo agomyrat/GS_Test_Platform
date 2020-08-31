@@ -64,7 +64,7 @@
                   </div>
                   <div>
                      <label for="message"><?= Polyglot::translate('YourMessage') ?></label><br>
-                     <textarea maxlength="250" name="message" id="message" cols="30" rows="5"></textarea>
+                     <textarea maxlength="250" name="message " id="message" cols="30" rows="5"></textarea>
                   </div>
                   <div class="error">
                      <p></p>

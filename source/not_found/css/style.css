@@ -27,7 +27,7 @@ body {
 .image {
    width: 60%;
    height: 60%;
-   background-image: url('img/404.jpg');
+   background-image: url('../img/404.jpg');
    background-size: contain;
    background-repeat: no-repeat;
    background-position: center center;
@@ -80,7 +80,7 @@ body {
 
 @media screen and (max-width:768px) {
    .image {
-      background-image: url('img/mobile.png');
+      background-image: url('../img/mobile.png');
       background-size: contain;
       background-repeat: no-repeat;
       background-position: center center;
