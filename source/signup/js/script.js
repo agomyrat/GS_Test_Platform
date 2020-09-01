@@ -202,7 +202,7 @@ nextBtnFirst.addEventListener("click", () => {
    const lastname = document.querySelector('.lastname').value;
    const username = document.querySelector('.username').value;
 
-   const checkValid = validator.isAlpha(firstname) && validator.isAlpha(lastname) && !validator.isNumeric(username);
+   const checkValid = !validator.isNumeric(firstname) && !validator.isNumeric(lastname) && !validator.isNumeric(username);
    const checkValid2 = validator.isAlphanumeric(username) || validator.isAlpha(username);
    const checkData = userData.username.toLowerCase() !== username.toLowerCase() ; 
 

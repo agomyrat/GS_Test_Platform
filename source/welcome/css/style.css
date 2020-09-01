@@ -135,6 +135,7 @@ nav{
 li.dropdown{
    position: relative;
    margin-right: 10px;
+   font-size: 14px;
 }
 li.dropdown:hover{
    cursor: pointer;
@@ -143,7 +144,7 @@ li.dropdown::after{
    content: '';
    width: 0px;
    position: absolute;
-   top: 20px;
+   top: 16px;
    height: 0px;
    border-left: 6px solid transparent;
    border-right: 6px solid transparent;
@@ -275,7 +276,7 @@ li.dropdown ul.dropdown-list>li.dr:hover{
    padding-top: 1rem;
    width: 80%;
    line-height: 2rem;
-   font-size: 2rem;
+   font-size: 1.7 rem;
 }
 
 /* Contact */
@@ -311,7 +312,7 @@ li.dropdown ul.dropdown-list>li.dr:hover{
 }
 
 #contact .box .box1 .svg img {
-   width: 100%;
+   width: 90%;
    height: auto;
 }
 
@@ -332,7 +333,11 @@ aside form {
    justify-content: center;
 }
 form div{
-   padding: 0.2rem 0;
+   padding: 0.4rem 0;
+}
+form div label{
+   display: inline-block;
+   padding-bottom: 0.2rem;
 }
 form div h3{
    margin-top: 0;
@@ -352,7 +357,12 @@ form div>input.send{
    border: none;
    color: white;
    font-size: 1.2rem;
-
+   cursor: pointer;
+}
+form div>input.send:hover,
+form div>input.send:focus{
+   outline: none ;
+   opacity: 0.7;
 }
 .error p {
    padding: 0;
