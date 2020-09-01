@@ -314,7 +314,22 @@ class _Test extends Model
         $db = new Database;
         try {
             $response_array = [];
-            $sql = "SELECT * FROM questions WHERE (TEST_ID = ?)";
+            $sql = "SELECT
+            questions.TEST_ID,
+            questions.QUESTIONS_ID,
+            questions.QUESTION,
+            questions.QUESTION_IMAGE,
+            questions.QUESTION_DATA,
+            questions.QUESTION_TYPE,
+            questions.ISRANDOM,
+            questions.QUESTION_ORDER,
+            solving.ANSWER
+            FROM
+            tests
+            LEFT JOIN solving ON questions.QUESTIONS_ID = solving.QUESTION_ID 
+            AND solving.USER_ID = :user_id
+        WHERE
+            tests.TEST_ID = :test_id";
             $query = $db->prepare($sql);
             $query->execute([$test_id]);
             $result = $query->setFetchMode(PDO::FETCH_ASSOC);
@@ -335,6 +350,8 @@ class _Test extends Model
             echo $e;
         }
     }
+
+
 
 
 }

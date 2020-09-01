@@ -14,13 +14,13 @@
 	}
 
 	public function constructor($array = null){
-		/* if(!empty($array)){
+		if(!empty($array)){
 			$test_id = $array[0];
 			$this->view->render('test_constructor/index',['test_id'=>$test_id]);
 		}else{
 			$test_id = _Test::createTest(SESSION::get(USER_ID));
 			$this->redirect('test/constructor/'.$test_id);
-		} */
+		}
 	}
 
 	public function solving(){
@@ -156,12 +156,14 @@
 		/* require "libs/Mail.php";
 		sendMail(); */
 
-		Polyglot::setPage('signup');
+	/* 	Polyglot::setPage('signup');
 		$address = 'rejepowerkin@gmail.com';
 		$this->sendMail($address,['templateName'=>'register',
 								  'link'=>$link,
 								  'subject'=>Polyglot::translate('Registration letter')
-									]);
+									]); */
+
+		
 		
 	}
 

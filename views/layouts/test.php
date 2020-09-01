@@ -12,9 +12,9 @@
         }
     } */
    ?>
-   <link rel="stylesheet" href="source/test_constructor/css/__questions.css">
-   <link rel="stylesheet" href="source/test_constructor/css/__question_types.css">
-   <link rel="stylesheet" href="source/general/icons/icons/all.min.css">
+   <link rel="stylesheet" href="<?=URL?>source/test_constructor/css/__questions.css">
+   <link rel="stylesheet" href="<?=URL?>source/test_constructor/css/__question_types.css">
+   <link rel="stylesheet" href="<?=URL?>source/general/icons/icons/all.min.css">
    </head>
 
 <body>
@@ -29,17 +29,17 @@
             }
         } */
    ?>
-   <script src="source/general/js/jquery/jquery-3.4.1.min.js"></script>
+   <script src="<?=URL?>source/general/js/jquery/jquery-3.4.1.min.js"></script>
 
-   <script src="source/test_constructor/js/components/SingleChoice.js"></script>
-   <script src="source/test_constructor/js/components/MultiChoice.js"></script>
-   <script src="source/test_constructor/js/components/Input.js"></script>
-   <script src="source/test_constructor/js/components/TrueFalse.js"></script>
-   <script src="source/test_constructor/js/components/Matching.js"></script>
-   <script src="source/test_constructor/js/components/Blank.js"></script>
-   <script src="source/test_constructor/js/question.js"></script>
-   <script src="source/test_constructor/js/main.js"></script>
-   <script src="source/test_constructor/js/animations.js"></script>
+   <script src="<?=URL?>source/test_constructor/js/components/SingleChoice.js"></script>
+   <script src="<?=URL?>source/test_constructor/js/components/MultiChoice.js"></script>
+   <script src="<?=URL?>source/test_constructor/js/components/Input.js"></script>
+   <script src="<?=URL?>source/test_constructor/js/components/TrueFalse.js"></script>
+   <script src="<?=URL?>source/test_constructor/js/components/Matching.js"></script>
+   <script src="<?=URL?>source/test_constructor/js/components/Blank.js"></script>
+   <script src="<?=URL?>source/test_constructor/js/question.js"></script>
+   <script src="<?=URL?>source/test_constructor/js/main.js"></script>
+   <script src="<?=URL?>source/test_constructor/js/animations.js"></script>
 </body>
 
 </html>
