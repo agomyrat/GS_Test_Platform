@@ -110,12 +110,12 @@ form .user:focus {
 
    .wrapper {
       grid-template-columns: 1fr;
-      grid-template-rows: 40vh 60vh;
+      grid-template-rows: 100vh;
    }
    #image {
       display: none;
    }
-   .imgmobile {
+   /* .imgmobile {
       display: flex;
       margin: 0;
       justify-content: center;
@@ -124,7 +124,7 @@ form .user:focus {
 
    .imgmobile img {
       height: 150px;
-   }
+   } */
 
    #sendtxt {
       color: #032535;

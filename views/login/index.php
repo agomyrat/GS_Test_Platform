@@ -16,7 +16,7 @@
                 <label class="formlbl"><?=Polyglot::translate('Username')?></label><br>
                 <input type="text" class='user' name="user" required="" title="Bu  meydanca bos goyulmaly dal" id="user"><br>
                 <label class="formlbl"><?=Polyglot::translate('Password')?></label><br>
-                <input type="password" class='user' name="password" required id="password"><br>
+                <input type="password" class='user' name="password" autocomplete required id="password"><br>
                <div class="remember-line">
                   <input type="checkbox" class="check" name="remember">
                   <label class="remember"><?=Polyglot::translate('RememberMe')?></label>

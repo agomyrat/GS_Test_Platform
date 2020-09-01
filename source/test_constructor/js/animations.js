@@ -1,4 +1,26 @@
 
+// Image effect
+const imageEffect = () => {
+   let img = document.querySelectorAll('.img-eff');
+   let bg_dark = document.querySelector('.bg-dark');
+   let imgPlace = document.querySelector('.image-place img');
+   let closeBtn = document.querySelector('.close-btn');
+
+   for(let x = 0 ; x < img.length ; x++){
+      img[x].addEventListener('click', (e) => {
+         const imgSrc = e.target.src;
+         imgPlace.src = imgSrc
+         bg_dark.style.display = 'flex'
+      });
+
+      closeBtn.addEventListener('click', () => {
+         bg_dark.style.display = 'none'
+      })
+   }
+}
+
+
+
 /// FOR AUTO HEIGHT TEXTAREA
 var observe;
 if (window.attachEvent) {
@@ -64,6 +86,23 @@ const opacityEffect = () => {
 }
 
 
-
-
 window.onload = init
+
+
+window.onresize = () => {
+   if(window.innerWidth < 500) {
+      document.querySelector('.rotate-bg').style.display = "flex"
+   }
+   else{
+      document.querySelector('.rotate-bg').style.display = "none"
+   }
+}
+
+window.onorientationchange = () => {
+   if(window.innerWidth >= 568 ){
+      document.querySelector('.rotate-bg').style.display = "flex"
+   }
+   else{
+      document.querySelector('.rotate-bg').style.display = "none"
+   }
+}

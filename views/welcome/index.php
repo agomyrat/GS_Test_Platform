@@ -7,7 +7,7 @@
             <h1 class="anim1"><?= Polyglot::translate('Proverb1') ?></h1>
             <h3 class="anim1"><?= Polyglot::translate('Proverb2') ?></h3>
             <div class="orange-btn">
-               <button class="anim1"><a href="signup"><?= Polyglot::translate('Get Started') ?><i class="fas fa-angle-right"></i></a></button>
+               <a href="signup"><button class="anim1"><?= Polyglot::translate('Get Started') ?> &nbsp; <i class="fas fa-angle-right"></i></button></a>
             </div>
          </div>
       </div>
@@ -50,21 +50,21 @@
          </div>
          <div class="box2">
             <aside>
-               <form action="mailnotification/contactUs">
+               <form action="">
                   <div>
                      <h3><?= Polyglot::translate('SendMessage') ?></h3>
                   </div>
                   <div>
                      <label for="name"><?= Polyglot::translate('Name') ?></label><br>
-                     <input name="name" type="text" class="name input" id="name">
+                     <input type="text" class="name input" id="name">
                   </div>
                   <div>
                      <label for="email"><?= Polyglot::translate('YourEmail') ?></label><br>
-                     <input name="email" type="email" class="name input" id="email">
+                     <input type="email" class="name input" id="email">
                   </div>
                   <div>
                      <label for="message"><?= Polyglot::translate('YourMessage') ?></label><br>
-                     <textarea name="message" maxlength="250" name="message" id="message" cols="30" rows="5"></textarea>
+                     <textarea maxlength="250" name="message" id="message" cols="30" rows="5"></textarea>
                   </div>
                   <div class="error">
                      <p></p>
