@@ -25,14 +25,14 @@ body {
     flex-wrap: wrap;
 }
 .h{
- /* max-width:90vw;*/
+   width: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
   word-wrap:break-word;
 }
 .check{
-    font-size: 1.5rem;
+    font-size: 1rem;
     text-align: center;
     line-height: 2rem; 
 }
@@ -42,18 +42,21 @@ body {
     justify-content: center;    
 }
 .btn{
-    width: 220px;
+    width: 200px;
     height: 50px;
     background: #FF5700;
     border-radius: 7px;
     border: 2px solid #FF5700;
-    font-size: 1.2rem;
+    font-size: 1rem;
     color: white;
     font-weight: 500;
     cursor: pointer;
 }
 
 @media screen and (max-width:768px){
+   .h {
+      width: 80%;
+   }
       .image {
          align-items: center;
 

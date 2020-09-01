@@ -1,5 +1,14 @@
-gsap.from('.anim1',{opacity: 0,duration:1, y : -30,delay:3,stagger:0.4})
-gsap.from('.part2 .svg img', {opacity:0, duration:1 ,x: 30,delay:4})
+function animations() {
+   gsap.from('.anim1',{opacity: 0,duration:0.7, y : -30,delay:1,stagger:0.4})
+   gsap.from('.part2 .svg img', {opacity:0, duration:1 ,x: 30,delay:1})
+}
+
+
+document.body.onload = function() {
+   animations();
+   loader()
+}
+
 
 let tl = gsap.timeline({
    scrollTrigger : {

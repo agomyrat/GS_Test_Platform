@@ -80,7 +80,7 @@
 			if(!empty($fileNames) && !empty($choices)){
 				for ($i=0; $i < count($choices); $i++) {
 					if(isset($choices[$i]->path) && isset($fileNames[$i])){
-						$choices[$i]->path = strpos($fileNames[$i], 'uploads/')!==false ? trim($fileNames[$i],'uploads/') : $fileNames[$i];
+						$choices[$i]->path = $fileNames[$i];
 					}
 				}
 			}
@@ -93,7 +93,7 @@
 			Question::deleteRow($questionId);
 			foreach($fileNamesArray as $fileName){
 				if($fileName !== null && !empty($fileName)){
-					$path = strpos($fileName, 'uploads/')!==false ? $fileName : 'uploads/'.$fileName;
+					$path = 'uploads/'.$fileName;
 					if(file_exists($path)){
 						unlink($path);
 					}
@@ -105,7 +105,7 @@
 			if(is_array($fileNamesArray)){
 				foreach($fileNamesArray as $fileName){
 					if($fileName !== null && !empty($fileName)){
-						$path = strpos($fileName, 'uploads/')!==false ? $fileName : 'uploads/'.$fileName;
+						$path = 'uploads/'.$fileName;
 						// echo 'fileName: '.$fileName;
 						// echo "<br>";
 						// echo 'path: '.$path;
@@ -118,7 +118,7 @@
 				}
 			}else{
 				if($fileNamesArray !== null && !empty($fileNamesArray)){
-					$path = strpos($fileNamesArray, 'uploads/')!==false ? $fileNamesArray : 'uploads/'.$fileNamesArray;
+					$path = 'uploads/'.$fileNamesArray;
 					if(file_exists($path)){
 						unlink($path);
 					}
@@ -127,5 +127,3 @@
 			
 		}
 	}
-	
-?>
