@@ -141,7 +141,7 @@ const add_choice = (row) => {
          }
          addBtn.style.opacity = "1"
       } else {
-         alert('you cant add more choice')
+         displayError("You can't add more choice")
       }
    })
 }

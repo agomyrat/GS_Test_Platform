@@ -112,6 +112,7 @@ const add_matching = () => {
          matching.renderDOM()
          matching.increaseMatchingCount()
       }
-      else alert('you cant add more choice')
+      else displayError("You can't add more choice")
+
    })
 }

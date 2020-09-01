@@ -1,3 +1,18 @@
+// Side bar
+const sideBar = document.querySelector('.side-burger');
+const aside = document.querySelector('aside');
+const section = document.querySelector('section');
+
+sideBar.addEventListener('click', () => {
+   aside.classList.toggle('aside-active')
+   sideBar.classList.toggle('sideBar-active')
+})
+section.addEventListener('click' , () => {
+   aside.classList.remove('aside-active');
+   sideBar.classList.remove('sideBar-active')
+})
+
+
 
 // Image effect
 const imageEffect = () => {
@@ -86,23 +101,25 @@ const opacityEffect = () => {
 }
 
 
-window.onload = init
 
 
-window.onresize = () => {
-   if(window.innerWidth < 500) {
+const mobileRotate = () => {
+   if (window.innerWidth < 500) {
       document.querySelector('.rotate-bg').style.display = "flex"
-   }
-   else{
+   } else {
       document.querySelector('.rotate-bg').style.display = "none"
    }
 }
+
 
 window.onorientationchange = () => {
-   if(window.innerWidth >= 568 ){
+   if (window.innerWidth >= 568) {
       document.querySelector('.rotate-bg').style.display = "flex"
-   }
-   else{
+   } else {
       document.querySelector('.rotate-bg').style.display = "none"
    }
 }
+mobileRotate()
+window.onresize = mobileRotate;
+window.onload = init
+

@@ -153,7 +153,7 @@ class Question {
             </nav>
             <div class="question-create-block" data-row="${main.questions[x].id}">
                <div class="question-input-field">
-                  <textarea class="question-field" placeholder="Question here"  data-row=${main.questions[x].order} rows = "1">${main.questions[x].question}</textarea>
+                  <textarea class="question-field" placeholder="Question here" rows = "1"  data-row="${main.questions[x].order}" >${main.questions[x].question}</textarea>
                    <div class="custom-file-question">
                      <input type="file" accept="image/*" class="question-file" id="file-question-${x}">
                      <label for="file-question-${x}"><i class="far fa-image"></i></label>
@@ -273,7 +273,7 @@ class Question {
          } else if (typeSelect == 'single-choice') {
             main.questions[x] = {
                order: x + 1,
-               question: ' ',
+               question: '',
                saved: false,
                isRandom: false,
                hasImage: false,
@@ -306,7 +306,7 @@ class Question {
          } else if (typeSelect == 'multi-choice') {
             main.questions[x] = {
                order: x + 1,
-               question: ' ',
+               question: '',
                saved: false,
                isRandom: false,
                hasImage: false,
@@ -518,15 +518,18 @@ class Question {
                })
             }
 
-            console.log(main.questions[x].path.slice(14, main.questions[x].path.length))
-            main.questions[x].path = main.questions[x].path.slice(14, main.questions[x].path.length);
+            if (main.questions[x].path ){
+               console.log(main.questions[x].path.slice(14, main.questions[x].path.length))
+               main.questions[x].path = main.questions[x].path.slice(14, main.questions[x].path.length);
+            }
 
-            main.questions[x].choices.forEach((choice) => {
-               if (choice.type == 'image') {
-                  choice.path = choice.path.slice(14, choice.path.length);
-               }
-            });
-            console.log(main.questions[x].choices)
+            if (main.questions[x].type == "single-choice" || main.questions[x].type == "multi-choice"){
+               main.questions[x].choices.forEach((choice) => {
+                  if (choice.type == 'image') {
+                     choice.path = choice.path.slice(14, choice.path.length);
+                  }
+               });
+            }
 
             // File lar ucin form data
             let formData = new FormData();
