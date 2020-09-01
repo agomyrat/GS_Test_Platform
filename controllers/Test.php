@@ -145,7 +145,6 @@
 
 	public function practice(){
 		$link = 'adf';
-		// // echo "<pre>";
 		// // print_r(_Test::getQuestions(1));
 		// //print_r(_Test::get(4,['TEST_ID','CREATED_BY','TEST_NAME']));
 		/* $username = 'ERIC';
