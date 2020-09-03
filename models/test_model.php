@@ -323,27 +323,37 @@ class _Test extends Model
             questions.QUESTION_TYPE,
             questions.ISRANDOM,
             questions.QUESTION_ORDER,
-            solving.ANSWER
+            solving.ANSWER 
             FROM
-            tests
+            questions
             LEFT JOIN solving ON questions.QUESTIONS_ID = solving.QUESTION_ID 
             AND solving.USER_ID = :user_id
         WHERE
-            tests.TEST_ID = :test_id";
+            questions.TEST_ID = :test_id
+            ORDER BY questions.QUESTIONS_ID";
             $query = $db->prepare($sql);
-            $query->execute([$test_id]);
+            $query->execute([
+                              ":test_id"=>$test_id,
+                              ":user_id"=>Session::get(USER_ID)
+            ]);
             $result = $query->setFetchMode(PDO::FETCH_ASSOC);
-
+            
             $questionsArray = $query->fetchAll();
+            /* echo "<pre>";
+            print_r($questionsArray);die; */
             for ($i = 0; $i < count($questionsArray); $i++) {
                 $response_array[$i]['id'] = json_decode(htmlspecialchars_decode($questionsArray[$i]['QUESTIONS_ID']));
                 $response_array[$i]['question'] = json_decode(htmlspecialchars_decode($questionsArray[$i]['QUESTION']));
                 $response_array[$i]['isRandom'] = json_decode(htmlspecialchars_decode($questionsArray[$i]['ISRANDOM']));
+                $isRandom = json_decode(htmlspecialchars_decode($questionsArray[$i]['ISRANDOM']));
                 $response_array[$i]['path'] = json_decode(htmlspecialchars_decode($questionsArray[$i]['QUESTION_IMAGE']));
                 $response_array[$i]['hasImage'] = !empty($response_array[$i]['path']);
                 $response_array[$i]['type'] = json_decode(htmlspecialchars_decode($questionsArray[$i]['QUESTION_TYPE']));
-                $response_array[$i]['choices'] = json_decode(htmlspecialchars_decode($questionsArray[$i]['QUESTION_DATA']));
+                $choices = json_decode(htmlspecialchars_decode($questionsArray[$i]['QUESTION_DATA']));
+                $isRandom == 1 ? shuffle($choices) : $choices;
+                $response_array[$i]['choices'] = $choices;
                 $response_array[$i]['test_id'] = json_decode(htmlspecialchars_decode($test_id));
+                $response_array[$i]['answer'] = json_decode(htmlspecialchars_decode($questionsArray[$i]['ANSWER']));
             }
             return $response_array;
         } catch (Exception $e) {

@@ -24,12 +24,33 @@
 	}
 
 	public function solving(){
-		 $this->view->layout = "test_solving";
+		$this->view->layout = "test_solving";
 		$this->view->render('test_solving/index');
 	}
 
-	public function editQuestion(){
+	public function getSolvingQuestions(){
+		if(isset($_POST['testId'])){
+			$testId = (int) $_POST['testId'];
+			$questionsArray = _Test::getQuestionsForSolving($testId);
+			$array = _Test::get($testId,['GIVEN_TIME']);
+			$time = (int) $array['GIVEN_TIME'];
+			$orderQuestion = count($questionsArray);
 
+			if($orderQuestion > 0){
+				$response_array = [
+					'questions'=>$questionsArray,
+					'orderQuestion'=>$orderQuestion,
+					'testId'=>$testId,
+					'time'=>$time
+				];
+				echo json_encode($response_array);
+			}else{
+				echo 0;
+			}
+
+		}else{
+			echo "Couldn't get testId";
+		}
 	}
 
 	public function getQuestions(){
@@ -162,8 +183,12 @@
 								  'subject'=>Polyglot::translate('Registration letter')
 									]); */
 
-		
-		
+	/* 	$data = _Test::getQuestionsForSolving(12);
+		echo "<pre>";
+		print_r($data); */
+		//echo htmlspecialchars(json_encode('user2'));
+		$array = _Test::get(['GIVEN_TIME','QUESTION_COUNT','TEST_ID']);
+		print_r($array);
 	}
 
 

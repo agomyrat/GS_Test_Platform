@@ -17,6 +17,7 @@
 </head>
 <body> 
    <?php require 'views/' . $content . '.php'; ?>
+   <script src="../../source/general/js/jquery/jquery-3.4.1.min.js"></script>
  <!-- Main js files -->
    <script src="<?=URL?>source/test_solving/js/data/data.js"></script>
    <script src="<?=URL?>source/test_solving/js/Questions.js"></script>
