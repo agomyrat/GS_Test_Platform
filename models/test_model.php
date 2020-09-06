@@ -301,7 +301,6 @@ class _Test extends Model
                 $response_array[$i]['hasImage'] = !empty($response_array[$i]['path']);
                 $response_array[$i]['order'] = json_decode(htmlspecialchars_decode($questionsArray[$i]['QUESTION_ORDER']));
                 $response_array[$i]['saved'] = true;
-
             }
             return $response_array;
         } catch (Exception $e) {
@@ -333,11 +332,11 @@ class _Test extends Model
             ORDER BY questions.QUESTIONS_ID";
             $query = $db->prepare($sql);
             $query->execute([
-                              ":test_id"=>$test_id,
-                              ":user_id"=>Session::get(USER_ID)
+                ":test_id" => $test_id,
+                ":user_id" => Session::get(USER_ID)
             ]);
             $result = $query->setFetchMode(PDO::FETCH_ASSOC);
-            
+
             $questionsArray = $query->fetchAll();
             /* echo "<pre>";
             print_r($questionsArray);die; */
@@ -362,6 +361,63 @@ class _Test extends Model
     }
 
 
+    public static function canEdit($test_id, $user_id)
+    {
+        $db = new Database;
+        try {
+            $sql = 'SELECT 
+                    CASE WHEN tests.CREATED_BY <> :user_id THEN FALSE -- TESTIN EYESI DAL
+                        WHEN SUM(result.USER_ID) > 0 THEN FALSE -- ON BIRI COZEN BOLSA RUGSAT YOK
+                        WHEN tests.STARTING_TIME <= NOW() AND tests.ENDING_TIME > NOW() THEN FALSE -- COZMEK UCIN AMATLY VAGT (HER PURSAT COZUP BILERLER)
+                        WHEN tests.IS_PUBLIC = 1 AND tests.IS_ALLOWED = 1 THEN FALSE -- PUBLIC RUGSAT BERILEN (HER PURSAT COZUP BILERLER)
+                        
+                        ELSE TRUE END CAN_EDIT
+                    FROM
+                    tests 
+                    LEFT JOIN result ON result.TEST_ID = tests.TEST_ID
+                    WHERE tests.TEST_ID = :test_id';
+            $query = $db->prepare($sql);
+            $query->execute([
+                ":test_id" => $test_id,
+                ":user_id" => $user_id
+            ]);
+            return $query->fetchAll()[0];
+        } catch (Exception $e) {
+            echo $e;
+        }
+    }
 
 
+    public static function checkTime($test_id, $user_id)
+    {
+        $db = new Database;
+        try {
+            $sql = 'SELECT
+                        CASE
+                            WHEN tests.GIVEN_TIME * 60 - TIMESTAMPDIFF(
+                                SECOND,
+                                result.START_TIME,
+                            NOW()) <= 0 
+                            OR tests.ENDING_TIME <= NOW() THEN 0 WHEN ADDDATE( NOW(), INTERVAL tests.GIVEN_TIME MINUTE ) >= tests.ENDING_TIME THEN
+                                TIMESTAMPDIFF( SECOND, NOW(), tests.ENDING_TIME ) ELSE tests.GIVEN_TIME * 60 - TIMESTAMPDIFF(
+                                    SECOND,
+                                    result.START_TIME,
+                                NOW()) 
+                            END GALAN_SECUNT 
+                    FROM
+                        tests
+                        LEFT JOIN result ON result.TEST_ID = tests.TEST_ID  
+                    WHERE
+                        tests.TEST_ID = :test_id 
+                        AND result.USER_ID = :user_id ';
+            $query = $db->prepare($sql);
+            $query->execute([
+                ":test_id" => $test_id,
+                ":user_id" => $user_id
+            ]);
+            return $query->fetchAll()[0];
+        } catch (Exception $e) {
+            echo $e;
+        }
+    }
 }

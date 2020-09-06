@@ -165,31 +165,10 @@
 	}
 
 	public function practice(){
-		$link = 'adf';
-		// // print_r(_Test::getQuestions(1));
-		// //print_r(_Test::get(4,['TEST_ID','CREATED_BY','TEST_NAME']));
-		/* $username = 'ERIC';
-		
-		$file = View::getHtmlTemplate('register',['link'=>$link]);;
-		echo ($file)."<br>"; */
-		// use PHPMailer\PHPMailer\Exception;
-		/* require "libs/Mail.php";
-		sendMail(); */
-
-	/* 	Polyglot::setPage('signup');
-		$address = 'rejepowerkin@gmail.com';
-		$this->sendMail($address,['templateName'=>'register',
-								  'link'=>$link,
-								  'subject'=>Polyglot::translate('Registration letter')
-									]); */
-
-	/* 	$data = _Test::getQuestionsForSolving(12);
-		echo "<pre>";
-		print_r($data); */
-		//echo htmlspecialchars(json_encode('user2'));
-		$array = _Test::get(['GIVEN_TIME','QUESTION_COUNT','TEST_ID']);
-		print_r($array);
+		echo _Test:checkTime(10,1);
 	}
+
+	
 
 
 }
