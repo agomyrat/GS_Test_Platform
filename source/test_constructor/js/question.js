@@ -153,7 +153,7 @@ class Question {
             </nav>
             <div class="question-create-block" data-row="${main.questions[x].id}">
                <div class="question-input-field">
-                  <textarea class="question-field" placeholder="Question here" rows = "1"  data-row="${main.questions[x].order}" >${main.questions[x].question}</textarea>
+                  <textarea class="question-field"  rows = "1"  data-row="${main.questions[x].order}" >${main.questions[x].question}</textarea>
                    <div class="custom-file-question">
                      <input type="file" accept="image/*" class="question-file" id="file-question-${x}">
                      <label for="file-question-${x}"><i class="far fa-image"></i></label>
@@ -444,7 +444,7 @@ class Question {
          let countAns = 0;
          if (main.questions[x].question !== "") validateQ = true;
          if (main.questions[x].hasImage == true) validateQ = true
-         if (main.questions[x].type == 'single-choice' || main.questions[x].type == 'multi-choice' || main.questions[x].type == 'matching') {
+         if (main.questions[x].type == 'single-choice' || main.questions[x].type == 'multi-choice') {
             for (let k = 0; k < main.questions[x].choices.length; k++) {
 
                if (main.questions[x].choices[k].type != "image") {
@@ -453,6 +453,14 @@ class Question {
                   }
                } else {
                   countAns += 1
+               }
+            }
+            if (countAns == main.questions[x].choices.length) validateAns = true
+         }
+         if (main.questions[x].type == 'matching'){
+            for (let k = 0; k < main.questions[x].choices.length; k++) {
+               if (main.questions[x].choices[k].value != '') {
+                  countAns += 1;
                }
             }
             if (countAns == main.questions[x].choices.length) validateAns = true
@@ -502,14 +510,17 @@ class Question {
          }
 
          if (validateAns && validateQ && vaidateCheckbox) {
-            main.questions[x].saved = true
+            main.questions[x].saved = true;
+            let left = [];
+            let right = [];
             if (main.questions[x].type == 'single-choice') {
                main.questions[x].choices.forEach((choice) => {
                   if (choice.isChecked == true) {
                      main.questions[x].answer = choice.id
                   }
                })
-            } else if (main.questions[x].type == 'multi-choice') {
+            }
+            else if (main.questions[x].type == 'multi-choice') {
                main.questions[x].answer = []
                main.questions[x].choices.forEach((choice) => {
                   if (choice.isChecked == true) {
@@ -517,7 +528,24 @@ class Question {
                   }
                })
             }
+            else if(main.questions[x].type == 'matching'){
+               console.log(main.questions[x].choices);
+               
+               main.questions[x].choices.forEach((choice,index) => {
+                  if(index === 0 || index % 2 === 0){
+                     left.push(choice.value);
+                     console.log('l',choice.id)
+                  }
+                  if (index % 2 !== 0) {
+                     right.push(choice.value);
+                     console.log('r',choice.id)
 
+                  }
+               })
+               console.log('left', left);
+               console.log('right', right);
+            }
+            
             if (main.questions[x].path ){
                console.log(main.questions[x].path.slice(14, main.questions[x].path.length))
                main.questions[x].path = main.questions[x].path.slice(14, main.questions[x].path.length);
@@ -592,7 +620,7 @@ class Question {
 
                }
             }
-            if (main.questions[x].type == "true-false" || main.questions[x].type == "matching") {
+            if (main.questions[x].type == "true-false" ) {
                data = {
                   answer: main.questions[x].answer,
                   question: main.questions[x].question,
@@ -603,8 +631,20 @@ class Question {
                   order: main.questions[x].order,
                   path: main.questions[x].path,
                   testId: main.testId
-
                }
+            }
+            if (main.questions[x].type == "matching"){
+                  data = {
+                     answer: right,
+                     question: main.questions[x].question,
+                     type: main.questions[x].type,
+                     hasImage: main.questions[x].hasImage,
+                     id: main.questions[x].id,
+                     choices: main.questions[x].choices,
+                     order: main.questions[x].order,
+                     path: main.questions[x].path,
+                     testId: main.testId
+                  }
             }
             if (main.questions[x].type == "blank") {
                data = {
@@ -627,7 +667,7 @@ class Question {
             formData.append("data", JSON.stringify(data));
 
 
-
+            console.log(data)
             const addBtn = document.getElementById('add-question-btn');
             addBtn.setAttribute("disabled", "");
             addBtn.style.opacity = '0.5';

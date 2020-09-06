@@ -12,8 +12,8 @@ class Matching {
          let choice2 = this.question.choices[index + 1];
          html += `
             <div class="matching-block" id="block-${j}">
-               <input type="text" placeholder="First Match" class="first-match" data-m=${choice1.id}  value = ${choice1.value}    ><strong>-</strong>
-               <input type="text" placeholder="Second Match" class="second-match" data-m=${choice2.id}  value = ${choice2.value}   >
+               <input type="text" placeholder="First Match" class="first-match" data-m=${choice1.id}  value="${choice1.value}"> <strong>-</strong>
+               <input type="text" placeholder="Second Match" class="second-match" data-m=${choice2.id}  value ="${choice2.value}">
                <button class="remove-btn" data-row=${j}><i class="fas fa-times"></i></button>
             </div>
          `
@@ -101,14 +101,14 @@ const add_matching = () => {
             ...matching.question.choices,
             {
                id: matching.countMatching,
-               value: ' ',
+               value: '',
             },
             {
                id: matching.countMatching + 1,
-               value: ' ',
+               value: '',
             }
          ]
-
+         question.edited = true;
          matching.renderDOM()
          matching.increaseMatchingCount()
       }

@@ -15,11 +15,11 @@ class SingleChoice {
    <input class="checkBox" ${isChecked} type="checkbox" value=${index+1}>
    ${this.choiceLetter[index]} )
    ${choice.type == 'string'
-   ? `<input class="choice" placeholder="Choice ${this.choiceLetter[index]}" data-choice=${index} type="text" value=${choice.value} >`
-   : `<img src=${choice.path} class ="choice-image img-eff" data-row=${index} >`}
+   ? `<input class="choice" placeholder="Choice ${this.choiceLetter[index]}" data-choice="${index}" type="text" value="${choice.value}" >`
+   : `<img src=${choice.path} class ="choice-image img-eff" data-row=${index}>`}
    
    <div class="custom-file" data-row=${index}>
-   <input type="file" id="file-choice-${index}" accept="image/*" class="file-upload" data-row=${index} value=${choice.path}>
+   <input type="file" id="file-choice-${index}" accept="image/*" class="file-upload" data-row=${index} value=${choice.path} >
    <label for="file-choice-${index}"><i class="far fa-image"></i></label>
    </div>
    <button class="remove-btn" data-row=${index} ><i class="fas fa-times"></i></button>
@@ -134,12 +134,13 @@ const add_choice = (row) => {
                isChecked: false
             }
          ]
+         question.edited = true;
          if (main.questions[row].type === 'single-choice') {
             singleChoice.renderDOM()
          } else if (main.questions[row].type === 'multi-choice') {
             multiChoice.renderDOM()
          }
-         addBtn.style.opacity = "1"
+         addBtn.style.opacity = "1";
       } else {
          displayError("You can't add more choice")
       }

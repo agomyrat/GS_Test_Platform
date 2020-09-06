@@ -6,7 +6,7 @@ class Input {
       let html = '';
       html = `
          <div>
-            <input class="input-form" placeholder="Answer" value=${this.question.answer}>
+            <input class="input-form" placeholder="Answer" value="${this.question.answer}" >
          </div>
       `
       document.querySelector('.output').innerHTML = html;

@@ -70,7 +70,7 @@ class Main {
                };
                questions[x].style.opacity = '1';
                opacityEffect();
-
+               imageEffect();
                addNewQuestion(x)
             } else {
                displayError('You need to save this question !')
@@ -85,7 +85,8 @@ class Main {
       questions[x].style.opacity = '0.5'
       };
       questions[currentQ].style.opacity = '1';
-      addNewQuestion()
+      addNewQuestion();
+      imageEffect();
    }
 }
 
@@ -182,6 +183,7 @@ const onloadFunction = () => {
             question.sectionRender(0);
 
             document.querySelectorAll('#question')[0].style.opacity = '1'
+            imageEffect()
             console.log(main);
          } else {
             main.createQuestions();
