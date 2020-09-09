@@ -39,7 +39,8 @@ class TrueFalse {
             this.answer = e.target.dataset.row
             answers.getAnswer({
                id: this.questionId,
-               answer : this.answer
+               answer : this.answer,
+               type: 'true-false'
             },this.number)
             console.log(answers.answers)
             // if()

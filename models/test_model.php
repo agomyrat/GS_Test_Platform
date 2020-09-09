@@ -313,6 +313,8 @@ class _Test extends Model
     {
         $db = new Database;
         try {
+            $questions = [];
+            $answers = [];
             $response_array = [];
             $sql = "SELECT
             questions.TEST_ID,
@@ -323,38 +325,73 @@ class _Test extends Model
             questions.QUESTION_TYPE,
             questions.ISRANDOM,
             questions.QUESTION_ORDER,
-            solving.ANSWER 
-            FROM
+            solving.ANSWER,
+            questions.ANSWERS TRUE_ANSWER,
+            solving.SOLVING_ID,
+            (CASE
+                WHEN tests.GIVEN_TIME * 60 - TIMESTAMPDIFF(
+                    SECOND,
+                    result.START_TIME,
+                NOW()) <= 0 
+                OR tests.ENDING_TIME <= NOW() THEN 0 WHEN ADDDATE( NOW(), INTERVAL tests.GIVEN_TIME MINUTE ) >= tests.ENDING_TIME THEN
+                    TIMESTAMPDIFF( SECOND, NOW(), tests.ENDING_TIME ) ELSE tests.GIVEN_TIME * 60 - TIMESTAMPDIFF(
+                        SECOND,
+                        result.START_TIME,
+                    NOW()) 
+                END) / 60 REMAINED_MINUTE 
+        FROM
             questions
-            LEFT JOIN solving ON questions.QUESTIONS_ID = solving.QUESTION_ID 
-            AND solving.USER_ID = :user_id
+            LEFT JOIN solving ON questions.QUESTIONS_ID = solving.QUESTION_ID AND solving.USER_ID = :user_id 
+            LEFT JOIN tests ON tests.TEST_ID = questions.TEST_ID
+            LEFT JOIN result ON result.TEST_ID = questions.TEST_ID AND result.USER_ID = :user_id 
         WHERE
-            questions.TEST_ID = :test_id
-            ORDER BY questions.QUESTIONS_ID";
+            questions.TEST_ID = :test_id 
+        ORDER BY
+            questions.QUESTIONS_ID";
             $query = $db->prepare($sql);
             $query->execute([
                               ":test_id"=>$test_id,
                               ":user_id"=>Session::get(USER_ID)
             ]);
             $result = $query->setFetchMode(PDO::FETCH_ASSOC);
-            
             $questionsArray = $query->fetchAll();
-            /* echo "<pre>";
-            print_r($questionsArray);die; */
+            // echo "<pre>";
+            // print_r($questionsArray);die;
             for ($i = 0; $i < count($questionsArray); $i++) {
-                $response_array[$i]['id'] = json_decode(htmlspecialchars_decode($questionsArray[$i]['QUESTIONS_ID']));
-                $response_array[$i]['question'] = json_decode(htmlspecialchars_decode($questionsArray[$i]['QUESTION']));
-                $response_array[$i]['isRandom'] = json_decode(htmlspecialchars_decode($questionsArray[$i]['ISRANDOM']));
+                $questions[$i]['id'] = json_decode(htmlspecialchars_decode($questionsArray[$i]['QUESTIONS_ID']));
+                $questions[$i]['question'] = json_decode(htmlspecialchars_decode($questionsArray[$i]['QUESTION']));
+                $questions[$i]['isRandom'] = json_decode(htmlspecialchars_decode($questionsArray[$i]['ISRANDOM']));
                 $isRandom = json_decode(htmlspecialchars_decode($questionsArray[$i]['ISRANDOM']));
-                $response_array[$i]['path'] = json_decode(htmlspecialchars_decode($questionsArray[$i]['QUESTION_IMAGE']));
-                $response_array[$i]['hasImage'] = !empty($response_array[$i]['path']);
-                $response_array[$i]['type'] = json_decode(htmlspecialchars_decode($questionsArray[$i]['QUESTION_TYPE']));
+                $questions[$i]['path'] = json_decode(htmlspecialchars_decode($questionsArray[$i]['QUESTION_IMAGE']));
+                $questions[$i]['hasImage'] = !empty($questions[$i]['path']);
+                $questions[$i]['type'] = json_decode(htmlspecialchars_decode($questionsArray[$i]['QUESTION_TYPE']));
+                $questions[$i]['answer'] = json_decode(htmlspecialchars_decode($questionsArray[$i]['ANSWER']));
                 $choices = json_decode(htmlspecialchars_decode($questionsArray[$i]['QUESTION_DATA']));
-                $isRandom == 1 ? shuffle($choices) : $choices;
-                $response_array[$i]['choices'] = $choices;
-                $response_array[$i]['test_id'] = json_decode(htmlspecialchars_decode($test_id));
-                $response_array[$i]['answer'] = json_decode(htmlspecialchars_decode($questionsArray[$i]['ANSWER']));
+                if($questions[$i]['type']=='single-choice'||$questions[$i]['type']=='multi-choice'||$questions[$i]['type']=='true-false'){
+                    $choices = Helper::insertAnswersToChoices($questions[$i]['answer'],$choices);
+                }
+
+                if($questions[$i]['type']=='matching'){
+                    $choices = Helper::clarifyMatching($choices);
+                    if(empty($questions[$i]['answer'])){
+                        $questions[$i]['answer'] = json_decode(htmlspecialchars_decode($questionsArray[$i]['TRUE_ANSWER']));
+                        shuffle($questions[$i]['answer']);
+                    }
+                }else{
+                    $isRandom == 1 && !empty($choices) ? shuffle($choices) : $choices;
+                } 
+                $questions[$i]['choices'] = $choices;
+                $questions[$i]['test_id'] = json_decode(htmlspecialchars_decode($test_id));
+                $questions[$i]['solving_id'] = json_decode(htmlspecialchars_decode($questionsArray[$i]['SOLVING_ID']));
+                $questions[$i]['remained_minute'] = $questionsArray[$i]['REMAINED_MINUTE'];
+
+                $answers[$i]['id'] = json_decode(htmlspecialchars_decode($questionsArray[$i]['QUESTIONS_ID']));
+                $answers[$i]['answer'] = $questions[$i]['answer'];
+                $answers[$i]['type'] = $questions[$i]['type'];
             }
+
+            $response_array['answers'] = $answers;
+            $response_array['questions'] = $questions;
             return $response_array;
         } catch (Exception $e) {
             echo $e;

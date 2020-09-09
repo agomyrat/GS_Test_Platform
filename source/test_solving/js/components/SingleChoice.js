@@ -4,14 +4,15 @@ class SingleChoice {
       this.choiceLetters = ['a','b','c','d','e','f'];
       this.questionId = null;
       this.number = null;
-      this.answer = null
+      this.answer = null;
+      // this.solving_id = null;
    }
    getChoice(questionNumber = 0) {
       this.choices = questionsClass.questions[questionNumber].choices;
       // this.choices.forEach((choice) => choice.isChecked = false)
       this.number = questionNumber
       this.questionId = questionsClass.questions[questionNumber].id;
-
+      // this.solving_id = questionsClass.questions[questionNumber].solving_id;
       if (answers.answers[questionNumber] != undefined) this.answer = answers.answers[questionNumber].answer
       else this.answer = ''
       
@@ -50,7 +51,9 @@ class SingleChoice {
             
             answers.getAnswer({
                id: this.questionId,
-               answer: choiceId
+               answer: choiceId,
+               // solving_id : this.solving_id
+               type : 'single-choice' 
             }, this.number)
 
             let n = 0
@@ -63,6 +66,7 @@ class SingleChoice {
                answers.getAnswer(null,this.number)
             }
             this.renderChoiceBlock()
+            console.log(answers.answers)
          })
       }
    }

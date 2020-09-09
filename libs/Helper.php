@@ -126,4 +126,65 @@
 			}
 			
 		}
+
+		public static function insertAnswersToChoices($answers, $choices){
+			if(!empty($answers)){
+				if(is_array($answers)){
+					foreach($choices as $choice){
+						$choice->isChecked = in_array($choice->id,$answers);
+					}
+				}else if(!empty($choices)){
+					foreach($choices as $choice){
+						$choice->isChecked = $choice->id==$answers;
+					}
+				}
+			}else if (!empty($choices)){
+				foreach($choices as $choice){
+					$choice->isChecked = false;
+				}
+			}
+			return $choices;
+		}
+
+		public static function checkMultipleChoice($givenAnswers, $answers){
+			if(count($givenAnswers)==count($answers)){
+				foreach($givenAnswers as $givenAnswer){
+					if(!in_array($givenAnswer, $answers)){
+						return 0;
+					}
+				}
+			}else{
+				return 0;
+			}
+			return 1;
+		}
+
+		public static function checkSequence($givenAnswers,$answers){
+			if(count($givenAnswers)==count($answers)){
+				for($i=0;$i<count($answers);$i++){
+					if(strtolower($givenAnswers[$i])!=strtolower($answers[$i])){
+						return 0;
+					}
+				}
+				return 1;
+			}else{
+				return 0;
+			}
+		}
+
+		public static function clarifyMatching($choices){
+			if(!empty($choices)){
+				foreach($choices as $choice){
+					if(($choice->id)%2==0){
+						$choice->value = '';
+					}
+				}
+			}
+			return $choices;
+		}
+
+		public static function checkMatching(){
+
+		}
+
 	}

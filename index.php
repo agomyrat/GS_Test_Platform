@@ -24,5 +24,6 @@ require 'models/user_model.php';
 require 'models/test_model.php';
 require 'models/question_model.php';
 require 'models/mail_model.php';
+require 'models/solving_model.php';
 
 $app = new Bootstrap();

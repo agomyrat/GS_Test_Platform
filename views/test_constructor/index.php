@@ -24,6 +24,12 @@
    </section>
 </div>
 
+<div class="side-burger">
+   <div>
+      <i class="fas fa-bars"></i>
+   </div>
+</div>
+
 <!-- IMAGE BLOCK EFFECT -->
 <div class="bg-dark">
    <div class="close-btn">

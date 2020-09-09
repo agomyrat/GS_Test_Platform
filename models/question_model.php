@@ -42,14 +42,14 @@ class Question extends Model
       $db = new Database;
       try {
          $ar_as = array();
-         $sql = 'SELECT ' . htmlspecialchars(implode(',', $columns)) . ' FROM users WHERE (questions.QUESTIONS_ID = ?) LIMIT 1';
+         $sql = 'SELECT ' . htmlspecialchars(implode(',', $columns)) . ' FROM questions WHERE (questions.QUESTIONS_ID = ?) LIMIT 1';
          $query = $db->prepare($sql);
          $query->execute([$q_id]);
          if ($query->rowCount() > 0) {
             $data = $query->fetch();
             $column_count = count($columns);
             for ($i = 0; $i < $column_count; $i++) {
-               $ar_as[$query->getColumnMeta($i)['name']] = $data[$i];
+               $ar_as[$query->getColumnMeta($i)['name']] = json_decode(htmlspecialchars_decode($data[$i]));
             }
             return $ar_as;
          }
@@ -128,13 +128,13 @@ class Question extends Model
       // print_r($array);die;
       try {
          $sql = "UPDATE questions set `QUESTION`= :question,
-                                         `QUESTION_IMAGE`=:questionImage,
-                                         `QUESTION_DATA`=:questionData,
-                                         `ANSWERS`=:answers,
-                                         `QUESTION_TYPE`=:questionType,
-                                         `ISRANDOM`= :isRandom,
-                                         `QUESTION_ORDER`=:order
-                                    WHERE QUESTIONS_ID = :questionId";
+                                       `QUESTION_IMAGE`=:questionImage,
+                                       `QUESTION_DATA`=:questionData,
+                                       `ANSWERS`=:answers,
+                                       `QUESTION_TYPE`=:questionType,
+                                       `ISRANDOM`= :isRandom,
+                                       `QUESTION_ORDER`=:order
+                                 WHERE QUESTIONS_ID = :questionId";
 
          $query = $db->prepare($sql);
          //var_dump($query);

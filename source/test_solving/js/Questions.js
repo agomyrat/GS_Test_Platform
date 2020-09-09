@@ -5,38 +5,54 @@ class Questions {
       this.time = null
    }
    getData(){
-      // this.questions = data.questions
-      // this.time = data.time
-      // console.log(this.questions);
-      // console.log(this.time)
-      $.ajax({
-         url: '../getSolvingQuestions',
-         type: 'post',
-         data: {
-            testId: 12
-         },
-         success: function (data) {
-            /*...*/
-            // this.questions = data.questions
-            // this.time = data.time
-            var response = JSON.parse(data)
-            console.log(response);
-            this.questions = response.questions
-            this.time = response.time   
-            console.log(this.questions)
-         },
-         error: function (data) {
-            displayError("Couldn't get questions")
-         }
-   
-      })
+      getQ()
    }
 }
 
 
-const questionsClass = new Questions();   
+const questionsClass = new Questions();
 questionsClass.getData()
+console.log(questionsClass)
+
+function getQ() {
+   $.ajax({
+      url: '../getSolvingQuestions',
+      type: 'post',
+      data: {
+         testId: 1
+      },
+      success: function (data) {
+         /*...*/
+
+         var response = JSON.parse(data);
+
+         // Get answers from db  
+         answers.answers = response.answers
+
+         console.log(response);
+         questionsClass.questions = response.questions;
+         questionsClass.time = response.time
+         answers.testId = response.testId;
+         //Render Questions
+         header.getData()
+         pagination.getNumberOfQuestion()
+         questionBlock.getQuestion()
+         pagination.typeofQuestion(questionsClass.questions[0].type, 0)
+         pagination.displayPagination()
+         pagination.goSpecificQuestion()
+         // Starting Time
+         if (questionsClass.time) {
+            time.getTime()
+         }
+         onloadFunc()
+         pagination.nextprevBtn();
 
 
+      },
+      error: function (data) {
+         console.log("Couldn't get questions")
+      }
+      })
+}
 
 

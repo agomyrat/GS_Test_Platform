@@ -56,7 +56,8 @@ class MultiChoice {
             })
             answers.getAnswer({
                id: this.questionId,
-               answer: this.answer
+               answer: this.answer,
+               type: 'multi-choice'
             }, this.number)
             if (n == this.choices.length) {
                answers.getAnswer(null, this.number)

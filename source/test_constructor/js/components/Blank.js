@@ -1,40 +1,64 @@
+
 class Blank {
    constructor() {
-      this.question = {};
-      this.countBlank = 0;
+      this.question = null
+      this.questionId = null;
+      this.number = null;
+      this.answer = [];
    }
+   getChoice(questionNumber) {
+      this.questionId = questionsClass.questions[questionNumber].id;
+      this.question = questionsClass.questions[questionNumber].question;
+      this.number = questionNumber;
 
-   renderDOM (row) {
+      if (answers.answers[questionNumber] != undefined) this.answer = answers.answers[questionNumber].answer
+      else this.answer = []
+
+      this.renderChoiceBlock()
+   }
+   renderChoiceBlock() {
+      let n = 0
+      let arr = this.answer
+      function inputField() {
+         let p = '';
+         console.log(arr)
+         if (arr != 0){
+            p = `<input type="text" class="blank-input" data-row=${n} value=${arr[n]} >`;
+         }
+         else{
+            p = `<input type="text" class="blank-input" data-row=${n}>`;
+         }
+         n += 1;
+         return p
+      }
       let html = '';
-      html = `
-            <div class = "example" >
-            <h3 >Example : (You can create your question this way)</h3>
-            <p>What [_is_] the [_capital_] city of the Azerbaijan ?</p>
-            </div>
+      const questionArray = this.question.split(' ')
+      questionArray.forEach((str,index) => {
+         html += `
+         ${str.startsWith('[_') && str.endsWith('_]') ? inputField() : str}
          `
-      document.querySelector('.output').innerHTML = html
-
-      // ADD new BLANK
-      const add_blank = document.querySelector('#add-blank');
-      add_blank.addEventListener('click', () => {
-
-         let blank = ` [__] `;
-         let qst = this.question.question;
-         qst = qst.concat(blank)
-         this.question.question = qst
-
-         this.renderDOM()
-         question.sectionRender(row)
-         question.edited = true;
       })
-   }
+      
+      document.querySelector('article').innerHTML = html;
+      document.querySelector('.answer-side').innerHTML = "";
+      // Get Answers
+      const blanks = document.querySelectorAll('.blank-input');
 
-   decreaseBlankCount() {
-      this.countBlank -= 1;
-   }
-   increaseBlankCount() {
-      this.countBlank += 1;
+      for(let i = 0 ; i < blanks.length ; i++){
+         blanks[i].addEventListener('input', (e) => {
+            this.answer[i] = e.target.value
+
+            answers.getAnswer({
+               answer : this.answer,
+               id: this.questionId,
+               type : 'blank'
+            },this.number)
+
+            console.log(answers.answers[this.number])
+         })
+      }
+
    }
 }
 
-const blank = new Blank()
+const blank = new Blank();

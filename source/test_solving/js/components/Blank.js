@@ -14,7 +14,6 @@ class Blank {
       if (answers.answers[questionNumber] != undefined) this.answer = answers.answers[questionNumber].answer
       else this.answer = []
 
-      console.log('this.ans',this.answer)
       this.renderChoiceBlock()
    }
    renderChoiceBlock() {
@@ -34,7 +33,6 @@ class Blank {
       }
       let html = '';
       const questionArray = this.question.split(' ')
-      console.log(questionArray)
       questionArray.forEach((str,index) => {
          html += `
          ${str.startsWith('[_') && str.endsWith('_]') ? inputField() : str}
@@ -49,14 +47,14 @@ class Blank {
       for(let i = 0 ; i < blanks.length ; i++){
          blanks[i].addEventListener('input', (e) => {
             this.answer[i] = e.target.value
-            console.log(this.answer)
 
             answers.getAnswer({
                answer : this.answer,
-               id: this.questionId
+               id: this.questionId,
+               type : 'blank'
             },this.number)
 
-            console.log(answers.answers)
+            console.log(answers.answers[this.number])
          })
       }
 
