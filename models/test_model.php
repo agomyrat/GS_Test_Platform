@@ -59,6 +59,64 @@ class _Test extends Model
         return false;
     }
 
+    public static function updateTest($questionId, $array)
+   {
+      $db = new Database;
+      $testId = $array['testId'];
+      $name = $array['name'];
+      $description = $array['description'];
+      $language = $array['language'];
+      $isPublic = $array['isPublic'];
+      $password = $array['password'];
+      $fileName = $array['fileName'];
+      $givenTime = $array['givenTime'];
+      $startTime = $array['startTime'];
+      $deadline = $array['deadline'];
+      $isRandom = $array['isRandom'];
+      $user_id = $array['user_id'];
+      $isAllowed = empty($isPublic);
+      // print_r($array);die;
+      try {
+         $sql = "UPDATE tests set `TEST_NAME` = :name,
+                                  `DESCRIPTION` = :description,
+                                  `CREATED_BY` = :user_id,
+                                  `IS_RANDOM` = :isRandom,
+                                  `IS_PUBLIC` = :isPublic,
+                                  `IS_ALLOWED` = :isAllowed,
+                                  `PASSWORD` = :password,
+                                  `TEST_IMAGE` = :fileName,
+                                  `LANGUAGE` = :language,
+                                  `STARTING_TIME` = :startTime,
+                                  `ENDING_TIME` = :deadline,
+                                  `GIVEN_TIME` = :givenTime,
+                              WHERE TEST_ID = :testId";
+
+         $query = $db->prepare($sql);
+         //var_dump($query);
+         $query->execute(
+            [
+                ':testId' => $testId,
+                ':name' => $name,
+                ':description' => $description,
+                ':language' => $language,
+                ':isPublic' => $isPublic,
+                ':password' => $password,
+                ':fileName' => $fileName,
+                ':givenTime' => $givenTime,
+                ':startTime' => $startTime,
+                ':deadline' => $deadline,
+                ':isRandom' => $isRandom,
+                ':user_id' => $user_id,
+                ':isAllowed' => $isAllowed
+            ]
+         );
+      } catch (PDOException $e) {
+         echo $sql . "<br>" . $e->getMessage();
+         return false;
+      }
+      return $questionId;
+   }
+
     public static function has($value, $column)
     {
         $db = new Database;
@@ -398,7 +456,206 @@ class _Test extends Model
         }
     }
 
+    public static function getPreviewDatas($testId){
+        $db = new Database;
+        try{
+            $sql = "SELECT tests.TEST_NAME,
+                           tests.DESCRIPTION,
+                           tests.IS_PUBLIC,
+                           tests.TEST_IMAGE,
+                           tests.LANGUAGE,
+                           tests.STARTING_TIME,
+                           tests.ENDING_TIME,
+                           test.GIVEN_TIME,
+                           tests.SOLVING_COUNT,
+                           tests.LIKE_COUNT,
+                           tests.DISLIKE_COUNT,
+                           tests.QUESTION_COUNT,
+                           users.USER_NAME,
+                           users.FIRST_NAME,
+                           users.SURNAME
+                    FROM
+                    tests
+                    LEFT JOIN ON tests.CREATED_BY = users.USER_ID
+                    WHERE
+                    tests.TEST_ID = :testId";
+            $query = $db->prepare($sql);
+            $query->execute([':testId'=>$testId]);
+            $result = $query->setFetchMode(PDO::FETCH_ASSOC);
+            $fetchedDatas = $query->fetch();
+
+            $returnDatas = [];
+            $returnDatas["testName"] = $fetchedDatas['TEST_NAME'];
+            $returnDatas["description"] = $fetchedDatas['DESCRIPTION'];
+            $returnDatas["language"] = $fetchedDatas['LANGUAGE'];
+            $returnDatas["isPublic"] = $fetchedDatas['IS_PUBLIC'];
+            $returnDatas["imageName"] = $fetchedDatas['TEST_IMAGE'];
+            $returnDatas["givenTime"] = $fetchedDatas['GIVEN_TIME'];
+            $returnDatas["startTime"] = $fetchedDatas['STARTING_TIME'];
+            $returnDatas["deadline"] = $fetchedDatas['ENDING_TIME'];
+            $returnDatas["username"] = $fetchedDatas['USER_NAME'];
+            $returnDatas['name'] = $fetchedDatas['FIRST_NAME'];
+            $returnDatas['surname'] = $fetchedDatas['SURNAME'];
+            $returnDatas['questionCount'] = $fetchedDatas['QUESTION_COUNT'];
+            $returnDatas['likes'] = $fetchedDatas['LIKE_COUNT'];
+            $returnDatas['dislikes'] = $fetchedDatas['DISLIKE_COUNT'];
+            $returnDatas['solved'] = $fetchedDatas['SOLVING_COUNT'];
+            return $returnDatas;
+
+        }catch(Exception $e){
+            var_dump($e);
+        }
+    }
+
+    public static function canEdit($test_id, $user_id)
+    {
+        $db = new Database;
+        try {
+            $sql = 'SELECT 
+                    CASE WHEN tests.CREATED_BY <> :user_id THEN FALSE -- TESTIN EYESI DAL
+                        WHEN SUM(result.USER_ID) > 0 THEN FALSE -- ON BIRI COZEN BOLSA RUGSAT YOK
+                        WHEN tests.STARTING_TIME <= NOW() AND tests.ENDING_TIME > NOW() THEN FALSE -- COZMEK UCIN AMATLY VAGT (HER PURSAT COZUP BILERLER)
+                        WHEN tests.IS_PUBLIC = 1 AND tests.IS_ALLOWED = 1 THEN FALSE -- PUBLIC RUGSAT BERILEN (HER PURSAT COZUP BILERLER)
+                        
+                        ELSE TRUE END CAN_EDIT
+                    FROM
+                    tests 
+                    LEFT JOIN result ON result.TEST_ID = tests.TEST_ID
+                    WHERE tests.TEST_ID = :test_id';
+            $query = $db->prepare($sql);
+            $query->execute([
+                ":test_id" => $test_id,
+                ":user_id" => $user_id
+            ]);
+            return $query->fetchAll()[0];
+        } catch (Exception $e) {
+            echo $e;
+        }
+    }
+
+
+    public static function checkTime($test_id, $user_id)
+    {
+        $db = new Database;
+        try {
+            $sql = 'SELECT
+                        CASE
+                            WHEN tests.GIVEN_TIME * 60 - TIMESTAMPDIFF(
+                                SECOND,
+                                result.START_TIME,
+                            NOW()) <= 0 
+                            OR tests.ENDING_TIME <= NOW() THEN 0 WHEN ADDDATE( NOW(), INTERVAL tests.GIVEN_TIME MINUTE ) >= tests.ENDING_TIME THEN
+                                TIMESTAMPDIFF( SECOND, NOW(), tests.ENDING_TIME ) ELSE tests.GIVEN_TIME * 60 - TIMESTAMPDIFF(
+                                    SECOND,
+                                    result.START_TIME,
+                                NOW()) 
+                            END GALAN_SECUNT 
+                    FROM
+                        tests
+                        LEFT JOIN result ON result.TEST_ID = tests.TEST_ID  
+                    WHERE
+                        tests.TEST_ID = :test_id 
+                        AND result.USER_ID = :user_id ';
+            $query = $db->prepare($sql);
+            $query->execute([
+                ":test_id" => $test_id,
+                ":user_id" => $user_id
+            ]);
+            return $query->fetchAll()[0];
+        } catch (Exception $e) {
+            echo $e;
+        }
+    }
+
+    /**
+* Testy kopyalamak ucin.
+*
+* @param int $test_id kopyalanjak testyn idsy
+* @param int $user_id kopyalanyan test kimin adyna kopyalamaly
+* @author Agamyrat C
+*
+*/
+public static function copyTest($test_id, $user_id)
+{
+echo $test_id;
+$db = new Database;
+try {
+// ? TEST TABLOSUNDA ROW EKLENMEGI UCIN
+$sql_test = 'SELECT TEST_NAME, DESCRIPTION, IS_RANDOM, IS_PUBLIC, `PASSWORD`, TEST_IMAGE, `LANGUAGE` , KEYWORDS, GIVEN_TIME FROM `tests` WHERE (TEST_ID = :test_id)';
+$query_test = $db->prepare($sql_test);
+$query_test->execute([
+":test_id" => $test_id
+]);
+$test = $query_test->fetch(PDO::FETCH_OBJ);
+
+
+/**
+* TODO: IMAGE ALMALY COPY ETMELI, TAZE ADYNY NEW_IMG_NAME GOYMALY,
+* TODO: TEST_NAME SONUNA COPY SOZUNI GOSHUP GOYVERAY COPYALANANDYGY BELLI BOLUP DURSUN, SON TAZEDEN AT BERSIN
+*/
+$new_img_name = Helper::copyUploadedImage($test->TEST_IMAGE);
+
+$sql_test_insert = 'INSERT INTO `tests`(CREATED_BY, TEST_NAME, DESCRIPTION, IS_RANDOM, `PASSWORD`, TEST_IMAGE, `LANGUAGE` , KEYWORDS, GIVEN_TIME) VALUES(:user_id, :test_name, :description, :is_random, :password, :test_image, :language, :keywords, :given_time);';
+$query_test_insert = $db->prepare($sql_test_insert);
+$query_test_insert->execute([
+':user_id' => $user_id,
+':test_name' => $test->TEST_NAME,
+':description' => $test->DESCRIPTION,
+':is_random' => $test->IS_RANDOM,
+':password' => $test->PASSWORD,
+':test_image' => $new_img_name,
+':language' => $test->LANGUAGE,
+':keywords' => $test->KEYWORDS,
+':given_time' => $test->GIVEN_TIME,
+]);
+$copy_test_id = $db->lastInsertId(); // insert edilenden son insert edilen row id sy. taze test id
 
 
 
+// QUESTION LARY TEK-TEK ALYP IMAGE BAR BOLSA FILELARY YERINE GOYUP ADYNY UYTGETMELI
+$sql_questions = 'SELECT QUESTION, QUESTION_IMAGE, QUESTION_DATA, ANSWERS, QUESTION_ORDER, QUESTION_TYPE, ISRANDOM FROM `questions` WHERE (TEST_ID =:test_id) ORDER BY QUESTIONS_ID';
+
+$query_questions = $db->prepare($sql_questions);
+$query_questions->execute([
+":test_id" => $test_id
+]);
+
+while ($row = $query_questions->fetch(PDO::FETCH_OBJ)) {
+//echo $row->QUESTION;
+$question_data = json_decode(htmlspecialchars_decode($row->QUESTION_DATA));
+$question_image = json_decode(htmlspecialchars_decode($row->QUESTION_IMAGE));
+//copy question image
+$question_image = Helper::copyUploadedImage($question_image);
+
+//copy choice images
+if(is_array($question_data)){
+    for($i=0;$i<count($question_data);$i++){
+        if(!empty($question_data[$i]->path)){
+            $question_data[$i]->path = Helper::copyUploadedImage($question_data[$i]->path);
+        }
+    }
+}
+
+/**
+* TODO: data-daky ve image daky suratlary almaly, taze at bermeli, yerine goymaly(file), tazeden data,image duzmeli
+*/
+$new_question_data = 'taze data etmeli';
+$new_question_image = 'taze image etmeli';
+
+$sql_question_insert = 'INSERT INTO `questions`(TEST_ID, QUESTION, QUESTION_IMAGE, QUESTION_DATA, ANSWERS, QUESTION_ORDER, QUESTION_TYPE, ISRANDOM) VALUES (:test_id, :question, :question_image, :question_data, :answers, :question_order, :question_type, :israndom);';
+$db->prepare($sql_question_insert)->execute([
+':test_id' => $copy_test_id,
+':question' => $row->QUESTION,
+':question_image' => htmlspecialchars(json_encode($question_image)),
+':question_data' => htmlspecialchars(json_encode($question_data)),
+':answers' => $row->ANSWERS,
+':question_order' => $row->QUESTION_ORDER,
+':question_type' => $row->QUESTION_TYPE,
+':israndom' => $row->ISRANDOM
+]);
+}
+} catch (Exception $e) {
+echo $e;
+}
+}
 }

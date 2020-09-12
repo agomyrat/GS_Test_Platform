@@ -18,7 +18,7 @@ class Solving extends Model
             //var_dump($query);
             $query->execute(
                 [
-                ':resultId' => 1,
+                ':resultId' => 1,//Result::getResultID($testId,$userId);
                 ':userId' => $userId,
                 ':questionId' => $questionId,
                 ':answer' => htmlspecialchars(json_encode($answer)),

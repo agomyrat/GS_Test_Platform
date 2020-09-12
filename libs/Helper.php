@@ -28,7 +28,7 @@
 
 			$type_exploded = explode('/', rtrim($type, '/') );
 			$actualExt = strtolower(end($type_exploded));
-			$permitted = array('jpg', 'jpeg', 'png', 'gif', 'JPG', 'JPEG', 'PNG' , 'GIF');
+			$permitted = array('jpg', 'jpeg', 'png', 'gif');
 			$actualName = $name.'.'.$actualExt;
 
 			return (in_array($actualExt, $permitted) && $error===0 && $size<2000000) ? $actualName : null;
@@ -183,8 +183,19 @@
 			return $choices;
 		}
 
-		public static function checkMatching(){
-
+		public static function copyUploadedImage($image_name){
+			if(!empty($image_name)){
+				$img_info = explode('.', $image_name);
+				$extension = $img_info[1];
+				$old_img_name = $img_info[0];
+				$new_img_name = $old_img_name."-Copy.".$extension;
+				//echo $image_name;
+				if(file_exists('uploads/'.$image_name)){
+					copy('uploads/'.$image_name,'uploads/'.$new_img_name);
+				}
+				return $new_img_name;
+			}
+			
 		}
 
 	}

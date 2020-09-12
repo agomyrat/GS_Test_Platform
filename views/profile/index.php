@@ -25,6 +25,7 @@
                 name="firstname "
                 id="input"
                 tabindex=" 1 "
+                value="<?=$user->data['FIRST_NAME']?>"
               /><br />
             </div>
             <div class="block">
@@ -37,6 +38,7 @@
                 name="surname"
                 id="input"
                 tabindex=" 2 "
+                value="<?=$user->data['SURNAME']?>"
               /><br />
             </div>
             <div class="block">
@@ -48,6 +50,7 @@
                 name="username"
                 id="input"
                 tabindex="3"
+                value="<?=$user->data['USER_NAME']?>"
               /><br />
             </div>
             <!-- <div class=" block">
@@ -64,6 +67,7 @@
                 id="input"
                 class="long"
                 tabindex=" 5 "
+                value="<?=$user->data['E_MAIL']?>"
                 disabled
               /><br />
             </div>
@@ -77,6 +81,7 @@
                 name="tel"
                 id="input"
                 tabindex=" 6 "
+                value="<?=$user->data['PHONE_NUMBER']?>"
               /><br />
             </div>
             <div class="block">
@@ -89,8 +94,8 @@
                 class="border"
                 tabindex=" 7 "
               >
-                <option value="male">Male</option>
-                <option value="female">Female</option>
+                <option value="male"  <?php if($user->data['GENDER'] == 1){echo 'selected';} ?>>Male</option>
+                <option value="female" <?php if($user->data['GENDER'] == 2){echo 'selected';} ?>>Female</option>
               </select>
             </div>
             <div class="block">
@@ -103,6 +108,7 @@
                 name="country"
                 id="add"
                 tabindex=" 8 "
+                value="<?=$user->data['COUNTRY']?>"
               >
                 <option value="Afganistan">Afghanistan</option>
                 <option value="Albania">Albania</option>
@@ -119,6 +125,7 @@
                 name="city"
                 id="input"
                 tabindex=" 9 "
+                value="<?=$user->data['CITY']?>"
               /><br />
             </div>
           </div>
@@ -129,9 +136,9 @@
               <label for=" ">Language</label
               ><i class="fa fa-globe" id="lang" title=" Siz bu "></i><br />
               <select class="data" id="add lang" name="lang" class="border">
-                <option value=" Turkmen ">Turkmen</option>
-                <option value=" Russian ">Russian</option>
-                <option value=" English ">English</option>
+                <option value=" Turkmen " <?php if($user->data['LANGUAGE'] == 'TM'){echo 'selected';} ?>>Turkmen</option>
+                <option value=" Russian " <?php if($user->data['LANGUAGE'] == 'RU'){echo 'selected';} ?>>Russian</option>
+                <option value=" English " <?php if($user->data['LANGUAGE'] == 'EN'){echo 'selected';} ?>>English</option>
               </select>
             </div>
             <div class="block">
@@ -143,6 +150,7 @@
                 name="birthDate"
                 id="input"
                 tabindex="11"
+                value="<?=$user->data['BIRTH_DATE']?>"
               /><br />
             </div>
             <div class="block">
@@ -169,6 +177,7 @@
                 name="job"
                 id="input"
                 tabindex=" 13 "
+                value="<?=$user->data['JOB']?>"
               /><br />
             </div>
             <div class="long_block">
@@ -200,6 +209,7 @@
                 name="bio"
                 tabindex="16"
                 id="textarea"
+                value="<?=$user->data['BIO']?>"
               ></textarea>
               <div class="btns">
                 <span id="password">Change password</span>

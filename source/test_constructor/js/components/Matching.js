@@ -1,124 +1,118 @@
 class Matching {
    constructor() {
-      this.choices = "";
-      this.questionId = null;
-      this.choiceLetters = ['a', 'b', 'c', 'd', 'e', 'f'];
-      this.choiceNumbers = [1, 2, 3, 4, 5, 6];
-      this.number = null;
-      this.answer = [];
+      this.question = {};
+      this.countMatching = 4;
    }
-   getChoice(questionNumber) {
-      console.log(questionsClass.questions[questionNumber])
-      this.choices = questionsClass.questions[questionNumber].choices;
-      this.questionId = questionsClass.questions[questionNumber].id;
-      this.secondSide = questionsClass.questions[questionNumber].answer;
-      this.number = questionNumber;
 
-      if (answers.answers[questionNumber] != undefined) this.answer = answers.answers[questionNumber].answer
-      else this.answer = []
+   renderDOM () { 
+      let html = '';
+      for (let j = 0; j < this.question.choices.length / 2; j++) {
+         let index = j * 2;
+         let choice1 = this.question.choices[index];
+         let choice2 = this.question.choices[index + 1];
+         html += `
+            <div class="matching-block" id="block-${j}">
+               <input type="text" placeholder="First Match" class="first-match" data-m=${choice1.id}  value="${choice1.value}"> <strong>-</strong>
+               <input type="text" placeholder="Second Match" class="second-match" data-m=${choice2.id}  value ="${choice2.value}">
+               <button class="remove-btn" data-row=${j}><i class="fas fa-times"></i></button>
+            </div>
+         `
+      };
 
-      const fir = this.choices.filter((choice, index) => index == 0 || index % 2 == 0)
-      this.firstSide = fir
+      document.querySelector('.output').innerHTML = html;
 
-
-      this.renderChoiceBlock()
-   }
-   renderChoiceBlock() {
-      // Creates choice side tag
-      const answer_side = document.querySelector('.answer-side');
-      answer_side.innerHTML = `
-      <div class="matching-block">
-         <div class="first-side"></div>
-         <div class="second-side"></div>
-      </div>`
-      /* First Side */
-
-      let html1 = '';
-      this.firstSide.forEach((val, index) => {
-         html1 += `
-               <div class="blocks">
-                  <span>
-                     ${index+1}) ${val.value}
-                  </span>
-               </div>
-      `
+      // Changes id s of choices
+      this.question.choices.forEach((val, index) => {
+         this.question.choices[index].id = index + 1
       })
 
-      document.querySelector('.first-side').innerHTML = html1;
 
-      /* Second Side */
-      console.log(this.secondSide)
-      let html2 = '';
-      this.secondSide.forEach((val, index) => {
-         html2 += `
-               <div class="blocks right-block" >
-                  <span>
-                     ${val}
-                  </span>
-               </div>
-      `
-      })
-      document.querySelector('.second-side').innerHTML = html2;
+      // Removes choice
+      let rmvBtn = document.querySelectorAll('.remove-btn');
+     
+      for (let x = 0; x < rmvBtn.length; x++) {
+         rmvBtn[x].addEventListener('click', (e) => {
 
+            if (rmvBtn.length > 2) {
+               let this_button = e.target.parentElement.dataset.row;
+               const remove1 = Number(this_button) * 2 + 2;
+               const remove2 = Number(this_button) * 2 + 1;
 
-      ////DRAGGABLE
-      const fir = document.querySelector('.first-side');
-      const sec = document.querySelector('.second-side');
-      const right_row = document.querySelectorAll('.right-block')
-      const sortable = Sortable.create(sec, {
-         animation: 200,
-         ghostClass: 'myghostclass',
-         dragClass: 'sortable-drag',
-         onEnd: (e) => {
-            let arr1 = fir.children;
-            let arr2 = sec.children;
-            let index = e.newIndex;
+               let newChoices = this.question.choices.filter((choice) => choice.id !== remove1);
+               let lastChoices = newChoices.filter((choice) => choice.id !== remove2);
+               this.question.choices = lastChoices;
+
+               this.decreaseMatchingCount();
+               this.renderDOM();
+
+               question.edited = true;
+
+            }
+            else if (rmvBtn.length == 2) displayError("You can't remove more matching choice");
+         })
+      }
+
+      // Gives Input Form values to choices array
+      const inputFormFirst = document.querySelectorAll('.first-match');
+      for (let x = 0; x < inputFormFirst.length; x++) {
+         inputFormFirst[x].addEventListener('input', (e) => {
+
+            let data = Number(e.target.dataset.m) - 1;
             
-            // Get Answers
-            let ans = []
-            for(let i = 0 ; i < arr2.length ; i++){
-               ans.push(arr2[i].innerText)
-            }
-            answers.getAnswer({
-               id: this.questionId,
-               answer: ans,
-               type: 'matching'
-            }, this.number)
+            this.question.choices[data].value = e.target.value;
+            question.edited = true;
 
-            for (let x = 0; x < arr2.length; x++) {
-               arr1[x].style.height = "auto";
-               arr2[x].style.height = "auto";
-            }
-            for (let x = 0; x < arr2.length; x++) {
-               if (arr2[x].clientHeight > arr1[x].clientHeight) {
-                  arr1[x].style.height = arr2[x].clientHeight + "px"
-               } else if (arr2[x].clientHeight < arr1[x].clientHeight) {
-                  arr2[x].style.height = arr1[x].clientHeight + "px"
-               }
-            }
-            arr1[index].style.height = arr2[index].clientHeight + "px"
+         })
+      }
+      // Gives Input Form values to choices array
+      const inputFormSecond = document.querySelectorAll('.second-match');
+      for (let x = 0; x < inputFormSecond.length; x++) {
+         inputFormSecond[x].addEventListener('input', (e) => {
 
-         }
-      })
+            let data = Number(e.target.dataset.m) - 1;
+            
+            this.question.choices[data].value = e.target.value;
+            question.edited = true;
 
+         })
+      }
 
-      //Get values
-      // const inputs = document.querySelectorAll(".number-matching-input");
+   }
 
-      // for (let i = 0; i < inputs.length; i++) {
-      //    inputs[i].addEventListener('input', (e) => {
-      //       let value = e.target.value;
-      //       let row = e.target.dataset.row
-      //       this.answer[row] = value
-
-      //       //Answers Objecta dakyas
-      //       answers.getAnswer({
-      //          id: this.questionId,
-      //          answer: this.answer
-      //       }, this.number)
-      //       console.log(answers.answers)
-      //    })
-      // }
+   decreaseMatchingCount() {
+      this.countMatching -= 2
+   }
+   increaseMatchingCount() {
+      this.countMatching += 1
    }
 }
-const matching = new Matching();
+
+const matching = new Matching()
+
+// Add matching rows
+const add_matching = () => {
+   const addMatching = document.getElementById('add-matching');
+   addMatching.addEventListener('click', () => {
+      if (matching.question.choices.length !== 12) {
+
+         matching.increaseMatchingCount();
+
+         matching.question.choices = [
+            ...matching.question.choices,
+            {
+               id: matching.countMatching,
+               value: '',
+            },
+            {
+               id: matching.countMatching + 1,
+               value: '',
+            }
+         ]
+         question.edited = true;
+         matching.renderDOM()
+         matching.increaseMatchingCount()
+      }
+      else displayError("You can't add more choice")
+
+   })
+}

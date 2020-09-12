@@ -1,6 +1,6 @@
 $('#form_').on('submit',(function(e) {
        		  e.preventDefault();
-        	  var formdata = new FormData(this);
+              var formData = new FormData(this);
         $.ajax({
             type: 'post',
             url: 'login/checkLogin',
