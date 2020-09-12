@@ -27,9 +27,14 @@ class Test extends Controller
 
    public function solving($array = null)
    {
-      $test_id = $array[0];
-      $this->view->layout = "test_solving";
-      $this->view->render('test_solving/index',['test_id'=>$test_id]);
+      if(!empty($array[0])){
+         $test_id = $array[0];
+         $this->view->layout = "test_solving";
+         $this->view->render('test_solving/index',['test_id'=>$test_id]);
+      }else{
+         $this->error();
+      }
+
    }
 
    public function getSolvingQuestions(){
@@ -224,37 +229,58 @@ class Test extends Controller
 	
 }
 
-   public function getTestInfo(){
-      $informations = _Test::get();
+
+   public function publishTest(){
+      if(!empty($_POST)){
+         $testId;
+         $name;
+         $description;
+         $language;
+         $isPublic;
+         $password;
+         //$file = $_FILES;
+         $fileName;
+         $givenTime;
+         $startTime;
+         $deadline;
+         $isRandom;
+         $user_id = Session::get(USER_ID);
+
+         _Test::updateTest($testId,[
+                                    'testId'=>$testId,
+                                    'name'=>$name,
+                                    'description'=>$description,
+                                    'language'=>$language,
+                                    'isPublic'=>$isPublic,
+                                    'password'=>$password,
+                                    'fileName'=>$fileName,
+                                    'givenTime'=>$givenTime,
+                                    'startTime'=>$startTime,
+                                    'deadline'=>$deadline,
+                                    'isRandom'=>$isRandom,
+                                    'user_id'=>$user_id,
+                                 ]);
+      }
    }
+
+   public function getTestInfo(){
+      $testId;
+      $informations = _Test::get($testId,['DESCRIPTION,']);
+   }
+
+   public function copy($array=null){
+      if( !empty($array) && (!empty($array[0]) || !empty($array[1])) ){
+         //security tarapda duzetmeli yerleri bar! dine barlamak uchin doredilen!
+         _Test::copyTest($array[0],$array[1]);
+      }else{
+         echo "[domain/test/copy/test_id/user_id] strukturada girizin! test_id-ni user_id uchin kopyalaya";
+      }
+   }
+
 
    public function practice()
    {
-      $link = 'adf';
-      // // echo "<pre>";
-      // // print_r(_Test::getQuestions(1));
-      // //print_r(_Test::get(4,['TEST_ID','CREATED_BY','TEST_NAME']));
-      /* $username = 'ERIC';
-		
-		$file = View::getHtmlTemplate('register',['link'=>$link]);;
-		echo ($file)."<br>"; */
-      // use PHPMailer\PHPMailer\Exception;
-      /* require "libs/Mail.php";
-		sendMail(); */
-
-      // Polyglot::setPage('signup');
-      // $address = 'rejepowerkin@gmail.com';
-      // $this->sendMail($address, [
-      //    'templateName' => 'register',
-      //    'link' => $link,
-      //    'subject' => Polyglot::translate('Registration letter')
-	  // ]);
-	  
-    //      $var = '[{&quot;value&quot;:&quot;&quot;,&quot;type&quot;:&quot;image&quot;,&quot;path&quot;:&quot;..\/..\/uploads\/1370865f4b7df9a25d6.jpeg&quot;,&quot;isChecked&quot;:true,&quot;id&quot;:&quot;a&quot;,&quot;pathValue&quot;:false},{&quot;value&quot;:&quot;asd&quot;,&quot;type&quot;:&quot;string&quot;,&quot;path&quot;:&quot;&quot;,&quot;isChecked&quot;:false,&quot;id&quot;:&quot;b&quot;},{&quot;value&quot;:&quot;asd&quot;,&quot;type&quot;:&quot;string&quot;,&quot;path&quot;:&quot;&quot;,&quot;isChecked&quot;:false,&quot;id&quot;:&quot;c&quot;}]'
-    //   ;$arr = json_decode(htmlspecialchars_decode($var));
-    //   echo "<pre>";
-	//   print_r($arr);
-	  $array = _Test::get(['GIVEN_TIME','QUESTION_COUNT','TEST_ID']);
-		print_r($array);
+      _Test::copyTest(1,2);
+      //echo Helper::copyUploadedImage('532175f5ce18f559b0.png');
    }
 }
