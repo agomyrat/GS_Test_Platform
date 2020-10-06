@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Modal and Footer</title>
+	<link rel="stylesheet" href="./css/main.css">
+	<link rel="stylesheet" href="./modules/node_modules/@fortawesome/fontawesome-free/css/all.css">
+</head>
+
+<body>
+	<div class="container">
+		<button class="button btn">
+			Finish test
+		</button>
+		<div class="finish-test-modal-wrapper">
+			<div class="modal">
+				<div class="score">
+					<p>Score:</p>
+					<p class='good'>92</p>
+				</div>
+				<form class="feedback">
+					<label for="feedback">Feedback (not required)</label>
+					<textarea id="feedback" placeholder="How was the test?"></textarea>
+					<button class="btn">Send</button>
+				</form>
+				<div class="btns">
+					<button class="btn">View results</button>
+					<button class="btn">Go to main page</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<footer>
+		<div class="container">
+			<div class="footer">
+				<div class="footer-about-us left">
+					<div class="logo">
+						<h1>Testspace</h1>
+						<span>Thousands of tests in one place!</span>
+					</div>
+					<div class="about-us">
+						<h3>About Us</h3>
+						<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Soluta quod voluptatem delectus
+							excepturi ab quae architecto dolores corrupti a quam.</p>
+					</div>
+					<div class="contact-us">
+						<h3>Contact us</h3>
+						<div class="contacts">
+							<div class="contact">
+								<i class="fa fa-phone"></i>
+								<span>+993 93 939393</span>
+							</div>
+							<div class="contact">
+								<i class="fab fa-facebook"></i>
+								<span>testSpace</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="footer-nav center">
+					<div class="nav-info">
+						<h3>Information</h3>
+						<ul class="nav">
+							<a href="#">
+								<li>About Us</li>
+							</a>
+							<a href="#">
+								<li>More Search</li>
+							</a>
+							<a href="#">
+								<li>Blog</li>
+							</a>
+							<a href="#">
+								<li>Events</li>
+							</a>
+							<a href="#">
+								<li>Tests</li>
+							</a>
+						</ul>
+					</div>
+					<div class="nav-links">
+						<h3>Helpful links</h3>
+						<ul class="nav">
+							<a href="#">
+								<li>Top tests</li>
+							</a>
+							<a href="#">
+								<li>Q&A</li>
+							</a>
+							<a href="#">
+								<li>Privacy Policy</li>
+							</a>
+						</ul>
+					</div>
+				</div>
+				<div class="footer-feedback right">
+					<form class="feedback">
+						<label for="footer-feedback">Feedback</label>
+						<div class="input-wrapper">
+							<i class="fab fa-telegram-plane"></i>
+							<input type="text" id="footer-feedback">
+						</div>
+						<button class="btn">Send</button>
+					</form>
+				</div>
+			</div>
+			<hr>
+			<div class="footer-socials">
+				<div class="surprise-wrapper">
+					<p>Made with love</p>
+					<div class="surprise">
+						<i class="fa fa-heart"></i>
+					</div>
+					<p>by GeekSpace</p>
+				</div>
+				<div class="socials">
+					<div class="social">
+						<i class="fab fa-facebook-f"></i>
+					</div>
+					<div class="social">
+						<i class="fab fa-twitter"></i>
+					</div>
+					<div class="social">
+						<i class="fab fa-linkedin-in"></i>
+					</div>
+					<div class="social">
+						<i class="fab fa-google-plus-g"></i>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+
+	<script>
+		let modalWrapper = document.querySelector('.finish-test-modal-wrapper')
+		let modal = document.querySelector('.modal')
+		let button = document.querySelector('.button')
+
+		let show = function (e) {
+			modalWrapper.style.display === 'flex' ? modalWrapper.style.display = 'none' : modalWrapper.style.display =
+				'flex'
+		}
+
+		button.addEventListener('click', show, false)
+
+		modalWrapper.addEventListener('click', show, false)
+
+		modal.addEventListener('mouseover', (e) => {
+			modalWrapper.removeEventListener('click', show, false)
+		})
+		modal.addEventListener('mouseleave', (e) => {
+			modalWrapper.addEventListener('click', show, false)
+		})
+	</script>
+</body>
+
+</html>
