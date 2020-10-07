@@ -1,0 +1,367 @@
+section {
+   background-color: white;
+   padding: 1rem 2.5rem 1rem 1rem;
+}
+nav{
+   position: fixed;
+   top: 0;
+   width: 70%;
+   height: 70px;
+   background-color: white;
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+}
+@media (max-width:900px) {
+   nav{
+      width: 95%;
+   }
+   .nav1 h1 {
+      font-size: 1.5rem;
+      padding-left: 50px;
+   }
+}
+.nav1 h1 {
+   font-size: 2rem;
+}
+.nav2 a{
+   color: #FF570C;
+}
+.nav2 button {
+   color: #ffffff;
+   background-color: #FF570C;
+   border: none;
+   font-size: 1rem;
+   width: 100px;
+   height: 40px;
+   border-radius: 5px;
+   margin: 0 0 0 1rem;
+   cursor: pointer;
+}
+.nav2 button:hover {
+   opacity: 0.7;
+}
+.question-create-block{
+   padding-top: 5rem;
+   display: grid;
+   grid-template-columns: 80% 20%;
+}
+.question-input-field textarea{
+   width: 80%;
+   height: 100px;
+   border: none;
+   border-radius: 5px;
+   box-shadow: 0px 0px 2px #000000;
+   display: block;
+   overflow: hidden;
+   padding-left: 5px;
+   outline: none;
+   font-size: 1.2rem;
+   min-height: 100px;
+}
+.question-input-field textarea::-webkit-scrollbar{
+   display: none
+}
+.question-input-field textarea:hover,
+.question-input-field textarea:focus{
+   outline: none;
+   box-shadow: 0px 0px 5px #424242;
+}
+.question-image {
+   width: 170px;
+   height: auto;
+   cursor: pointer;
+
+}
+/* FILE UPLOAD */
+.custom-file {
+   height: 40px;
+   width: 40px;
+   background-color: #fff;
+   float: right;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   cursor: pointer;
+}
+.custom-file-question{
+   height: 60px;
+   background-color: #fff;
+   float: left;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+.custom-file-question>label{
+   vertical-align: middle;
+   cursor: pointer;
+}
+.custom-file-question > label > i{
+   font-size: 2rem;
+   cursor: pointer;
+   color: grey;
+}
+.custom-file-question>label>i:hover{
+   color: black;
+}
+.question-file{
+   display: none;
+}
+.custom-file .file-upload {
+   display: none;
+}
+
+.custom-file label{
+   vertical-align: middle;
+   cursor: pointer;
+}
+.custom-file label i {
+   font-size: 1.6rem ;
+   color: grey;
+}
+.custom-file label i:hover {
+   color: black;
+}
+
+.remove-file-btn{
+   background: none;
+   border: none;
+   font-size: 1.5rem;
+   color: grey;
+   cursor: pointer;
+   margin: 0 1rem 0 0;
+   padding: 0;
+}
+remove-file-btn:hover,
+remove-file-btn:focus {
+   color: rgb(167, 4, 4);
+   outline: none;
+}
+
+
+/*  */
+.question-parameters div{
+   margin: 1.5rem 0;
+}
+.question-parameters .random-place{
+   font-size: 1rem;
+   margin: 0;
+}
+.question-parameters .random-place input{
+   margin-bottom:0 ;
+}
+.question-type-select select{
+   margin-top: 0.5rem;
+   width: 100%;
+   height: 40px;
+   border:none;
+   border-radius: 5px;
+   box-shadow: 0px 0px 2px #000000;
+   padding-left: 0 7px;
+}
+.choice-container{
+   display: flex;
+   align-items: center;
+   width: 100%;
+   margin: 0 0 1rem 0;
+}
+input.choice{
+   width: 50%;
+   height: 40px;
+   border: none;
+   /* box-shadow: 0px 0px 2px #000000; */
+   border-bottom: 1px solid grey;
+   /* border-radius: 5px; */
+   margin-left: 5px;
+   font-size: 1rem;
+   padding-left: 5px;
+   transition: 0.5s;
+}
+input.choice:hover ,
+input.choice:focus {
+   outline: none;
+   border-bottom: 1px solid orangered;
+}
+button.remove-btn{
+   background: none;
+   border: none;
+   font-size: 1.5rem;
+   color: grey;
+   cursor: pointer;
+   margin: 0 1rem 0 0;
+   padding: 0;
+}
+button.remove-btn:hover,
+button.remove-btn:focus
+{
+   color: rgb(167, 4, 4) ;
+   outline:none ;
+}
+#add-btn {
+   background-color: white;
+   border: none;
+   box-shadow: 0px 0px 3px #000000;
+   font-size: 1.6rem;
+   width: 40px;
+   height: 40px;
+   margin-left: 42px;
+   border-radius: 5px;
+   cursor: pointer;
+}
+img.choice-image{
+   height: auto;
+   width: 150px;
+   cursor: pointer;
+}
+
+/* Input Choice */
+input.input-form{
+   width: 50%;
+   height: 40px;
+   border: none;
+   border-bottom: 1px solid grey;
+   margin-left: 5px;
+   font-size: 1rem;
+   padding-left: 5px;
+   transition: 0.5s;
+   margin: 0;
+}
+input.input-form:hover,
+input.input-form:focus {
+   outline: none;
+   border-bottom: 1px solid orangered;
+}
+
+
+/* TRUE FALSE */
+.true-false-type{
+   display: flex;
+}
+.true-false-block{
+   padding-right: 1rem;
+}
+/* Matching */
+.matching-block{
+   padding: 0.5rem 0;
+}
+.matching-block input {
+   width: 25%;
+   height: 40px;
+   border: none;
+   border-bottom: 1px solid grey;
+   margin-left: 5px;
+   font-size: 1rem;
+   padding-left: 5px;
+   transition: 0.5s;
+   margin: 0;
+}
+
+.matching-block input:hover,
+.matching-block input:focus {
+   outline: none;
+   border-bottom: 1px solid orangered;
+}
+#add-matching {
+   background-color: white;
+   border: none;
+   box-shadow: 0px 0px 3px #000000;
+   font-size: 1.6rem;
+   width: 40px;
+   height: 40px;
+   border-radius: 5px;
+   cursor: pointer;
+}
+/* BLANK */
+.add-blank-block{
+   padding: 1rem 0;
+}
+.add-blank-block button{
+   padding: 0.5rem 1rem;
+   background-color: white;
+   border: none;
+   box-shadow: 0px 0px 3px #000000;
+   font-size: 1rem;
+   border-radius: 5px;
+   cursor: pointer;
+}
+.add-blank-block button:hover{
+   outline: none;
+   box-shadow: 0px 0px 5px #000000;
+}
+.example {
+   color: rgb(59, 59, 59);
+}
+.example h3{
+   font-size: 1.1rem;
+}
+.example p {
+   font-style: italic;
+}
+
+/* Footer */
+footer button {
+   position: fixed;
+   border: none;
+   font-size: 1rem;
+   width: 100px;
+   height: 40px;
+   border-radius: 5px;
+   cursor: pointer;
+}
+footer button:focus{
+   outline: none;
+}
+footer .save-btn{
+   bottom: 10px;
+   right: 40px;
+   color: #ffffff;
+   background-color: #FF570C;
+}
+footer .delete-qst-btn{
+   bottom: 10px;
+   right: 160px;
+   color: #ffffff;
+   background-color: white;
+   color: red;
+   font-weight: bold;
+   border: 2px solid red;
+}
+footer button:hover{
+   opacity: 0.7;
+}
+.error-block{
+   position: fixed;
+   bottom: 80px;
+   right: 40px;
+   color: #ffffff;
+   background-color: red;
+   text-align: center;
+   border: none;
+   font-size: 1rem;
+   width: auto;
+   max-width: 260px;
+   height: auto;
+   border-radius: 5px;
+   cursor: pointer;
+   padding: 1rem;
+   margin-right: -100%;
+   transition: 0.6s;
+}
+.note {
+   position: fixed;
+   bottom: 80px;
+   right: 40px;
+   color: #ffffff;
+   background-color: green;
+   text-align: center;
+   border: none;
+   font-size: 1rem;
+   width: auto;
+   max-width: 260px;
+   height: auto;
+   border-radius: 5px;
+   cursor: pointer;
+   padding: 1rem;
+   margin-right: -100%;
+   transition: 0.6s;
+}

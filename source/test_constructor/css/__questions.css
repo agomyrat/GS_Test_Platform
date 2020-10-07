@@ -1,0 +1,160 @@
+@font-face{
+   src: url('../../general/fonts/montserrat/Montserrat-Regular.otf');
+   font-family: Montserrat-Regular;
+}
+@font-face {
+   src: url('../../general/fonts/montserrat/Montserrat-Bold.otf');
+   font-family: Montserrat-Bold;
+}
+*{
+   font-family: Montserrat-Regular;
+   box-sizing: border-box;
+}
+
+body {
+   padding: 0;
+   margin: 0;
+}
+
+.container {
+   height: 100vh;
+   width: 100%;
+   display: grid;
+   grid-template-columns: 25% 75%;
+}
+
+aside {
+   background-color: #dee1ec;
+   overflow-y: scroll;
+   overflow-x: hidden;
+   display: grid;
+   justify-items: center;
+   position: relative;
+   transition: 0.7s;
+
+}
+aside::-webkit-scrollbar {
+   width: 5px;
+}
+
+aside::-webkit-scrollbar-thumb {
+   background-color: rgb(105, 105, 105);
+   border-radius: 10px;
+}
+
+#questions {
+   height: auto;
+   width: 100%;
+   padding: 0rem 1rem 1rem;
+}
+
+#question {
+   width: 100%;
+   height: 80px;
+   background-color: white;
+   overflow: hidden;
+   padding: 0.5rem;
+   margin: 1rem 0;
+   cursor: pointer;
+   opacity: 0.5;
+   border-radius: 5px;
+   word-break: break-all;
+}
+
+#question:nth-child(1) {
+   opacity: 1;
+}
+
+#question h3,
+p {
+   margin: 0;
+}
+
+.add-question {
+   position: fixed;
+   bottom: 10px;
+   margin: 0 auto;
+   width: 25%;
+   padding: 0 1rem;
+}
+
+.add-question button {
+   background-color: #FF570C;
+   color: white;
+   font-size: 1.2rem;
+   border: none;
+   border-radius: 5px;
+   /* padding: 0.5rem 3.2rem; */
+   cursor: pointer;
+   width: 100%;
+   height: 40px;
+}
+.add-question button:hover{
+   opacity: 0.7;
+}
+.active{
+   animation: animate 0.7s 1 ease-in-out;
+}
+
+.side-burger{
+   position: fixed;
+   width: 50px;
+   height: 50px;
+   top: 3%;
+   left: 0;
+   z-index: 1000;
+   background: rgba(54, 54, 54, 0.486);
+   cursor: pointer;
+   text-align: center;
+   line-height: 50px;
+   color: white;
+   transition: 0.7s;
+   display: none;
+}
+
+@media (max-width:900px){
+   *{
+      font-size: 0.9rem;
+   }
+   .container {
+      height: 100vh;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 100%;
+   }
+   aside {
+      position: fixed;
+      left: -200px;
+      width: 200px;
+      height: 100vh;
+      z-index: 1000;
+   }
+   .add-question button {
+      font-size: 1rem;
+      cursor: pointer;
+      width: 165px;
+      height: 40px;
+   }
+   .side-burger{
+      display: block;
+   }
+}
+@keyframes animate{
+   from{
+      opacity: 0;
+   }
+   to{
+      opacity: 1;
+   }
+}
+
+.test-id{
+   display:none
+}
+.sideBar-active{
+   left: 200px;
+}
+.aside-active{
+   left: 0;
+   box-shadow: 0 0 15px #555555;
+}

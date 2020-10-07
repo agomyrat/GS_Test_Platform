@@ -1,0 +1,259 @@
+.alert {
+  position: fixed;
+  width: 100vw;
+  padding: 10px 30px;
+}
+
+.alert i {
+  margin-right: 8px;
+}
+
+.alert.success {
+  color: #0e801d;
+  background-color: #d2f7d2;
+}
+
+.alert.error {
+  color: #db1111;
+  background-color: #ffc2c2;
+}
+
+.postview-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  /* padding: 150px 20px 30px 20px; */
+  padding: 100px 10% 0 ;
+}
+.postview-wrapper .right,
+.postview-wrapper .left {
+  width: 47%;
+}
+.postview-wrapper .left h1 {
+  font-size: 1.5rem;
+}
+.postview-wrapper .right {
+  margin-top: 70px;
+}
+
+.input input,
+.input select,
+.input textarea,
+.input .input-file {
+  width: 100%;
+  -webkit-box-shadow: 0px 0px 2px #343434;
+          box-shadow: 0px 0px 2px #343434;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+  margin: 0 0 10px 0;
+  position: relative;
+  font-family: "Poppins", sans-serif;
+}
+.input select,
+.input input#photoInput {
+  cursor: pointer;
+}
+.input textarea {
+  min-height: 100px;
+  max-height: 150px;
+  resize: vertical;
+}
+.input .input-file {
+  height: 40px;
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.input .input-file i {
+  position: absolute;
+  color: #aaa;
+  font-size: 20px;
+}
+.input .input-file:hover i {
+  color: #ff570c;
+}
+.input label {
+  width: 100%;
+  display: block;
+}
+.input input[type="file"] {
+  opacity: 0;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+}
+.input.language select {
+  width: 100%;
+}
+
+.row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+.row .input {
+  width: 47%;
+}
+
+.test-img-wrapper {
+  width: 100%;
+  height: 250px;
+  margin: 0 0 10px 0;
+}
+.test-img-wrapper img {
+  width: 100%;
+  height: 100%;
+  -o-object-position: center;
+     object-position: center;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 5px;
+}
+
+.btns {
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  margin: 1.5rem 0 0 0;
+}
+.btns .btn {
+  background-color: #fff;
+  border: 2px solid #ff570c;
+  padding: 0.4em 1.2rem;
+  font-size: 0.8rem;
+  font-family: "Poppins", sans-serif;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.btns .btn:first-child {
+  color: #ff570c;
+  margin-right: 20px;
+}
+.btns .btn:last-child {
+  background-color: #ff570c;
+  color: #fff;
+}
+.btns .btn:hover {
+  opacity: 0.7;
+}
+
+@media (max-width: 900px) {
+  .postview-wrapper {
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+      padding: 100px 5% 5%;
+  }
+  .postview-wrapper .right,
+  .postview-wrapper .left {
+    width: 100%;
+  }
+}
+@media (max-width: 423px) {
+  .row {
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+  }
+  .row .input {
+    width: 100%;
+  }
+
+  .btns {
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .btns .btn {
+   padding: 0.2rem 1rem;
+    margin: 0 auto;
+  }
+  .btns .btn:first-child {
+    margin: 0 auto 10px auto;
+  }
+}
+
+
+/* KEYWORDS */
+.container-key {
+   width: 100%;
+   background: #f0f0f0;
+   padding: 15px 15px 10px 15px;
+   border-radius: 15px;
+}
+
+.container-key label {
+   display: block;
+   font-size: 18px;
+   margin-top: 0px;
+   margin-bottom: 20px;
+}
+
+.container-key ul {
+   list-style: none;
+   margin: 0px;
+   padding: 0px;
+   display: inline-block;
+}
+
+.container-key ul li {
+   display: inline-block;
+   background: #555;
+   color: white;
+   padding: 3px 5px 3px 10px;
+   border-radius: 15px;
+   margin-right: 5px;
+   margin-bottom: 5px;
+   font-size: 0.8rem;
+}
+
+.container-key ul li a {
+   color: white;
+   text-decoration: none;
+   margin-left: 5px;
+   font-size: 10px;
+   background: #333;
+   width: 15px;
+   height: 15px;
+   border-radius: 50%;
+   display: inline-flex;
+   text-align: center;
+   align-items: center;
+   justify-content: center;
+   transform: rotate(45deg);
+}
+
+.container-key ul li a:hover {
+   color: red;
+}
+
+.container-key input {
+   border: 0px;
+   background: none;
+   margin-bottom: 5px;
+   display: inline-block;
+   width: 150px;
+   height: 30px;
+   padding-left: 0.5rem;
+}
+.container-key input:focus{
+   outline: none;
+}

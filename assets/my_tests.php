@@ -1,0 +1,13 @@
+<?php 
+     return[
+        'css'=>[
+            'source/general/css/header.css',
+            'source/my_tests/css/style.css',
+            'source/general/icons/icons/all.css'
+        ],
+        'js'=>[
+            "source/general/js/header.js",
+            "source/my_tests/js/script.js"
+        ]
+    ];
+?>

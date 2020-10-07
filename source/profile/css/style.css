@@ -1,0 +1,332 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  /* overflow: hidden; */
+  margin: 0;
+  padding: 0;
+}
+
+input,
+textarea,
+html {
+  font-family: "Poppins", sans-serif;
+}
+
+.alert {
+  position: fixed;
+  width: 100vw;
+  padding: 10px 30px;
+}
+
+.alert i {
+  margin-right: 8px;
+}
+
+.alert.success {
+  color: #0e801d;
+  background-color: #d2f7d2;
+}
+
+.alert.error {
+  color: #db1111;
+  background-color: #ffc2c2;
+}
+
+.container {
+  max-width: 90vw;
+  height: 90vh;
+  margin: auto auto;
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 40vw 50vw;
+}
+
+nav {
+  height: 10vh;
+  background-color: #fff;
+}
+
+.left {
+  display: flex;
+  flex-direction: column;
+}
+
+.image {
+  height: 150px;
+  width: 150px;
+  background-size: cover;
+  margin: 0px auto;
+  position: relative;
+  margin-bottom: 40px;
+}
+
+.image img {
+  object-fit: cover;
+  object-position: center;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.oval {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  background-color: #fff;
+  float: right;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.oval i {
+  font-size: 24px;
+}
+
+.oval:hover {
+  background-color: #ff570c;
+}
+
+.oval:hover i {
+  color: #fff;
+}
+
+.editImage {
+  position: absolute;
+  opacity: 0;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  cursor: pointer;
+}
+
+.oval > img {
+  height: 30px;
+  width: 30px;
+}
+
+.width {
+  overflow: hidden;
+}
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  position: relative;
+  bottom: 30px;
+}
+
+.wrap {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.block {
+  height: 80px;
+  margin: 0px 5px;
+  overflow: hidden;
+  padding: 10px 5px;
+  width: 45%;
+}
+
+input,
+textarea,
+select,
+option {
+  border-radius: 5px;
+  height: 40px;
+  border: none;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 1);
+  width: 100%;
+  padding-left: .5rem;
+}
+
+.long_block {
+  width: 90%;
+}
+
+.long_block .btns {
+  margin: 10px 0 0 0;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.long_block .btns span {
+  color: #ff570c;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.long_block .btns span:hover {
+  text-decoration: underline;
+}
+
+.long {
+  width: 100%;
+}
+
+.edit {
+  width: 800px;
+  position: absolute;
+  bottom: 25px;
+}
+
+.btn {
+  height: 2.3rem;
+  width: 12rem;
+  background-color: #ff570c;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  color: white;
+  float: right;
+  transition: 0.2s;
+  outline: none;
+  font-size: 1rem;
+}
+
+.btn:hover {
+  opacity: 0.7;
+  transition: 0.2s;
+}
+
+.fa-globe {
+  cursor: pointer;
+  font-size: 22px !important;
+  float: right;
+  color: #ff570c;
+}
+
+.fa-globe.inactive {
+  color: #ccc;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 90px;
+  max-height: 200px;
+}
+
+@media screen and (max-width: 968px) {
+  .block {
+    width: 90%;
+  }
+
+  /* .container {
+        overflow-y: scroll;
+    } */
+  .long_block {
+    width: 87%;
+  }
+
+  .btn {
+    width: 10rem;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .container {
+    grid-template-columns: 1fr;
+  }
+
+  .image {
+    width: 130px;
+    height: 130px;
+  }
+
+  .oval {
+    height: 30px;
+    width: 30px;
+    margin-top: 90px;
+  }
+
+  .oval > img {
+    height: 20px;
+    width: 20px;
+  }
+
+  .btn {
+    width: 10rem;
+    /* margin-right: 45px; */
+    margin-bottom: 2rem;
+    height: 2rem;
+  }
+}
+
+.password-modal-wrapper {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.password-modal-wrapper .password-modal {
+  background-color: #fff;
+  padding: 40px;
+  border-radius: 10px;
+}
+
+.password-modal-wrapper .password-modal h4 {
+  margin: 0 0 15px 0;
+  text-align: center;
+}
+
+.password-modal-wrapper .password-modal form .input input {
+  width: 90%;
+  margin: 0 0 15px 0;
+  padding: 5px 10px;
+}
+
+.password-modal-wrapper .password-modal form button {
+  padding: 5px 20px;
+  background-color: #ff570c;
+  color: #fff;
+  border: #ff570c 2px solid;
+  cursor: pointer;
+  border-radius: 10px;
+  display: block;
+  margin: 0 auto;
+}
+
+.password-modal-wrapper .password-modal form button:hover {
+  background-color: #fff;
+  color: #ff570c;
+}
+
+.password-modal-wrapper .password-modal form i {
+  margin: 0 5px 0 0;
+}
+
+.password-modal-wrapper .password-modal form .input i:hover {
+  color: #ff570c;
+  cursor: pointer;
+  margin: 0 0 0 5px 0;
+}
+
+.error {
+  color: #db1111;
+}
+
+@media (max-width: 394px) {
+  .long_block .btns {
+    justify-content: center;
+  }
+}

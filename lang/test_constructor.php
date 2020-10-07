@@ -1,0 +1,9 @@
+<?php 
+    return[
+        'Question'=>[
+            'EN'=>'Question',
+            'TM'=>'Sorag',
+            'RU'=>'Вопрос' 
+        ]
+    ]
+?>

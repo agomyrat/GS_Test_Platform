@@ -1,0 +1,43 @@
+/* Matching type */
+.matching-block {
+   width: 100%;
+   display: grid;
+   grid-template-columns: 1fr 1fr;
+   font-size: 1rem;
+   /* padding: 1rem; */
+}
+
+.first-side .blocks,
+.second-side .blocks {
+   min-height: 50px;
+   /* width: 150px; */
+   /* height: 100px; */
+   padding-left: 1rem;
+   margin: 3px;
+   padding-top: 0.5rem;
+}
+
+.first-side .blocks {
+   background: #f0eeee;
+   border-radius: 5px 0 0 5px;
+
+}
+
+.right-block {
+   background: #FFEB3B;
+   cursor: move;
+   border-radius: 0 5px 5px 0;
+}
+
+.first-side .blocks input {
+   width: 50px;
+   font-size: 1rem;
+}
+
+.myghostclass {
+   border-left: #FF5700 solid 5px;
+}
+
+.sortable-drag {
+   opacity: 0;
+}
