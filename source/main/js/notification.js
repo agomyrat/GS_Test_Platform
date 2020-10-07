@@ -72,6 +72,8 @@ let deletedNotifications = [];
 function removeNotification() {
    const rmv_btn = document.querySelectorAll('.remove-note');
 
+   console.log(rmv_btn)
+
    for (let i = 0 ; i < rmv_btn.length ; i++) {
       console.log(i)
       btn[i].addEventListener('click', (e) => {

@@ -49,3 +49,26 @@ function refactorList() {
 function changeTitle(title) {
    title_name.innerText = title;
 }
+
+
+// MODAL
+
+let modalWrapper = document.querySelector('.finish-test-modal-wrapper')
+let modal = document.querySelector('.modal')
+let button = document.querySelector('.feedback-btn')
+
+let show = function (e) {
+   modalWrapper.style.display === 'flex' ? modalWrapper.style.display = 'none' : modalWrapper.style.display =
+      'flex'
+}
+
+button.addEventListener('click', show, false)
+
+modalWrapper.addEventListener('click', show, false)
+
+modal.addEventListener('mouseover', (e) => {
+   modalWrapper.removeEventListener('click', show, false)
+})
+modal.addEventListener('mouseleave', (e) => {
+   modalWrapper.addEventListener('click', show, false)
+});

@@ -24,14 +24,31 @@
       </div>
       <footer>
          <p>&#169; 2020 TestSpace <br>
-            All Rights Reserved
+            All Rights Reserved <br>
+            info@testspace.com.tm <br>
          </p>
+         <div class="feedback">
+            <button class="feedback-btn">Feedback</button>
+         </div>
       </footer>
+
+
    </aside>
    <div class="side-burger">
       <span>=</span>
    </div>
    <!---->
+
+   <div class="finish-test-modal-wrapper">
+      <div class="modal">
+         <h4>Send Feedback</h4>
+         <form>
+            <textarea class="feedback-input"></textarea>
+            <br>
+            <input type="submit" class="submit-feedback">
+         </form>
+      </div>
+   </div>
 
    <!-- MAIN-->
    <main>

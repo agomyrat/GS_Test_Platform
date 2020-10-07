@@ -29,7 +29,7 @@ section{
 	width: 50px;
 	height: 50px;
 	background: #8080804a;
-	position: absolute;
+	position: fixed;
 	top: 150px;
 	left: 0;
 	line-height: 50px;
@@ -37,7 +37,8 @@ section{
 	font-size: 2rem;
 	color: white;
 	cursor: pointer;
-	display: none;
+   display: none;
+   z-index: 10000;
 }
 
 main{
@@ -61,7 +62,8 @@ aside{
 	position: fixed;
 	left: 0;
    transition: left 0.5s;
-   z-index: 999;
+   z-index: 1;
+   padding-bottom: 3rem;
 }
 h3{
 	padding-left: 1rem;
@@ -122,23 +124,108 @@ footer{
    line-height: 1.5rem;
    color: rgb(117, 117, 117);
 }
-/* footer p{
-   margin-top: 3rem;
-} */
+.feedback{
+   border: none !important;
+}
+.feedback button{
+   padding: 0.4rem 1.2rem;
+   background: rgb(216, 216, 216);
+   border: none;
+   cursor: pointer;
+}
+.feedback button:focus,
+.feedback button:hover{
+   outline: none;
+   opacity: 0.7;
+}
+
+
+.finish-test-modal-wrapper {
+   position: fixed;
+   top: 0;
+   bottom: 0;
+   right: 0;
+   left: 0;
+   background-color: rgba(0, 0, 0, 0.5);
+   display: -webkit-box;
+   display: -ms-flexbox;
+   display: flex;
+   -webkit-box-pack: center;
+   -ms-flex-pack: center;
+   justify-content: center;
+   -webkit-box-align: center;
+   -ms-flex-align: center;
+   align-items: center;
+   display: none;
+   z-index: 30000;
+}
+
+.finish-test-modal-wrapper .modal {
+   background-color: #fff;
+   border-radius: 5px;
+   padding: 1rem;
+   width: 25rem;
+   margin: 1rem;
+   z-index: 2;
+}
+.finish-test-modal-wrapper .modal h4 {
+   /* text-align: center; */
+   margin: 0;
+   margin-bottom: 0.5rem;
+}
+.finish-test-modal-wrapper .modal form {
+   width: 100%;
+   padding-top: 1rem;
+}
+.finish-test-modal-wrapper .modal form textarea{
+   width: 100%;
+   height: 100px;
+   border: 1px solid rgb(185, 185, 185);
+   border-radius: 5px;
+   margin-bottom: 0.8rem ;
+   padding: 5px;
+   resize: none;
+}
+.finish-test-modal-wrapper .modal form textarea:focus{
+   outline: none;
+}
+.finish-test-modal-wrapper .modal form input{
+   padding: 0.5rem 2rem;
+   background: #FF580D;
+   color: white;
+   border: none;
+   cursor: pointer;
+   border-radius: 5px;
+
+}
 
 
 @media screen and (max-width: 1000px){
+   h2 {
+      font-weight: 400;
+      font-size: 1.2rem;
+   }
 	aside{
 		width: 250px;
 		height: 100vh;
-		left: -150%;
-	}
+      left: -150%;
+      font-size: 0.8rem;
+      overflow-y: scroll;
+   }
+   a.create-btn {
+      padding: 0.4rem 1.2rem;
+      font-size: 1rem;
+   }
 	main{
 		padding-left: 1rem;
 	}
 	.side-burger{
 		display: block;
-	}
+   }
+   footer {
+      font-size: 0.6rem;
+      line-height: 1.5rem;
+   }
 }
 .active{
 	left: 0%;
