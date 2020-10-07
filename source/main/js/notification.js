@@ -1,23 +1,6 @@
-// const myData = [
-//    {
-//       title: 'Your test has been added as global.',
-//       status : 'accepted'
-//    },
-//    {  
-//       title: 'Your test has not been added as global for some reasons.',
-//       status: 'declared'
-//    },
-//    {
-//       title: 'Your solved "General Knowledge" test has been checked..',
-//       status: 'normal'
-//    }, 
-//    {
-//       title: 'Your test has not been added as global for some reasons.',
-//       status: 'declared'
-//    }
-// ]
 
 const status = ['accepted', 'declared', 'normal'];
+let notifNumber = 0;
 
 function getRandomStatus() {
    const randomNum = Math.floor(Math.random() * 3);
@@ -27,23 +10,29 @@ function getRandomStatus() {
 
 // Set Loading
 function setLoadingNotification(par) {
-   const loading = document.querySelector('.loading-not');
+   // const loading = document.querySelector('.loading-not');
 
    if (par) {
-      loading.classList.add('active-loading');
-   } else {
-      loading.classList.remove('active-loading');
+      document.querySelector('.hover-block').innerHTML = 
+         `<div class="loading-not active-loading">
+            <div>
+               <img src="source/general/img/2.svg" alt="">
+            </div>
+         </div>`
    }
 }
 
 // GET Cards from DB
 function fetchNotifications() {
    setLoadingNotification(true);
+
    fetch('https://jsonplaceholder.typicode.com/posts')
       .then((res) => res.json())
       .then((data) => {
          createUi_N(data);
-         
+         notifNumber = data.length;
+         notifNumber !== 0 ? showDot(true) : showDot(false)
+         console.log(notifNumber)
          setLoadingNotification(false)
       })
       .catch((err) => {
@@ -60,7 +49,7 @@ function createUi_N(data) {
 
    for(let i = 0; i < notifications.length / 5 ; i++){
       html += `
-         <li  id = "${notifications[i].id}" >
+         <li id="${notifications[i].id}" >
             <div>
                <a href="#" class=${getRandomStatus()}>
                   <i class="far fa-check-circle"></i>&nbsp;
@@ -82,12 +71,18 @@ let deletedNotifications = [];
 
 function removeNotification() {
    const rmv_btn = document.querySelectorAll('.remove-note');
-   for(let btn of rmv_btn){
-      btn.addEventListener('click', (e) => {
+
+   for (let i = 0 ; i < rmv_btn.length ; i++) {
+      console.log(i)
+      btn[i].addEventListener('click', (e) => {
+
          let li = e.target.parentElement.parentElement;
          li.classList.add('cross');
-         console.log(li.children)
          li.children[1].remove();
+
+         if (i === notifNumber - 1) {
+            showDot(false);
+         }
 
          // DELETED NOTIFYS
          deletedNotifications.push(li.id)
@@ -96,3 +91,13 @@ function removeNotification() {
    }
 }
 
+function showDot(e) {
+   const dot = document.querySelector('.message-dot');
+
+   if (e) {
+      dot.classList.add('show-dot');
+   }
+   else{
+      dot.classList.remove('show-dot');
+   }
+}

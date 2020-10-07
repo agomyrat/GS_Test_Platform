@@ -64,6 +64,7 @@ header.nav-header nav li .notification .message-dot {
    position: absolute;
    top: 10px;
    left: -5px;
+   display: none;
 }
 
 /* Profile */
@@ -130,7 +131,8 @@ header.nav-header nav>ul>li>.lang {
 }
 ul.not{
    min-width: 250px;
-   height: 300px;
+   max-height: 300px;
+   height: auto;
    overflow-y: scroll;
    z-index: 100;
 }
@@ -155,6 +157,40 @@ ul.language {
    cursor: pointer;
    z-index: 100000;
 }
+
+.loading {
+   display: none;
+   width: 100%;
+   justify-content: center;
+}
+
+.loading div {
+   color: rgb(71, 71, 71);
+   width: 70px;
+}
+
+.loading div img {
+   height: auto;
+   width: 100%;
+}
+
+/* NOTE */
+.loading-not {
+   display: none;
+   width: 100%;
+   justify-content: center;
+}
+
+.loading-not div {
+   color: rgb(71, 71, 71);
+   width: 70px;
+}
+
+.loading-not div img {
+   height: auto;
+   width: 100%;
+}
+
 
 @media screen and (max-width :426px){
    .collapse {
@@ -221,4 +257,10 @@ ul.language {
 }
 .normal {
    color: black;
+}
+.active-loading {
+   display: flex;
+}
+.show-dot{
+   display: block !important;
 }

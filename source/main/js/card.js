@@ -61,10 +61,12 @@ function fetchCards(type,search) {
             createUi(data);
             cardNumber += data.length;
             setLoading(false);
+            // animationEffect()
          }
          else if (data === 0 && searched && count === 0) {
             changeTitle(`No Item Found: ${query}`);
             setLoading(false);
+            // animationEffect()
          }
          else{
             lastCardFetch =  true;

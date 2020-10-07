@@ -36,7 +36,7 @@
                   </span>
                </div>
                <ul class="hover-block not">
-                     <li><a href="#" class="accepted"><i class="far fa-check-circle"></i>&nbsp;Your test has been added as global.</a></li>
+                     <!-- <li><a href="#" class="accepted"><i class="far fa-check-circle"></i>&nbsp;Your test has been added as global.</a></li>
                      <li><a href="#" class="declared"><i class="far fa-times-circle"></i>&nbsp;Your test has not been added as global for some reasons.</a>
                      </li>
                      <li><a href="#" class="normal"><i class="far  fa-envelope"></i>&nbsp;Your solved "General Knowledge" test has been checked.</a>
@@ -44,12 +44,12 @@
                      <li><a href="#" class="normal"><i class="far fa-comment-dots"></i>&nbsp;You have a comment :"I liked your test ,keep go this way"</a>
                      </li>
                      <li><a href="#">&nbsp;See all</a>
-                     </li>
-               <div class="loading-not">
+                     </li> -->
+               <!-- <div class="loading-not">
                   <div>
                      <img src="source/general/img/2.svg" alt="">
                   </div>
-               </div>
+               </div> -->
                </ul>
             </li>
             <!-- PROFILE -->

@@ -1,12 +1,15 @@
-// const tl = gsap.timeline({defaults:{ease: "power1.out"}});
 
-// tl.to(".card", {
-//    opacity : '1',
-//    delay : 1,
-//    duration : 1,
-//    stagger : 0.25
-// })
-
+// function animationEffect() {
+   
+//    const tl = gsap.timeline({defaults:{ease: "power1.out"}});
+//    console.log(tl)
+//    tl.to(".card", {
+//       opacity : '1',
+//       delay : 1,
+//       duration : 1,
+//       stagger : 0.25
+//    })
+// }
 
 
 // Side Bar

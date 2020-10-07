@@ -154,37 +154,5 @@ input[type="search"]::-webkit-search-results-decoration {
    }
 }
 
-.loading{
-   display: none;
-   width: 100%;
-   justify-content: center;
-}
-.loading div{
-   color: rgb(71, 71, 71);
-   width: 70px;
-}
-.loading div img{
-   height: auto;
-   width: 100%;
-}
-.active-loading{
-   display: flex;
-}
-
-/* NOTE */
-.loading-not {
-   display: none !important;
-   width: 100%;
-   justify-content: center;
-}
-.loading-not div {
-   color: rgb(71, 71, 71);
-   width: 70px;
-}
-
-.loading-not div img {
-   height: auto;
-   width: 100%;
-}
 
 
