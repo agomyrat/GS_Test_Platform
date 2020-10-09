@@ -31,19 +31,19 @@
 				$search = isset($_POST['search']) ? $_POST['search'] : '';
 				//echo $search;
 				if($type=='popular tests'){
-					$test_cards = _Test::getPopularTests($start,2,$search);	
+					$test_cards = _Test::getPopularTests($start,5,$search);	
 				}
 				if($type=='recent added'){
-					$test_cards = _Test::getRecentTests($start,1,$search);	
+					$test_cards = _Test::getRecentTests($start,5,$search);	
 				}
 				if($type=='top tests'){
-					$test_cards = _Test::getTopTests($start,3,$search);
+					$test_cards = _Test::getTopTests($start,5,$search);
 				}
 				if($type=='pinned tests'){
-					$test_cards = _Test::getMyPinnedTests(Session::get(USER_ID),$start,2,$search);
+					$test_cards = _Test::getMyPinnedTests(Session::get(USER_ID),$start,5,$search);
 				}
 				if($type=='my tests'){
-					$test_cards = _Test::getMyTests(Session::get(USER_ID),$start,2,$search);
+					$test_cards = _Test::getMyTests(Session::get(USER_ID),$start,5,$search);
 				}
 				if($type=='history'){
 					echo 0; return;
