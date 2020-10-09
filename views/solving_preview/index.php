@@ -77,8 +77,8 @@
             <div class="test-bottom-wrapper">
                <div class="test-password">
                   <label for="password">Password: </label>
-                  <input type="password" name="password" class="password" <?php echo empty($test_arr['PASSWORD']) ? 'disabled placeholder="No password"':'placeholder="enter password"';?>>
-                  <input type="hidden" id="test_id" value="<?=$test_arr['TEST_ID']?>">
+                  <input type="password" name="password" class="password" <?php echo $isPublic ? 'disabled placeholder="No password"':'placeholder="enter password"';?>>
+                  <input type="hidden" id="test_id" value="<?=$test_id?>">
                </div>
                <div class="test-btns">
                   <button class="btn" id="back-button">Go Back</button>

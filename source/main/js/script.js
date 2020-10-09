@@ -86,4 +86,18 @@ window.addEventListener('resize', () => {
 	}
 })
 
+function changeLanguage(language){
+   $.ajax({ 
+      url:'welcome/changeLanguage',
+      method:'POST',
+      data:{language : language},
+      success:function(){
+            location.reload();
+       },
+      error: function(){
+            console.log("Can't change language error!!!");
+      }
+  });
+}
+
 

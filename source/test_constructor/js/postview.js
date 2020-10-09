@@ -6,7 +6,7 @@ let photoInput = document.getElementById("photoInput");
 let photo = document.getElementById("photo");
 let upperAlert = document.querySelector(".alert");
 let data = {};
-let deletedFileName;
+let deletedFileName = photo.getAttribute('data-image');
 
 
 photoInput.addEventListener("change", function () {
@@ -17,10 +17,11 @@ photoInput.addEventListener("change", function () {
   } else {
     //sending file
       if(data.image != undefined){
-        deletedFileName = photo.getAttribute('data-image'); 
-        console.log(data.image.name);
+        console.log('new image',data.image.name);
       }
-    data.image = newImage;
+      deletedFileName = photo.getAttribute('data-image'); 
+      console.log('deleted',deletedFileName);
+      data.image = newImage;
  
     // some code
     // setting new image
@@ -102,6 +103,7 @@ $("#form").on('submit',function(event){
     data: formData,
     success: function(result){     
       console.log(result);
+      photo.setAttribute('data-image',result);
     },
     error: function(error){
         console.log(error,"error: constructor postview error!");

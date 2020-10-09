@@ -56,15 +56,27 @@ class Test extends Controller
             }else if($array[1]=='preview'){
                $hasQuestions = _Test::hasQuestion($test_id,'TEST_ID');
                $test_arr = _Test::getPreviewDatas($test_id);
+               $isPublic = _Test::isPublic($test_id);
                // echo "<pre>";
                // print_r($test_arr);die;
-               $this->view->render('solving_preview/index',['test_id'=>$test_id,'test_arr'=>$test_arr,'hasQuestions'=>$hasQuestions]);
+               $this->view->render('solving_preview/index',['test_id'=>$test_id,'test_arr'=>$test_arr,'hasQuestions'=>$hasQuestions,'isPublic'=>$isPublic]);
             }
          }else{
-            if(Result::has($test_id,Session::get(USER_ID))){
-               Result::insertRow($test_id,Session::get(USER_ID));
-            }
-            $this->view->render('test_solving/index',['test_id'=>$test_id]);
+            if(_Test::isPublic($test_id)){
+               if(Result::has($test_id,Session::get(USER_ID))){
+                  Result::insertRow($test_id,Session::get(USER_ID));
+               }
+               $this->view->render('test_solving/index',['test_id'=>$test_id]);
+            }else{
+               if(Session::has(Cryptography::encrypt($test_id))){
+                  if(Result::has($test_id,Session::get(USER_ID))){
+                     Result::insertRow($test_id,Session::get(USER_ID));
+                  }
+                  $this->view->render('test_solving/index',['test_id'=>$test_id]);
+               }else{
+                  $this->error();
+               }
+            }            
          }
       }else{
          $this->error();
@@ -272,11 +284,11 @@ class Test extends Controller
    public function publishTest()
    {
       if (!empty($_POST)) {
-         /* print_r($_POST);
-         print_r($_FILES);
-         die; */
+         // print_r($_POST);
+         // print_r($_FILES);
+         // die;
 
-         $testId = 1;
+         $testId = $_POST['test_id'];
          $name = !empty($_POST['name']) ? $_POST['name'] : 'NONAME';
          $description = !empty($_POST['description']) ? $_POST['description'] : 'No Description';
          $language = !empty($_POST['langs']) ? $_POST['langs'] : 'Turkmen';
@@ -286,32 +298,30 @@ class Test extends Controller
          $startTime = !empty($_POST['start-date']) && !empty($_POST['start-time']) ? $_POST['start-date'] . " " . $_POST['start-time'] : null;
          $deadline = !empty($_POST['end-date']) && !empty($_POST['end-time']) ? $_POST['end-date'] . " " . $_POST['end-time'] : null;
          $isRandom = 0;
-         $deletedFileName = $_POST['deletedFileName'];
          $user_id = Session::get(USER_ID);
+         $fileName = $_POST['deletedFileName'];
+         if(!empty($_FILES['photo']['tmp_name'])){
+            Helper::deleteFiles($fileName);
+            $fileName = Helper::uploadImage($_FILES['photo']);
+         }
 
+         $bool = _Test::updateTest($testId, [
+            'testId' => $testId,
+            'name' => $name,
+            'description' => $description,
+            'language' => $language,
+            'isPublic' => $isPublic,
+            'password' => $password,
+            'fileName' => $fileName,
+            'givenTime' => $givenTime,
+            'startTime' => $startTime,
+            'deadline' => $deadline,
+            'isRandom' => $isRandom,
+            'user_id' => $user_id,
+         ]);
 
-         if ($fileName = Helper::uploadImage($_FILES['photo'])) {
-            $bool = _Test::updateTest($testId, [
-               'testId' => $testId,
-               'name' => $name,
-               'description' => $description,
-               'language' => $language,
-               'isPublic' => $isPublic,
-               'password' => $password,
-               'fileName' => $fileName,
-               'givenTime' => $givenTime,
-               'startTime' => $startTime,
-               'deadline' => $deadline,
-               'isRandom' => $isRandom,
-               'user_id' => $user_id,
-            ]);
-
-            if ($bool) {
-               $deletedFileName != 'undefined' ? Helper::deleteFiles($deletedFileName) : null;
-               echo $deletedFileName;
-            }
-         } else {
-            echo 0;
+         if ($bool) {
+            echo $fileName;
          }
       }
    }
@@ -329,6 +339,19 @@ class Test extends Controller
          _Test::copyTest($array[0], $array[1]);
       } else {
          echo "[domain/test/copy/test_id/user_id] strukturada girizin! test_id-ni user_id uchin kopyalaya";
+      }
+   }
+
+   public function checkTestPassword(){
+      $test_id = $_POST['test_id'];
+      $entered_password = $_POST['password'];
+
+      $password = _Test::get($test_id,['PASSWORD'])['PASSWORD'];
+      if($entered_password == $password){
+         Session::set(Cryptography::encrypt($test_id),'cool');
+         echo 1;
+      }else{
+         echo 0;
       }
    }
 

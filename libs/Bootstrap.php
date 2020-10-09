@@ -2,6 +2,7 @@
 	class Bootstrap {
 		function __construct(){
 		Session::init();
+		Session::set('domain',URL);
 		$this->url = $this->getUrl();
 		if(Session::isNumber(USER_ID) || Cookie::isNumber(USER_ID)){
 			if(!Session::has(USER_ID)){Session::set(USER_ID,Cookie::get(USER_ID));}

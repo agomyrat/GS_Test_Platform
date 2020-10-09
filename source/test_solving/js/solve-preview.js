@@ -3,8 +3,24 @@ $("#back-button").click(function(){
     window.history.back();
 });
 
-$("#start-button").click(function(){
+$("#start-button").click(function(e){
+    e.preventDefault();
     let test_id = $("#test_id").val();
-    sessionStorage.setItem(test_id,'allowed');
-    window.location.href = "./";
+    let password = $(".password").val();
+    $.ajax({
+        url: '../../checkTestPassword',
+        method: 'POST',
+        data: { test_id : test_id ,password : password},
+        success: function (data) {
+            if(data!=0){
+                window.location.href = "./";
+            }else{
+                alert('wrong password');
+            }
+        },
+        error: function () {
+           return false;
+        }
+     });
+    
 });

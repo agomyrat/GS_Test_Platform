@@ -8,6 +8,10 @@
       </div>
    </aside>
    <section>
+      <div div class="nav2">
+         <a href="#" class="leave-test">Leave Test</a>
+         <button class="finish-test-btn">Finish Test</button>
+      </div>
       <header>
          <!-- Question -->
       </header>

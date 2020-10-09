@@ -60,12 +60,12 @@
                </div>
                <div class="right">
                   <div class="test-img-wrapper">
-                     <img src="<?=URL."uploads/".$test_arr['TEST_IMAGE']?>" data-image="<?=$test_arr['GIVEN_TIME']?>" id="photo" />
+                     <img src="<?=URL."uploads/".$test_arr['TEST_IMAGE']?>" data-image="<?=$test_arr['TEST_IMAGE']?>" id="photo" />
                   </div>
                   <div class="row">
                      <div class="input">
                         <label for="time">Given time(min)</label>
-                        <input type="number" name="time" id="time" <?=$test_arr['GIVEN_TIME']?>/>
+                        <input type="number" name="time" id="time" value="<?=$test_arr['GIVEN_TIME']?>"/>
                      </div>
                      <div class="input">
                         <label for="photoInput">Photo of test</label>
@@ -78,17 +78,18 @@
                   <div class="row">
                      <div class="input">
                         <label for="time">Start Date</label>
-                        <input type="date" name="start-date" id="time" value="<?=$test_arr['DATE']?>"/>
+                        <input type="date" name="start-date" id="time" value="<?=$test_arr['START_DATE']?>"/>
                         <label for="time">Start Time</label>
-                        <input type="time" placeholder="in minutes" name="start-time" id="time" value="09:05"/>
+                        <input type="time" placeholder="in minutes" name="start-time" id="time" value="<?=$test_arr['START_TIME']?>"/>
                      </div>
                      <div class="input">
                         <label for="deadline">End Date</label>
-                        <input type="date" name="end-date" id="deadline" />   
+                        <input type="date" name="end-date" id="deadline" value="<?=$test_arr['END_DATE']?>"/>   
                         <label for="deadline">End Time</label>
-                        <input type="time" name="end-time" id="deadline" />
+                        <input type="time" name="end-time" id="deadline" value="<?=$test_arr['END_TIME']?>"/>
+                        <input type="hidden" name="test_id" value="<?=$test_id?>">
                      </div>
-                  </div>
+                  </div>             
                   <div class="row btns">
                      <button class="btn">Check Test</button>
                      <button type="submit" class="btn">Publish Test</button>

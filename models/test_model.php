@@ -129,7 +129,7 @@ class _Test extends Model
     public static function hasQuestion($value, $column)
     {
         $db = new Database;
-        $sql = "SELECT COUNT(*) FROM qu WHERE $column = ?";
+        $sql = "SELECT COUNT(*) FROM questions WHERE $column = ?";
         $query = $db->prepare($sql);
         $query->execute([$value]);
         return (bool) $query->fetch();
@@ -643,14 +643,19 @@ class _Test extends Model
                             tests.IS_PUBLIC,
                             tests.TEST_IMAGE,
                             tests.LANGUAGE,
-                            tests.STARTING_TIME,
-                            tests.ENDING_TIME,
+                            DATE_FORMAT(tests.STARTING_TIME,'%Y-%m-%d') START_DATE,
+                            DATE_FORMAT(tests.ENDING_TIME,'%Y-%m-%d') END_DATE,
+                            DATE_FORMAT(tests.STARTING_TIME,'%H:%i') START_TIME,
+                            DATE_FORMAT(tests.ENDING_TIME,'%H:%i') END_TIME,
+                            DATE_FORMAT(tests.STARTING_TIME,'%H:%i %d/%m/%Y') STARTING_TIME,
+                            DATE_FORMAT(tests.ENDING_TIME,'%H:%i %d/%m/%Y') ENDING_TIME,
                             tests.GIVEN_TIME,
                             tests.SOLVING_COUNT,
                             tests.LIKE_COUNT,
                             tests.DISLIKE_COUNT,
                             tests.QUESTION_COUNT,
-                            tests.CREATE_TIME,
+                            DATE_FORMAT(tests.CREATE_TIME,'%d/%m/%Y') CREATE_TIME,
+                            tests.PASSWORD,
                             users.USER_NAME,
                             users.FIRST_NAME,
                             users.SURNAME,
@@ -672,8 +677,12 @@ class _Test extends Model
             $returnDatas["IS_PUBLIC"] = $fetchedDatas['IS_PUBLIC'];
             $returnDatas["TEST_IMAGE"] = !empty($fetchedDatas['TEST_IMAGE']) ? $fetchedDatas['TEST_IMAGE'] : 'profile.jpg';
             $returnDatas["GIVEN_TIME"] = $fetchedDatas['GIVEN_TIME'];
+            $returnDatas["START_DATE"] = $fetchedDatas['START_DATE'];
+            $returnDatas["END_DATE"] = $fetchedDatas['END_DATE'];
             $returnDatas["STARTING_TIME"] = $fetchedDatas['STARTING_TIME'];
             $returnDatas["ENDING_TIME"] = $fetchedDatas['ENDING_TIME'];
+            $returnDatas["START_TIME"] = $fetchedDatas['START_TIME'];
+            $returnDatas["END_TIME"] = $fetchedDatas['END_TIME'];
             $returnDatas["USER_NAME"] = $fetchedDatas['USER_NAME'];
             $returnDatas['FIRST_NAME'] = $fetchedDatas['FIRST_NAME'];
             $returnDatas['SURNAME'] = $fetchedDatas['SURNAME'];
@@ -682,6 +691,7 @@ class _Test extends Model
             $returnDatas['DISLIKE_COUNT'] = $fetchedDatas['DISLIKE_COUNT'];
             $returnDatas['SOLVING_COUNT'] = $fetchedDatas['SOLVING_COUNT'];
             $returnDatas['CREATE_TIME'] = $fetchedDatas['CREATE_TIME'];
+            //$returnDatas['PASSWORD'] = $fetchedDatas['PASSWORD'];
             $returnDatas['IMAGE'] = !empty($fetchedDatas['IMAGE']) ? $fetchedDatas['IMAGE'] : 'profile.jpg';
 
 

@@ -65,7 +65,7 @@
 
                <ul class="hover-block profile">
                   <li>
-                     <a href="#" class="normal"><i class="far fa-user-circle"></i>&nbsp;Profile</a>
+                     <a href="profile" class="normal"><i class="far fa-user-circle"></i>&nbsp;Profile</a>
                   </li>
                   <li>
                      <a href="#" class="normal"><i class="fas fa-sign-out-alt"></i>&nbsp;Log Out</a>
@@ -75,15 +75,15 @@
             <!-- LANGUAGES -->
             <li class="lists lan" data-row="language">
                <div class="lang">
-                  Turkmen
+               <?= Polyglot::translate('CurrentLanguage') ?>
                   <span>
                      <i class="fas fa-sort-down"></i>
                   </span>
                </div>
                <ul class="hover-block language">
-                  <li>Turkmen</li>
-                  <li>Russian</li>
-                  <li>English</li>
+                  <li class="dr" onclick="changeLanguage('TM')">Türkmençe</li>
+                  <li class="dr" onclick="changeLanguage('RU')">Русский</li>
+                  <li class="dr" onclick="changeLanguage('EN')">English</li>
                </ul>
             </li>
          </ul>

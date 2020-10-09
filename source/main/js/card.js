@@ -85,12 +85,14 @@ fetchCards();
 
 // Create Cards
 function createUi(data) {
+   let domain = sessionStorage.getItem('domain');
+   console.log(domain);
    let html = '';
    const users = data;
    users.forEach(user => {
       html += `
          <div class="card" data-row=${user.TEST_ID} >
-            <a href="#">
+            <a href="test/solving/${user.TEST_ID}/preview">
                <div class="img-block">
                ${user.TEST_IMAGE ?
                    `<img src="uploads/${user.TEST_IMAGE}" alt="">`

@@ -37,13 +37,11 @@
 		public static function uploadImage($file){
 				$tmp_name = $file['tmp_name'];
 				$fileName = self::checkAndGetFileName($file);
-
 				if($fileName === null){return null;}
-
 				$destination = 'uploads/'.$fileName;
-					move_uploaded_file($tmp_name, $destination);
-					return $fileName;
-		}
+				move_uploaded_file($tmp_name, $destination);
+				return $fileName;
+	}
 
 		public static function uploadQuestionFile($files){
 			if(isset($files['qFile'])){

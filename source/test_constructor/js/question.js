@@ -147,8 +147,8 @@ class Question {
                   <h1>Question ${main.questions[x].order} </h1>
                </div>
                <div div class="nav2">
-                  <a href="#" class="leave-test">Leave Test</a>
-                  <button class="finish-test-btn">Finish Test</button>
+                  <a href="../../main" class="leave-test">Leave Test</a>
+                  <a href="${$('#test_id').text()}/postview" class="finish-test-btn">Finish Test</a>
                </div>
             </nav>
             <div class="question-create-block" data-row="${main.questions[x].id}">
