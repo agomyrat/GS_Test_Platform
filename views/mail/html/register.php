@@ -371,7 +371,7 @@
                             alt="Image"
                             border="0"
                             class="center fixedwidth"
-                            src="mail-img.png"
+                            src="https://technosoups.com/wp-content/uploads/2018/01/b59da2a753169c32c4f99636b01a9e6e-1024x961.png"
                             style="
                               text-decoration: none;
                               -ms-interpolation-mode: bicubic;

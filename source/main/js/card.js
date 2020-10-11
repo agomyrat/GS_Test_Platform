@@ -9,6 +9,8 @@ let count = null;
 let list_type;
 let query;
 
+console.log(js_translater('History'))
+
 // Get Random Img
 // function getRandomImg() {
 //    const randomNum = Math.floor(Math.random() * 5);
@@ -19,16 +21,16 @@ let query;
 // Set Loading
 function setLoading(par) {
    const loading = document.querySelector('.loading');
-   if(par){
+   if (par) {
       loading.classList.add('active-loading');
    }
-   else{
+   else {
       loading.classList.remove('active-loading');
    }
 }
 
 // GET Cards from DB
-function fetchCards(type,search) {
+function fetchCards(type, search) {
 
    let type_search = type || searched;
 
@@ -40,8 +42,8 @@ function fetchCards(type,search) {
       changed = true;
       count++
    }
-   else{
-      list_type = 'Recent Added';
+   else {
+      list_type = '';//js_translater('Recent Added');
    }
 
    setLoading(true);
@@ -52,11 +54,11 @@ function fetchCards(type,search) {
       data: {
          amount: cardNumber,
          type: list_type,
-         search : query
+         search: query
       },
       success: function (res) {
          let data = JSON.parse(res)
-         
+
          if (data !== 0) {
             createUi(data);
             cardNumber += data.length;
@@ -64,12 +66,12 @@ function fetchCards(type,search) {
             // animationEffect()
          }
          else if (data === 0 && searched && count === 0) {
-            changeTitle(`No Item Found: ${query}`);
+            changeTitle(`${js_translater('No Item Found')}: ${query}`);
             setLoading(false);
             // animationEffect()
          }
-         else{
-            lastCardFetch =  true;
+         else {
+            lastCardFetch = true;
             setLoading(false);
          }
 
@@ -95,10 +97,10 @@ function createUi(data) {
             <a href="test/solving/${user.TEST_ID}/preview">
                <div class="img-block">
                ${user.TEST_IMAGE ?
-                   `<img src="uploads/${user.TEST_IMAGE}" alt="">`
-                   : 
-                   `<img src="uploads/test.png" alt="">`
-                   }
+            `<img src="uploads/${user.TEST_IMAGE}" alt="">`
+            :
+            `<img src="uploads/test.png" alt="">`
+         }
                </div>
                <article>
                   ${user.TEST_NAME}
@@ -111,7 +113,7 @@ function createUi(data) {
          </div>
          `
    });
-   document.querySelector('.cards').innerHTML += html ;
+   document.querySelector('.cards').innerHTML += html;
 }
 
 
@@ -123,11 +125,11 @@ window.onscroll = () => {
    let y = window.innerHeight + window.scrollY;
    let height = m.clientHeight;
 
-   if(y > height - 3 && y < height ){
-      if(!lastCardFetch){
-         fetchCards(list_type,query);
+   if (y > height - 3 && y < height) {
+      if (!lastCardFetch) {
+         fetchCards(list_type, query);
       }
-      else{
+      else {
          setLoading(false);
       }
    }
@@ -141,7 +143,7 @@ window.onscroll = () => {
 const search_input = document.querySelector('#form-search');
 
 
-search_input.addEventListener('submit', (e) =>{
+search_input.addEventListener('submit', (e) => {
    e.preventDefault();
    const input = document.querySelector('.search-input').value;
 

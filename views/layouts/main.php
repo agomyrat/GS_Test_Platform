@@ -36,7 +36,7 @@
                   </span>
                </div>
                <ul class="hover-block not">
-                     <!-- <li><a href="#" class="accepted"><i class="far fa-check-circle"></i>&nbsp;Your test has been added as global.</a></li>
+                  <!-- <li><a href="#" class="accepted"><i class="far fa-check-circle"></i>&nbsp;Your test has been added as global.</a></li>
                      <li><a href="#" class="declared"><i class="far fa-times-circle"></i>&nbsp;Your test has not been added as global for some reasons.</a>
                      </li>
                      <li><a href="#" class="normal"><i class="far  fa-envelope"></i>&nbsp;Your solved "General Knowledge" test has been checked.</a>
@@ -45,7 +45,7 @@
                      </li>
                      <li><a href="#">&nbsp;See all</a>
                      </li> -->
-               <!-- <div class="loading-not">
+                  <!-- <div class="loading-not">
                   <div>
                      <img src="source/general/img/2.svg" alt="">
                   </div>
@@ -65,17 +65,17 @@
 
                <ul class="hover-block profile">
                   <li>
-                     <a href="profile" class="normal"><i class="far fa-user-circle"></i>&nbsp;Profile</a>
+                     <a href="profile" class="normal"><i class="far fa-user-circle"></i>&nbsp;<?= Polyglot::translate('Profile') ?></a>
                   </li>
                   <li>
-                     <a href="#" class="normal"><i class="fas fa-sign-out-alt"></i>&nbsp;Log Out</a>
+                     <a href="#" class="normal"><i class="fas fa-sign-out-alt"></i>&nbsp;<?= Polyglot::translate('Log Out') ?></a>
                   </li>
                </ul>
             </li>
             <!-- LANGUAGES -->
             <li class="lists lan" data-row="language">
                <div class="lang">
-               <?= Polyglot::translate('CurrentLanguage') ?>
+                  <?= Polyglot::translate('CurrentLanguage') ?>
                   <span>
                      <i class="fas fa-sort-down"></i>
                   </span>

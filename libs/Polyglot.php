@@ -31,4 +31,11 @@ class Polyglot
 			echo "Error : Language couldn't change";
 		}
 	}
+
+	//--- test 
+	public static function forJS()
+	{
+
+		return json_encode(self::$page);
+	}
 }
