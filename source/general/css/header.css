@@ -147,9 +147,9 @@ ul.not::-webkit-scrollbar-thumb{
 ul.profile{
    min-width: 150px;
 }
-ul.language {
+/* ul.language {
    width: 100px;
-}
+} */
 .collapse {
    line-height: 40px;
    font-size: 1.6rem;

@@ -22,6 +22,11 @@ function setLoadingNotification(par) {
    }
 }
 
+function setEmptyNotif() {
+   document.querySelector('.hover-block').innerHTML = 
+         `<p>You don't have a message!</p>`
+}
+
 // GET Cards from DB
 function fetchNotifications() {
    setLoadingNotification(true);
@@ -30,9 +35,16 @@ function fetchNotifications() {
       .then((res) => res.json())
       .then((data) => {
          createUi_N(data);
-         notifNumber = data.length;
-         notifNumber !== 0 ? showDot(true) : showDot(false)
-         console.log(notifNumber)
+         notifNumber = data.length / 20;
+
+         if (notifNumber !== 0) {
+            showDot(true);
+         } 
+         else{
+            showDot(false);
+            setEmptyNotif();
+         }
+         
          setLoadingNotification(false)
       })
       .catch((err) => {
@@ -47,7 +59,7 @@ function createUi_N(data) {
    let html = '';
    const notifications = data;
 
-   for(let i = 0; i < notifications.length / 5 ; i++){
+   for(let i = 0; i < notifications.length / 20 ; i++){
       html += `
          <li id="${notifications[i].id}" >
             <div>
@@ -72,23 +84,20 @@ let deletedNotifications = [];
 function removeNotification() {
    const rmv_btn = document.querySelectorAll('.remove-note');
 
-   console.log(rmv_btn)
 
    for (let i = 0 ; i < rmv_btn.length ; i++) {
-      console.log(i)
-      btn[i].addEventListener('click', (e) => {
+      rmv_btn[i].addEventListener('click', (e) => {
 
          let li = e.target.parentElement.parentElement;
          li.classList.add('cross');
          li.children[1].remove();
 
-         if (i === notifNumber - 1) {
+         if (deletedNotifications.length + 1 === notifNumber) {
             showDot(false);
          }
 
          // DELETED NOTIFYS
          deletedNotifications.push(li.id)
-         console.log(deletedNotifications)
       })
    }
 }

@@ -1,6 +1,5 @@
 // GET CARDS
 
-// const myImg = ['1.jpg','2.jpg','3.jpg','4.jpg','5.jpg'];
 let cardNumber = 0;
 let lastCardFetch = false;
 let changed = false;
@@ -9,12 +8,6 @@ let count = null;
 let list_type;
 let query;
 
-// Get Random Img
-// function getRandomImg() {
-//    const randomNum = Math.floor(Math.random() * 5);
-//    const randomImg = myImg[randomNum];
-//    return randomImg;
-// }
 
 // Set Loading
 function setLoading(par) {
@@ -61,12 +54,10 @@ function fetchCards(type,search) {
             createUi(data);
             cardNumber += data.length;
             setLoading(false);
-            // animationEffect()
          }
-         else if (data === 0 && searched && count === 0) {
+         else if (data === 0 && searched) {
             changeTitle(`No Item Found: ${query}`);
             setLoading(false);
-            // animationEffect()
          }
          else{
             lastCardFetch =  true;

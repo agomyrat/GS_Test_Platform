@@ -103,12 +103,13 @@ ul.side-bar-list li a {
    padding-left: 1.8rem;
 }
 a.create-btn{
-   color: #FF580D;
+   color: white;
+   background: #FF580D;
    text-decoration: none;
    display: inline-block;
    padding: 0.6rem 1.8rem;
    border-radius: 5px;
-   border: 2px solid #FF580D;
+   /* border: 2px solid #FF580D; */
    font-size: 1.2rem;
    transition: opacity .5s;
 

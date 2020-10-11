@@ -27,6 +27,14 @@ nav{
 .nav2 a{
    color: #FF570C;
 }
+a.finish-test-btn{
+   text-decoration: none;
+   padding: 0.5rem 1rem;
+   color: white;
+   background: #FF570C;
+   border-radius: 5px;
+   margin-left: 1rem;
+}
 .nav2 button {
    color: #ffffff;
    background-color: #FF570C;
