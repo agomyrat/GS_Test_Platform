@@ -131,7 +131,6 @@
 .settings ul li {
    width: 100%;
    text-align: center;
-   padding: 0.8rem 0;
 }
 .settings ul li:hover{
    background-color: rgb(243, 243, 243);
@@ -140,4 +139,22 @@
    display: block;
    color: black;
    text-decoration: none;
+   padding: 0.8rem 0;
+}
+
+
+.no-item-block {
+   width: 100%;
+   height: 50vh;
+   display: none;
+   justify-content: center;
+   align-items: center;
+}
+.no-item-block h3{
+   font-size: 1.5rem;
+   color: grey;
+}
+.copy-link-test{
+   position: fixed;
+   top: -100%;
 }

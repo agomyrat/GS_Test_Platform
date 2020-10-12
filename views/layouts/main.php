@@ -8,7 +8,7 @@
    <?php
    if (isset($asset_array['css'])) {
       foreach ($asset_array['css'] as $css) {
-         echo "<link rel='stylesheet' href='" . URL . $css . "'>";
+         echo "<link rel='stylesheet' href='". $css . "'>";
       }
    }
    ?>
@@ -16,12 +16,12 @@
 </head>
 
 <body>
-   <!-- NAVABAR -->
+   <!-- NAVBAR -->
 
    <header class="nav-header">
       <nav>
          <div class="logo">
-            <a href="">
+            <a href="<?=URL?>">
                <img src="<?= URL ?>source/general/img/LogoText-Orange.svg" alt="testspace">
             </a>
          </div>
@@ -56,7 +56,7 @@
             <li class="lists prof" data-row="profile">
                <div class="prf">
                   <div class="avatar">
-                     <img src="<?= URL ?>/uploads/profile.png" alt="">
+                     <img src="<?= URL."uploads/".$this->user->data['IMAGE'] ?>" alt="">
                   </div>
                   <span>
                      <i class="fas fa-sort-down"></i>
@@ -65,10 +65,10 @@
 
                <ul class="hover-block profile">
                   <li>
-                     <a href="profile" class="normal"><i class="far fa-user-circle"></i>&nbsp;<?= Polyglot::translate('Profile') ?></a>
+                     <a href="<?= URL."profile"?>" class="normal"><i class="far fa-user-circle"></i>&nbsp;<?= Polyglot::translate('Profile') ?></a>
                   </li>
                   <li>
-                     <a href="#" class="normal"><i class="fas fa-sign-out-alt"></i>&nbsp;<?= Polyglot::translate('Log Out') ?></a>
+                     <a href="<?= URL."welcome"?>" class="normal"><i class="fas fa-sign-out-alt"></i>&nbsp;<?= Polyglot::translate('Log Out') ?></a>
                   </li>
                </ul>
             </li>
@@ -104,6 +104,9 @@
       }
    }
    ?>
+   <script>
+      let url_from_php = '<?=URL;?>'; 
+   </script>
 
 </body>
 

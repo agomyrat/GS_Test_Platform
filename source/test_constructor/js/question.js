@@ -147,7 +147,7 @@ class Question {
                   <h1>Question ${main.questions[x].order} </h1>
                </div>
                <div div class="nav2">
-                  <a href="../../main" class="leave-test">Leave Test</a>
+                  <a href="#" class="leave-test">Leave Test</a>
                   <a href="${$('#test_id').text()}/postview" class="finish-test-btn">Finish Test</a>
                </div>
             </nav>
@@ -233,7 +233,6 @@ class Question {
 
             if (main.questions[x].id) {
                this.deletedQuestionFile.push(thisQuestion.path.slice(14, main.questions[x].path.length));
-               console.log()
             }
             thisQuestion.path = "",
                thisQuestion.pathValue = "",
@@ -427,7 +426,7 @@ class Question {
                   displayError(questionId,': this question has deleted !')
                },
                error: function (data) {
-                  displayError("couldn't get questions")
+                  displayError('couldn;t get questions')
                }
             })
          })
@@ -550,7 +549,6 @@ class Question {
             if (main.questions[x].path ){
                console.log(main.questions[x].path.slice(14, main.questions[x].path.length))
                main.questions[x].path = main.questions[x].path.slice(14, main.questions[x].path.length);
-               console.log(main.questions[x].path.slice(14, main.questions[x].path.length))
             }
 
             if (main.questions[x].type == "single-choice" || main.questions[x].type == "multi-choice"){
@@ -573,7 +571,7 @@ class Question {
             let p = [];
             let choiceType = main.questions[x].type == 'single-choice' || main.questions[x].type == 'multi-choice'
             if (choiceType) {
-               for (let f = 0; f < main.questions[x].choices.lengcth; f++) {
+               for (let f = 0; f < main.questions[x].choices.length; f++) {
                   if (main.questions[x].choices[f].pathValue) {
 
                      formData.append("file-" + f, main.questions[x].choices[f].pathValue, JSON.stringify({
@@ -674,8 +672,6 @@ class Question {
             addBtn.setAttribute("disabled", "");
             addBtn.style.opacity = '0.5';
 
-
-            console.log(formData)
             // FETCH QUESTION
             async function fetchQuestions() {
                // Question y Databasedan alyancam garashyan we menin objectime dakyan
@@ -688,9 +684,8 @@ class Question {
                   contentType: false,
                   data: formData,
                   success: function (data) {
-                     let newQuestion = JSON.parse(data)
-                     console.log(newQuestion)
 
+                     let newQuestion = JSON.parse(data)
 
                      if (newQuestion.type == 'single-choice' || newQuestion.type == 'multi-choice') {
                         newQuestion.choices.forEach((choice) => {

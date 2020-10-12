@@ -1,14 +1,3 @@
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-}
-
-body {
-  /* overflow: hidden; */
-  margin: 0;
-  padding: 0;
-}
 
 input,
 textarea,
@@ -44,11 +33,11 @@ html {
   grid-template-rows: 1fr;
   grid-template-columns: 40vw 50vw;
 }
-
+/* 
 nav {
   height: 10vh;
   background-color: #fff;
-}
+} */
 
 .left {
   display: flex;
@@ -208,6 +197,7 @@ option {
   font-size: 22px !important;
   float: right;
   color: #ff570c;
+  margin-bottom: 3px;
 }
 
 .fa-globe.inactive {

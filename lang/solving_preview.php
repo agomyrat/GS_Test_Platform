@@ -3,89 +3,77 @@ return [
 	'Language' => [
 		'EN' => 'Language',
 		'TM' => 'Dili',
-		'RU' => ''
+		'RU' => 'Язык'
 	],
 	'Test information' => [
 		'EN' => 'Test information',
 		'TM' => 'Test maglumatlary',
-		'RU' => ''
+		'RU' => 'Информация о тесте'
 	],
 	'Solved by' => [
 		'EN' => 'Solved by',
-		'TM' => '',
-		'RU' => ''
+		'TM' => 'Çözüldi',
+		'RU' => 'Решен'
 	],
 	'Liked' => [
 		'EN' => 'Liked',
-		'TM' => '',
-		'RU' => ''
+		'TM' => 'Halandy',
+		'RU' => 'Понравилось'
 	],
 	'people' => [
 		'EN' => 'people',
-		'TM' => '',
-		'RU' => ''
+		'TM' => 'adam',
+		'RU' => 'человек'
 	],
 	'Created date' => [
 		'EN' => 'Created date',
-		'TM' => '',
-		'RU' => ''
+		'TM' => 'Döredilen senesi',
+		'RU' => 'Дата создания'
 	],
 	'Description' => [
 		'EN' => 'Description',
-		'TM' => '',
-		'RU' => ''
+		'TM' => 'Düşündiriş',
+		'RU' => 'Описание'
 	],
 	'Given time' => [
 		'EN' => 'Given time',
-		'TM' => '',
-		'RU' => ''
+		'TM' => 'Berlen wagt',
+		'RU' => 'Отведенное время'
 	],
 	'Solve Date' => [
 		'EN' => 'Solve Date',
-		'TM' => '',
-		'RU' => ''
+		'TM' => 'Çözmeli senesi',
+		'RU' => 'Дата решения'
 	],
 	'Password' => [
 		'EN' => 'Password',
-		'TM' => '',
-		'RU' => ''
+		'TM' => 'Açar söz',
+		'RU' => 'Пароль'
 	],
 	'enter password' => [
 		'EN' => 'enter password',
-		'TM' => '',
-		'RU' => ''
+		'TM' => 'açar sözüni giriziň',
+		'RU' => 'введите пароль'
 	],
 	'No password' => [
 		'EN' => 'No password',
-		'TM' => '',
-		'RU' => ''
+		'TM' => 'Açar sözi ýok',
+		'RU' => 'Без пароля'
 	],
 	'Go Back' => [
 		'EN' => 'Go Back',
-		'TM' => '',
-		'RU' => ''
+		'TM' => 'Yza çyk',
+		'RU' => 'Назад'
 	],
 	'Start' => [
 		'EN' => 'Start',
-		'TM' => '',
-		'RU' => ''
+		'TM' => 'Başla',
+		'RU' => 'Начало'
 	],
 	'No questions' => [
 		'EN' => 'No questions',
-		'TM' => '',
-		'RU' => ''
+		'TM' => 'No questions',
+		'RU' => 'No questions'
 	],
-	'Solve Date' => [
-		'EN' => 'Solve Date',
-		'TM' => '',
-		'RU' => ''
-	], 'Solve Date' => [
-		'EN' => 'Solve Date',
-		'TM' => '',
-		'RU' => ''
-	], 'Solve Date' => [
-		'EN' => 'Solve Date',
-		'TM' => '',
-		'RU' => ''
-	],
+
 ];

@@ -74,13 +74,14 @@
 				if(isset($files['file-'.$counter])){
 					$tmp_name = $files['file-'.$counter]['tmp_name'];
 					$fileName = self::checkAndGetFileName($files['file-'.$counter]);
+
 					$destination = 'uploads/'.$fileName;
 					move_uploaded_file($tmp_name, $destination);
 					$choiceFileNames[$counter] = $fileName;	
 				}
 				$counter++;
 			}
-	
+
 			return $choiceFileNames;
 		}
 

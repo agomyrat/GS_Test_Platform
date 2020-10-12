@@ -1,13 +1,16 @@
 <?php 
      return[
         'css'=>[
-            'source/general/css/header.css',
-            'source/my_tests/css/style.css',
-            'source/general/icons/icons/all.css'
+            URL.'source/general/css/header.css',
+            URL.'source/my_tests/css/style.css',
+            URL.'source/general/icons/icons/all.css'
         ],
         'js'=>[
-            "source/general/js/header.js",
-            "source/my_tests/js/script.js"
+            URL."source/general/js/jquery/jquery-3.4.1.min.js",
+            URL."source/general/js/header.js",
+            URL."source/general/js/notification.js",
+            URL."source/my_tests/js/card.js",
+            URL."source/my_tests/js/script.js"
         ]
     ];
 ?>

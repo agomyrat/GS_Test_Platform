@@ -1,6 +1,7 @@
 <?php 
      return[
         'css'=>[
+            '../../source/test_constructor/css/animation.css',
             '../../source/test_constructor/css/__questions.css',
             '../../source/test_constructor/css/__question_types.css',
             '../../source/general/icons/icons/all.min.css'

@@ -11,6 +11,10 @@ class Welcome extends Controller
 
 	public function index()
 	{
+		if(Session::has(USER_ID)){
+			Session::destroy(USER_ID);
+			Cookie::destroy(USER_ID);
+		}
 		Polyglot::setPage('welcome');
 		$this->view->render('welcome/index');
 	}

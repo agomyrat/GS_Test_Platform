@@ -10,7 +10,7 @@
    <section>
       <div div class="nav2">
          <a href="#" class="leave-test">Leave Test</a>
-         <button class="finish-test-btn">Finish Test</button>
+         <a href="#" class="finish-test-btn" >Test</a>
       </div>
       <header>
          <!-- Question -->

@@ -38,76 +38,86 @@ class Test extends Controller
 
    public function solving($array = null)
    {
-      if($array[0]=='getSolvingQuestions'){
+      if ($array[0] == 'getSolvingQuestions') {
          $this->getSolvingQuestions();
          return;
       }
 
-      if($array[0]=='confirmAnswer'){
+      if ($array[0] == 'confirmAnswer') {
          $this->confirmAnswer();
          return;
       }
-      if(!empty($array[0])){
+      if (!empty($array[0])) {
          $test_id = $array[0];
          //$this->view->render('test_solving/index',['test_id'=>$test_id]);return;
-         if(isset($array[1])){
-            if($array[1]=='postview'){
-               $this->view->render('solving_postview/index',['test_id'=>$test_id,'test_arr'=>$test_arr]);
-            }else if($array[1]=='preview'){
-               $hasQuestions = _Test::hasQuestion($test_id,'TEST_ID');
+         if (isset($array[1])) {
+            if ($array[1] == 'postview') {
+               $this->view->render('solving_postview/index', ['test_id' => $test_id, 'test_arr' => $test_arr]);
+            } else if ($array[1] == 'preview') {
+               $hasQuestions = _Test::hasQuestion($test_id, 'TEST_ID');
                $test_arr = _Test::getPreviewDatas($test_id);
                $isPublic = _Test::isPublic($test_id);
                // echo "<pre>";
                // print_r($test_arr);die;
-               $this->view->render('solving_preview/index',['test_id'=>$test_id,'test_arr'=>$test_arr,'hasQuestions'=>$hasQuestions,'isPublic'=>$isPublic]);
+               $this->view->render('solving_preview/index', ['test_id' => $test_id, 'test_arr' => $test_arr, 'hasQuestions' => $hasQuestions, 'isPublic' => $isPublic]);
             }
-         }else{
-            if(_Test::isPublic($test_id)){
-               if(Result::has($test_id,Session::get(USER_ID))){
-                  Result::insertRow($test_id,Session::get(USER_ID));
+         } else {
+            if (_Test::isPublic($test_id)) {
+               if (Result::has($test_id, Session::get(USER_ID))) {
+                  Result::insertRow($test_id, Session::get(USER_ID));
                }
-               $this->view->render('test_solving/index',['test_id'=>$test_id]);
-            }else{
-               if(Session::has(Cryptography::encrypt($test_id))){
-                  if(Result::has($test_id,Session::get(USER_ID))){
-                     Result::insertRow($test_id,Session::get(USER_ID));
+               $this->view->render('test_solving/index', ['test_id' => $test_id]);
+            } else {
+               if (Session::has(Cryptography::encrypt($test_id))) {
+                  if (Result::has($test_id, Session::get(USER_ID))) {
+                     Result::insertRow($test_id, Session::get(USER_ID));
                   }
-                  $this->view->render('test_solving/index',['test_id'=>$test_id]);
-               }else{
-                  $this->error();
+                  $this->view->render('test_solving/index', ['test_id' => $test_id]);
+               } else {
+                  $hasQuestions = _Test::hasQuestion($test_id, 'TEST_ID');
+                  $test_arr = _Test::getPreviewDatas($test_id);
+                  $isPublic = _Test::isPublic($test_id);
+                  // echo "<pre>";
+                  // print_r($test_arr);die;
+                  $this->view->render('solving_preview/index', ['test_id' => $test_id, 'test_arr' => $test_arr, 'hasQuestions' => $hasQuestions, 'isPublic' => $isPublic]);
                }
-            }            
+            }
          }
-      }else{
+      } else {
          $this->error();
       }
-
    }
 
-   public function getSolvingQuestions(){
-      if(isset($_POST['testId'])){
+   public function results(){
+      $this->view->layout = "main";
+      Polyglot::setPage("navbar");
+      $this->view->render('result/index', ['test_id' => $test_id]);
+   }
+
+   public function getSolvingQuestions()
+   {
+      if (isset($_POST['testId'])) {
          $testId = (int) $_POST['testId'];
          $responseArray = _Test::getQuestionsForSolving($testId);
          $questionsArray = $responseArray['questions'];
          $answersArray = $responseArray['answers'];
-         $array = _Test::get($testId,['GIVEN_TIME']);
-         $time = (int) $array['GIVEN_TIME'];
+         //$array = _Test::get($testId, ['GIVEN_TIME']);
+         $time = $responseArray['remained_minutes'];
          $orderQuestion = count($questionsArray);
 
-         if($orderQuestion > 0){
+         if ($orderQuestion > 0) {
             $response_array = [
-               'questions'=>$questionsArray,
-               'answers'=>$answersArray,
-               'orderQuestion'=>$orderQuestion,
-               'testId'=>$testId,
-               'time'=>$time
+               'questions' => $questionsArray,
+               'answers' => $answersArray,
+               'orderQuestion' => $orderQuestion,
+               'testId' => $testId,
+               'time' => $time
             ];
             echo json_encode($response_array);
-         }else{
+         } else {
             echo 0;
          }
-
-      }else{
+      } else {
          echo "Couldn't get testId";
       }
    }
@@ -300,7 +310,7 @@ class Test extends Controller
          $isRandom = 0;
          $user_id = Session::get(USER_ID);
          $fileName = $_POST['deletedFileName'];
-         if(!empty($_FILES['photo']['tmp_name'])){
+         if (!empty($_FILES['photo']['tmp_name'])) {
             Helper::deleteFiles($fileName);
             $fileName = Helper::uploadImage($_FILES['photo']);
          }
@@ -334,23 +344,26 @@ class Test extends Controller
 
    public function copy($array = null)
    {
-      if (!empty($array) && (!empty($array[0]) || !empty($array[1]))) {
+/*       if (!empty($array) && (!empty($array[0]) || !empty($array[1]))) {
          //security tarapda duzetmeli yerleri bar! dine barlamak uchin doredilen!
-         _Test::copyTest($array[0], $array[1]);
+         _Test::copyTest($array[0], Session::get(USER_ID));
       } else {
          echo "[domain/test/copy/test_id/user_id] strukturada girizin! test_id-ni user_id uchin kopyalaya";
-      }
+      } */
+      $test_id = $_POST['test_id'];
+      _Test::copyTest($test_id, Session::get(USER_ID));
    }
 
-   public function checkTestPassword(){
+   public function checkTestPassword()
+   {
       $test_id = $_POST['test_id'];
       $entered_password = $_POST['password'];
 
-      $password = _Test::get($test_id,['PASSWORD'])['PASSWORD'];
-      if($entered_password == $password){
-         Session::set(Cryptography::encrypt($test_id),'cool');
+      $password = _Test::get($test_id, ['PASSWORD'])['PASSWORD'];
+      if ($entered_password == $password) {
+         Session::set(Cryptography::encrypt($test_id), 'cool');
          echo 1;
-      }else{
+      } else {
          echo 0;
       }
    }
@@ -360,8 +373,9 @@ class Test extends Controller
    {
       //print_r(Others::get());
       //echo Helper::copyUploadedImage('532175f5ce18f559b0.png');
-      $test_cards = _Test::getMyHistory(4, 0, 10);
+      // $test_cards = _Test::getMyHistory(4, 0, 10);
       echo "<pre>";
-      print_r($test_cards);
+      // print_r(Mail::setFeedback(4, "salam men erkin"));
+      print_r(_Test::getRecentTests(0, 12, ''));
    }
 }

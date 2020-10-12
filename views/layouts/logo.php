@@ -8,7 +8,7 @@
    <?php
    if(isset($asset_array['css'])){
         foreach($asset_array['css'] as $css){
-            echo "<link rel='stylesheet' href='".URL.$css."'>";
+            echo "<link rel='stylesheet' href='".$css."'>";
         }
     }
    ?>
@@ -18,7 +18,7 @@
    <!-- Navbar -->
    <nav>
       <div class="logo">
-         <a href="welcome">
+         <a href="<?=URL?>">
             <img class="nav-image" src="source/general/img/LogoText-Orange.svg">
          </a>
       </div>
@@ -31,7 +31,7 @@
     <?php
     if(isset($asset_array['js'])){
             foreach($asset_array['js'] as $js){
-                echo "<script src='".URL.$js."'></script>";
+                echo "<script src='".$js."'></script>";
             }
         }
    ?>

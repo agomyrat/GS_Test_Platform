@@ -19,7 +19,15 @@ class Polyglot
 	{
 		if (file_exists("lang/" . $page . ".php")) {
 			self::$page = require "lang/" . $page . ".php";
-		} else {
+		}
+	}
+
+	public static function extendPage($page)
+	{
+		if (empty(self::$page)) {
+			self::setPage($page);
+		}else if (file_exists("lang/" . $page . ".php")){
+			self::$page = array_merge(self::$page,require "lang/" . $page . ".php");
 		}
 	}
 

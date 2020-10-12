@@ -320,20 +320,22 @@ class User extends Model
         $birthDate = $array['user']['birthDate']; //duzetmeli (int-int-int) formada gechirmeli
         $email = $array['user']['email'];
         $password = md5($array['user']['password']);
+        $image = 'profile.png';
 
         try {
-            $sql = "INSERT INTO `test_platform`.`users`(`FIRST_NAME`, `SURNAME`, `E_MAIL`, `USER_NAME`, `PHONE_NUMBER`, `COUNTRY`,`ACTIVE`,`PASSWORD`,`VERIFY_CODE`)"
-                . " VALUES (:firstname, :lastname, :email, :username, :phoneNumber, :country, 0, :password, UUID());";
+            $sql = "INSERT INTO `test_platform`.`users`(`FIRST_NAME`, `SURNAME`, `E_MAIL`, `USER_NAME`, `PHONE_NUMBER`, `COUNTRY`,`ACTIVE`,`PASSWORD`,`VERIFY_CODE`,`BIRTH_DATE`,`IMAGE`)"
+                . " VALUES (:firstname, :lastname, :email, :username, :phoneNumber, :country, 0, :password, UUID(),:birthDate, :image);";
             $query = $db->prepare($sql);
             $query->execute([
                 ':firstname' => $firstname,
                 ':lastname' => $lastname,
                 ':email' => $email,
                 ':username' => $username,
-                //':birthDate'=>$birthDate,
+                ':birthDate'=>$birthDate,
                 ':phoneNumber' => $phoneNumber,
                 ':country' => $country,
-                ':password' => $password
+                ':password' => $password,
+                ':image' => $image
             ]);
 
             return $db->lastInsertId();

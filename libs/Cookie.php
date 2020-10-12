@@ -22,8 +22,15 @@
 			return isset($_COOKIE[$key]) ? is_numeric(Cookie::get($key)) : false;
 		} 
 
-		public static function delete($key){
-			setcookie($key, "", time() - 3600);
+		public static function destroy($key= null){
+			if(!empty($key)){
+				setcookie($key, "", time() - 3600);
+				return;
+			}
+			//destroy all cookie
+			foreach($_COOKIE as $cookie){
+				setcookie($cookie, "", time() - 3600);
+			}
 		}
 
 	}

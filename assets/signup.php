@@ -1,17 +1,17 @@
 <?php 
      return[
         'css'=>[
-            "source/signup/build/css/demo.css",
-            "source/signup/build/css/intlTelInput.css",
-            "source/signup/css/style.css",
-            "source/signup/icon/icons/all.css"
+            URL."source/signup/build/css/demo.css",
+            URL."source/signup/build/css/intlTelInput.css",
+            URL."source/signup/css/style.css",
+            URL."source/signup/icon/icons/all.css"
         ],
         'js'=>[
-            "source/general/js/jquery/jquery-3.4.1.min.js",
-            "source/general/js/validator/validator.min.js",
-            "source/signup/build/js/intlTelInput.js",
-            "source/signup/build/js/utils.js",
-            "source/signup/js/script.js"
+            URL."source/general/js/jquery/jquery-3.4.1.min.js",
+            URL."source/general/js/validator/validator.min.js",
+            URL."source/signup/build/js/intlTelInput.js",
+            URL."source/signup/build/js/utils.js",
+            URL."source/signup/js/script.js"
         ]
     ];
 ?>

@@ -4,82 +4,83 @@ return [
 
 	'Recent added' => [
 		'EN' => 'Recent added',
-		'TM' => 'Soňylar',
-		'RU' => ''
+		'TM' => 'Soňky goşulanlar',
+		'RU' => 'Hедавниe'
 	],
 	'Top tests' => [
 		'EN' => 'Top tests',
-		'TM' => 'Iň gowy testlar',
-		'RU' => ''
+		'TM' => 'Iň gowy testler',
+		'RU' => 'Лучшие тесты'
 	],
 	'Popular tests' => [
 		'EN' => 'Popular tests',
-		'TM' => 'Meşhur testlar',
-		'RU' => ''
+		'TM' => 'Meşhur testler',
+		'RU' => 'Популярные тесты'
 	],
 	'Pinned tests' => [
 		'EN' => 'Pinned tests',
-		'TM' => 'Bellenilenler',
-		'RU' => ''
+		'TM' => 'Bellän testlerim',
+		'RU' => 'Избранные тесты'
 	],
 	'History' => [
 		'EN' => 'History',
-		'TM' => 'Çözenlerim',
-		'RU' => ''
+		'TM' => 'Çözen testlerim',
+		'RU' => 'Решенные тесты'
 	],
 	'My tests' => [
 		'EN' => 'My tests',
-		'TM' => 'Meniň testlarym',
-		'RU' => ''
+		'TM' => 'Meniň testlerim',
+		'RU' => 'Мои тесты'
 	],
 	'Create Test' => [
 		'EN' => 'Create Test',
 		'TM' => 'Test Döret',
-		'RU' => ''
+		'RU' => 'Создать тест'
 	],
 	'Feedback' => [
 		'EN' => 'Feedback',
-		'TM' => '',
-		'RU' => ''
+		'TM' => 'Baha ber',
+		'RU' => 'Отзывы'
 	],
 	'Send Feedback' => [
 		'EN' => 'Send Feedback',
-		'TM' => '',
-		'RU' => ''
+		'TM' => 'Beren bahany ugrat',
+		'RU' => 'Отправить отзыв'
 	],
 	'Search with keyword' => [
 		'EN' => 'Search with keyword',
-		'TM' => '',
-		'RU' => ''
-	], 'CurrentLanguage' => [
-		'EN' => 'English',
-		'TM' => 'Türkmençe',
-		'RU' => 'Русский'
+		'TM' => 'Gözleg',
+		'RU' => 'Поиск по тесту'
 	],
 	'Profile' => [
 		'EN' => 'Profile',
-		'TM' => 'dd',
-		'RU' => 'dd'
+		'TM' => 'Şahsy hasabym',
+		'RU' => 'Профиль'
 	],
 	'All Rights' => [
 		'EN' => 'All Rights Reserved',
-		'TM' => 'All Rights Reserved',
-		'RU' => 'All Rights Reserved'
+		'TM' => 'Ähli hukuklar goragly',
+		'RU' => 'Все права защищены'
 	],
 	'Log Out' => [
 		'EN' => 'Log Out',
-		'TM' => 'ddd',
-		'RU' => 'ddd'
+		'TM' => 'Çykyş',
+		'RU' => 'Выход'
 	],
 	'No Item Found' => [
 		'EN' => 'No Item Found',
-		'TM' => 'Tapylmady',
-		'RU' => ''
+		'TM' => 'Hiç zat tapylmady',
+		'RU' => 'Ничего не найдено'
 	],
 	'Search Result' => [
 		'EN' => 'Search Result',
-		'TM' => '',
-		'RU' => ''
+		'TM' => 'Gözleg netijesi',
+		'RU' => 'Результат поиска'
+	],
+	'Submit' => [
+		'EN' => 'Sumbit',
+		'TM' => 'Iber',
+		'RU' => 'Отправить'
 	],
 
 ];

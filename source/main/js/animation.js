@@ -18,7 +18,7 @@ const title_name = document.querySelector('.title-name');
 
 // First Switched tab
 sidebar_li[0].classList.add('active-tab');
-changeTitle(sidebar_li[0].dataset.type);
+changeTitle(js_translater(sidebar_li[0].dataset.type));
 
 // 
 for (let i = 0 ; i < sidebar_li.length ; i++ ) {
@@ -30,7 +30,7 @@ for (let i = 0 ; i < sidebar_li.length ; i++ ) {
       refactorList();
 
       li.classList.add('active-tab');
-      changeTitle(list_type);
+      changeTitle(js_translater(list_type));
       document.querySelector('.search-input').value = '';
       count = 0;
       fetchCards(list_type)

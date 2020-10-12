@@ -816,6 +816,262 @@ class _Test extends Model
     }
 
     /**
+     * Ahli Waiting testlaryny getirp beryar (archive dan galanlaryny)
+     * 
+     * @param int $user_id User_id sy
+     * @param int $start nacenji testdan bashlajagy. Default 0
+     * @param int $limit naceden aljagy. Default = 10 
+     * @param string $search_text search ucin goyuldy default ''
+     * @param string $language dile gora search ucin goyuldy default ahli diller. Ugratmak cuin TM, EN, RU. ! EGERDE BIR DIL GOYSAN HER SCROLLDA UGRATMANY UNUTMA
+     * @return array 
+     * @author Agamyrat C.
+     * 
+     */
+    public static function getMyWaitingTests($user_id, $start = 0, $limit = 10, $search_text = '', $language = '')
+    {
+        try {
+            $data_all = [];
+            $db = new Database;
+            if ($language != '') {
+                $language = ' AND tests.LANGUAGE = "' . $language . '" ';
+            }
+
+            $sql = 'SELECT 
+                    users.USER_ID, 
+                    CONCAT("@",users.USER_NAME) USER_NAME, 
+                    tests.TEST_ID, 
+                    tests.TEST_NAME, 
+                    tests.DESCRIPTION, 
+                    LIKE_COUNT, 
+                    DISLIKE_COUNT, 
+                    SOLVING_COUNT, 
+                    DATE_FORMAT(tests.CREATE_TIME,\'%d.%m.%Y\') CREATED_DATE
+            FROM tests
+            LEFT JOIN users ON users.USER_ID = tests.CREATED_BY
+            WHERE tests.REMOVED = 0 AND IS_PUBLIC = 1 AND IS_ALLOWED = 0 AND tests.CREATED_BY = :user_id AND (tests.DESCRIPTION LIKE :search_text or tests.TEST_NAME LIKE :search_text or tests.KEYWORDS LIKE :search_text) 
+            ' . $language . '
+            ORDER BY tests.LAST_UPDATE_TIME DESC
+            LIMIT ' . (int)$start . ', ' . (int)$limit;
+            $query = $db->prepare($sql);
+            $query->execute(
+                [
+                    ':search_text' => "%$search_text%",
+                    ':user_id' => $user_id
+                ]
+            );
+
+            while ($row = $query->fetch(PDO::FETCH_OBJ)) {
+                $data = null;
+                $data['USER_ID'] = $row->USER_ID;
+                $data['USER_NAME'] = $row->USER_NAME;
+                $data['TEST_ID'] = $row->TEST_ID;
+                $data['TEST_NAME'] = $row->TEST_NAME;
+                $data['LIKE_COUNT'] = $row->LIKE_COUNT;
+                $data['SOLVING_COUNT'] = $row->SOLVING_COUNT;
+                $data['CREATED_DATE'] = $row->CREATED_DATE;
+                $data_all[] = $data;
+            }
+            return $data_all;
+            // return $query->debugDumpParams();
+        } catch (Exception $e) {
+            echo $e;
+            return false;
+        }
+    }
+
+/**
+     * Ahli Archive testlaryny getirp beryar (archive dan galanlaryny)
+     * 
+     * @param int $user_id User_id sy
+     * @param int $start nacenji testdan bashlajagy. Default 0
+     * @param int $limit naceden aljagy. Default = 10 
+     * @param string $search_text search ucin goyuldy default ''
+     * @param string $language dile gora search ucin goyuldy default ahli diller. Ugratmak cuin TM, EN, RU. ! EGERDE BIR DIL GOYSAN HER SCROLLDA UGRATMANY UNUTMA
+     * @return array 
+     * @author Agamyrat C.
+     * 
+     */
+    public static function getMyArchiveTests($user_id, $start = 0, $limit = 10, $search_text = '', $language = '')
+    {
+        try {
+            $data_all = [];
+            $db = new Database;
+            if ($language != '') {
+                $language = ' AND tests.LANGUAGE = "' . $language . '" ';
+            }
+
+            $sql = 'SELECT 
+                    users.USER_ID, 
+                    CONCAT("@",users.USER_NAME) USER_NAME, 
+                    tests.TEST_ID, 
+                    tests.TEST_NAME, 
+                    tests.DESCRIPTION, 
+                    LIKE_COUNT, 
+                    DISLIKE_COUNT, 
+                    SOLVING_COUNT, 
+                    DATE_FORMAT(tests.CREATE_TIME,\'%d.%m.%Y\') CREATED_DATE
+            FROM tests
+            LEFT JOIN users ON users.USER_ID = tests.CREATED_BY
+            WHERE tests.REMOVED = 1 AND tests.CREATED_BY = :user_id AND (tests.DESCRIPTION LIKE :search_text or tests.TEST_NAME LIKE :search_text or tests.KEYWORDS LIKE :search_text) 
+            ' . $language . '
+            ORDER BY tests.LAST_UPDATE_TIME DESC
+            LIMIT ' . (int)$start . ', ' . (int)$limit;
+            $query = $db->prepare($sql);
+            $query->execute(
+                [
+                    ':search_text' => "%$search_text%",
+                    ':user_id' => $user_id
+                ]
+            );
+
+            while ($row = $query->fetch(PDO::FETCH_OBJ)) {
+                $data = null;
+                $data['USER_ID'] = $row->USER_ID;
+                $data['USER_NAME'] = $row->USER_NAME;
+                $data['TEST_ID'] = $row->TEST_ID;
+                $data['TEST_NAME'] = $row->TEST_NAME;
+                $data['LIKE_COUNT'] = $row->LIKE_COUNT;
+                $data['SOLVING_COUNT'] = $row->SOLVING_COUNT;
+                $data['CREATED_DATE'] = $row->CREATED_DATE;
+                $data_all[] = $data;
+            }
+            return $data_all;
+            // return $query->debugDumpParams();
+        } catch (Exception $e) {
+            echo $e;
+            return false;
+        }
+    }
+
+    /**
+     * Ahli Private testlaryny getirp beryar (archive dan galanlaryny)
+     * 
+     * @param int $user_id User_id sy
+     * @param int $start nacenji testdan bashlajagy. Default 0
+     * @param int $limit naceden aljagy. Default = 10 
+     * @param string $search_text search ucin goyuldy default ''
+     * @param string $language dile gora search ucin goyuldy default ahli diller. Ugratmak cuin TM, EN, RU. ! EGERDE BIR DIL GOYSAN HER SCROLLDA UGRATMANY UNUTMA
+     * @return array 
+     * @author Agamyrat C.
+     * 
+     */
+    public static function getMyPrivateTests($user_id, $start = 0, $limit = 10, $search_text = '', $language = '')
+    {
+        try {
+            $data_all = [];
+            $db = new Database;
+            if ($language != '') {
+                $language = ' AND tests.LANGUAGE = "' . $language . '" ';
+            }
+
+            $sql = 'SELECT 
+                    users.USER_ID, 
+                    CONCAT("@",users.USER_NAME) USER_NAME, 
+                    tests.TEST_ID, 
+                    tests.TEST_NAME, 
+                    tests.DESCRIPTION, 
+                    LIKE_COUNT, 
+                    DISLIKE_COUNT, 
+                    SOLVING_COUNT, 
+                    DATE_FORMAT(tests.CREATE_TIME,\'%d.%m.%Y\') CREATED_DATE
+            FROM tests
+            LEFT JOIN users ON users.USER_ID = tests.CREATED_BY
+            WHERE tests.REMOVED = 0 AND IS_PUBLIC = 0 AND tests.CREATED_BY = :user_id AND (tests.DESCRIPTION LIKE :search_text or tests.TEST_NAME LIKE :search_text or tests.KEYWORDS LIKE :search_text) 
+            ' . $language . '
+            ORDER BY tests.LAST_UPDATE_TIME DESC
+            LIMIT ' . (int)$start . ', ' . (int)$limit;
+            $query = $db->prepare($sql);
+            $query->execute(
+                [
+                    ':search_text' => "%$search_text%",
+                    ':user_id' => $user_id
+                ]
+            );
+
+            while ($row = $query->fetch(PDO::FETCH_OBJ)) {
+                $data = null;
+                $data['USER_ID'] = $row->USER_ID;
+                $data['USER_NAME'] = $row->USER_NAME;
+                $data['TEST_ID'] = $row->TEST_ID;
+                $data['TEST_NAME'] = $row->TEST_NAME;
+                $data['LIKE_COUNT'] = $row->LIKE_COUNT;
+                $data['SOLVING_COUNT'] = $row->SOLVING_COUNT;
+                $data['CREATED_DATE'] = $row->CREATED_DATE;
+                $data_all[] = $data;
+            }
+            return $data_all;
+            // return $query->debugDumpParams();
+        } catch (Exception $e) {
+            echo $e;
+            return false;
+        }
+    }
+
+ /**
+     * Ahli PUBLIC testlaryny getirp beryar (archive dan galanlaryny)
+     * 
+     * @param int $user_id User_id sy
+     * @param int $start nacenji testdan bashlajagy. Default 0
+     * @param int $limit naceden aljagy. Default = 10 
+     * @param string $search_text search ucin goyuldy default ''
+     * @param string $language dile gora search ucin goyuldy default ahli diller. Ugratmak cuin TM, EN, RU. ! EGERDE BIR DIL GOYSAN HER SCROLLDA UGRATMANY UNUTMA
+     * @return array 
+     * @author Agamyrat C.
+     * 
+     */
+    public static function getMyPublicTests($user_id, $start = 0, $limit = 10, $search_text = '', $language = '')
+    {
+        try {
+            $data_all = [];
+            $db = new Database;
+            if ($language != '') {
+                $language = ' AND tests.LANGUAGE = "' . $language . '" ';
+            }
+
+            $sql = 'SELECT 
+                    users.USER_ID, 
+                    CONCAT("@",users.USER_NAME) USER_NAME, 
+                    tests.TEST_ID, 
+                    tests.TEST_NAME, 
+                    tests.DESCRIPTION, 
+                    LIKE_COUNT, 
+                    DISLIKE_COUNT, 
+                    SOLVING_COUNT, 
+                    DATE_FORMAT(tests.CREATE_TIME,\'%d.%m.%Y\') CREATED_DATE
+            FROM tests
+            LEFT JOIN users ON users.USER_ID = tests.CREATED_BY
+            WHERE tests.REMOVED = 0 AND IS_PUBLIC = 1 AND IS_ALLOWED = 1 AND tests.CREATED_BY = :user_id AND (tests.DESCRIPTION LIKE :search_text or tests.TEST_NAME LIKE :search_text or tests.KEYWORDS LIKE :search_text) 
+            ' . $language . '
+            ORDER BY tests.LAST_UPDATE_TIME DESC
+            LIMIT ' . (int)$start . ', ' . (int)$limit;
+            $query = $db->prepare($sql);
+            $query->execute(
+                [
+                    ':search_text' => "%$search_text%",
+                    ':user_id' => $user_id
+                ]
+            );
+
+            while ($row = $query->fetch(PDO::FETCH_OBJ)) {
+                $data = null;
+                $data['USER_ID'] = $row->USER_ID;
+                $data['USER_NAME'] = $row->USER_NAME;
+                $data['TEST_ID'] = $row->TEST_ID;
+                $data['TEST_NAME'] = $row->TEST_NAME;
+                $data['LIKE_COUNT'] = $row->LIKE_COUNT;
+                $data['SOLVING_COUNT'] = $row->SOLVING_COUNT;
+                $data['CREATED_DATE'] = $row->CREATED_DATE;
+                $data_all[] = $data;
+            }
+            return $data_all;
+            // return $query->debugDumpParams();
+        } catch (Exception $e) {
+            echo $e;
+            return false;
+        }
+    }
+
+    /**
      * Testy kopyalamak ucin.
      *
      * @param int $test_id kopyalanjak testyn idsy

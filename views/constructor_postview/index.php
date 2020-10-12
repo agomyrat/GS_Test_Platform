@@ -91,7 +91,7 @@
                      </div>
                   </div>             
                   <div class="row btns">
-                     <button class="btn">Check Test</button>
+                     <a class="btn" href="<?='../'.$test_id?>">Check Test</a>
                      <button type="submit" class="btn">Publish Test</button>
                   </div>
                </div>

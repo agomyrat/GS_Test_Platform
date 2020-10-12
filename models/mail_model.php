@@ -30,6 +30,33 @@ class Mail extends Model
         }
     }
 
+    /**
+     * feedback galdyrmak ucin
+     * 
+     * @param string $user_id Ulanyjy ID
+     * @param string $mail_text Mail texty 
+     * @return BOOL true false
+     * @author Agamyrat C.
+     * 
+     */
+    public static function setFeedback($user_id, $mail_text)
+    {
+        try {
+            $db = new Database;
+            $sql = 'INSERT mails(USERNAME,EMAIL,MAIL_TEXT) 
+                    SELECT CONCAT(FIRST_NAME," ", SURNAME), E_MAIL, :mail_text FROM users WHERE USER_ID = :user_id LIMIT 1';
+            $query = $db->prepare($sql);
+            $query->execute([
+                ':mail_text' => htmlspecialchars($mail_text),
+                ':user_id' => $user_id
+            ]);
+            return true;
+        } catch (Exception $e) {
+            echo $e;
+            return false;
+        }
+    }
+
 
     /**
      * Ugradylan maily Moderator okandan son okady etmeli.

@@ -104,6 +104,7 @@ const opacityEffect = () => {
 
 
 const mobileRotate = () => {
+   console.log(document.querySelector('.rotate-bg'))
    if (window.innerWidth < 500) {
       document.querySelector('.rotate-bg').style.display = "flex";
 

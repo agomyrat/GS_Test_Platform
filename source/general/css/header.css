@@ -1,4 +1,16 @@
+@font-face {
+   font-family: Montserrat;
+   src: url('../fonts/montserrat/Montserrat-Regular.otf');
+}
 
+@font-face {
+   src: url('../fonts/montserrat/Montserrat-Bold.otf');
+   font-family: Montserrat-Bold;
+}
+
+* {
+   font-family: Montserrat;
+}
 body{
    margin: 0;
    box-sizing: border-box;
@@ -13,7 +25,7 @@ header.nav-header {
    position: fixed;
    top: 0;
    left: 0;
-   z-index: 2;
+   z-index: 3;
 }
 header.nav-header  nav {
    width: 95%;
@@ -145,11 +157,12 @@ ul.not::-webkit-scrollbar-thumb{
    background: #a7a7a7;
 }
 ul.profile{
-   min-width: 150px;
+   min-width: 200px;
+   padding: 0 1rem;
 }
-ul.language {
+/* ul.language {
    width: 100px;
-}
+} */
 .collapse {
    line-height: 40px;
    font-size: 1.6rem;

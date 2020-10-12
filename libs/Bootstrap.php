@@ -2,8 +2,11 @@
 	class Bootstrap {
 		function __construct(){
 		Session::init();
-		Session::set('domain',URL);
+		!Session::has(LANG) ? Session::set(LANG,'TM') : null;
 		$this->url = $this->getUrl();
+		// echo Session::get(USER_ID);
+		// echo Cookie::get(USER_ID);
+		// die;
 		if(Session::isNumber(USER_ID) || Cookie::isNumber(USER_ID)){
 			if(!Session::has(USER_ID)){Session::set(USER_ID,Cookie::get(USER_ID));}
 			

@@ -1,13 +1,13 @@
 <?php 
      return[
         'css'=>[
-            'source/new_password/css/style.css',
-            'source/forgot_password/css/style.css',
-            'source/general/css/navbar.css'
+            URL.'source/new_password/css/style.css',
+            URL.'source/forgot_password/css/style.css',
+            URL.'source/general/css/navbar.css'
         ],
         'js'=>[
-            'source/general/js/jquery/jquery-3.4.1.min.js',
-            'source/new_password/js/script.js'
+            URL.'source/general/js/jquery/jquery-3.4.1.min.js',
+            URL.'source/new_password/js/script.js'
         ]
     ];
 ?>

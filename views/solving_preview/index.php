@@ -42,7 +42,7 @@ Polyglot::setPage('solving_preview');
                </div>
                <div class="info">
                   <span><?= Polyglot::translate('Solved by'); ?>:</span>
-                  <span><?= $test_arr['SOLVING_COUNT'] ?> people</span>
+                  <span><?= $test_arr['SOLVING_COUNT'] ?> <?= Polyglot::translate('people'); ?></span>
                </div>
                <div class="info">
                   <span><?= Polyglot::translate('Liked'); ?>:</span>

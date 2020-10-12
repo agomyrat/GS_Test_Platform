@@ -122,6 +122,9 @@ avatar.addEventListener("change", function (event) {
 
 //   sendData();
 }); */
+// var formData = new FormData($('#form')[0]);
+// formData.getAll('profile');
+// formData.values()
 
 $('#form').on('submit',(function(e) {
   e.preventDefault();
@@ -135,21 +138,24 @@ $('#form').on('submit',(function(e) {
     ) {
     } else {
       inputs[datas[i].name] = {
-        value: datas[i].value.trim(),
         isGlobal: globals[i] && globals[i].value || 0,
       };
     }
   }
   //formdata.append("datas", inputs);
   console.log(inputs)
-  //var formData = new FormData(this);
+  var formData = new FormData(this);
+  formData.append('inputs',JSON.stringify(inputs));
+  formData.append('oldImage',$('#output').attr('data-image'));
   //formData.append('datas',inputs);
   $.ajax({
   type: 'post',
   url: 'profile/myProfile',
-  data: inputs,
+  contentType : false,
+  processData : false,
+  data: formData,
   success: function(result){     
-
+    location.reload();
   },
   error: function(error){
     console.log(error,'myProfile error boldy');

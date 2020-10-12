@@ -158,7 +158,6 @@ const onloadFunction = () => {
       success: function (data) {
          /*...*/
          var response = JSON.parse(data)
-         console.log(response)
          if (response != 0) {
             main.questions = response.questions;
             main.orderQuestion = response.orderQuestion;

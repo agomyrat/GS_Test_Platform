@@ -15,7 +15,7 @@
          <ul class="side-bar-list">
             <li data-type="Pinned Tests"><a href="#"><i id="icons" class="far fa-bookmark"></i><?= Polyglot::translate('Pinned tests'); ?></a></li>
             <li data-type="History"><a href="#"><i id="icons" class="fas fa-history"></i><?= Polyglot::translate('History'); ?></a></li>
-            <li data-type="My tests"><a href=""><i id="icons" class="far fa-file-alt"></i><?= Polyglot::translate('My tests'); ?></a></li>
+            <li data-type="My tests"><a href="<?=URL."main/mytests"?>"><i id="icons" class="far fa-file-alt"></i><?= Polyglot::translate('My tests'); ?></a></li>
          </ul>
       </div>
       <div class="create-test-block">
@@ -45,7 +45,7 @@
          <form>
             <textarea class="feedback-input"></textarea>
             <br>
-            <input type="submit" class="submit-feedback">
+            <input type="submit" class="submit-feedback" value="<?= Polyglot::translate('Submit'); ?>">
          </form>
       </div>
    </div>
@@ -98,10 +98,7 @@
 <script>
    const data_language = <?= Polyglot::forJS(); ?>;
 
-   console.log(data_language['History']['TM'])
-
    function js_translater(key = '') {
       return data_language[key]['<?= Session::get(LANG); ?>'];
    }
-   console.log(js_translater('History'))
 </script>

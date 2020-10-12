@@ -1,17 +1,18 @@
 <?php 
      return[
         'css'=>[
-            "source/general/icons/icons/all.css",
-            'source/general/css/header.css',
-            'source/profile/css/style.css',
-            'source/profile/css/profile.css',
+            URL."source/general/icons/icons/all.css",
+            URL.'source/general/css/header.css',
+            URL.'source/profile/css/style.css',
+            URL.'source/profile/css/profile.css',
         ],
         'js'=>[
-            'source/general/js/jquery/jquery-3.4.1.min.js',
-            "source/general/js/header.js",
-            "source/profile/js/main.js",
-            "source/profile/js/functions.js",
-            "source/profile/js/password.js"
+            URL.'source/general/js/jquery/jquery-3.4.1.min.js',
+            URL."source/general/js/header.js",
+            URL."source/general/js/notification.js",
+            URL."source/profile/js/main.js",
+            URL."source/profile/js/functions.js",
+            URL."source/profile/js/password.js"
         ]
     ];
 ?>

@@ -8,6 +8,10 @@
 
 		public function createUser($id){
 			$this->user = new User($id);
+			if(empty($this->user->data['IMAGE'])){
+				$this->user->data['IMAGE'] = 'profile.png';
+			}
+			$this->view->user = $this->user;
 		}
 
 		public function error(){

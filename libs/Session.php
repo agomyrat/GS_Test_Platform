@@ -28,8 +28,11 @@
 			return isset($_SESSION[$key]) ? is_numeric(Session::get($key)) : false;
 		} 
 		
-		public static function destroy(){
-			//unset($_SESSION);
+		public static function destroy($key = null){
+			if($key){
+				unset($_SESSION[$key]);
+				return;
+			}
 			session_destroy();
 		}
 
