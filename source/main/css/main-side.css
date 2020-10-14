@@ -125,8 +125,9 @@ input[type="search"]::-webkit-search-results-decoration {
    filter: brightness(55%);
 }
 .card article{
-   font-size: 1.1rem;
+   font-size: 1rem;
    padding: 0.5rem;
+   height: 65px;
 }
 .card .info-test{
    font-size: 0.9rem;

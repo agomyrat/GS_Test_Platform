@@ -12,7 +12,7 @@ Polyglot::setPage('solving_preview');
             </div>
             <div class="right">
                <div class="test-title">
-                  <h1>
+                  <h1 class="substring">
                      <?= $test_arr['TEST_NAME'] ?>
                   </h1>
                </div>

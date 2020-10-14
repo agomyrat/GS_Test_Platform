@@ -1,2 +1,2 @@
 <?php
-define('URL', 'http://localhost/TestPlatform/ts/');
+define('URL', 'http://localhost/ts1/');

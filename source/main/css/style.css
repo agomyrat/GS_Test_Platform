@@ -50,7 +50,8 @@ main{
 	/* min-height: 300vh; */
 }
 h2{
-	font-weight: 400;
+   font-weight: 400;
+   color: rgb(82, 82, 82);
 }
 
 /*SIDE BAR*/

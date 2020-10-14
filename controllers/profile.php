@@ -37,7 +37,7 @@
             $image_name = isset($_FILES['img']) ?  : 'profile.png';
             if(!empty($_FILES['img']['name'])){
                 $image_name = Helper::uploadImage($_FILES['img']);
-                $oldImage != 'profile.jpg' ? Helper::deleteFiles($oldImage): null;
+                $oldImage != 'profile.png' ? Helper::deleteFiles($oldImage): null;
             }else{
                 $image_name = $oldImage;
             }

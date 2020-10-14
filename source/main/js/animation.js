@@ -72,3 +72,23 @@ modal.addEventListener('mouseover', (e) => {
 modal.addEventListener('mouseleave', (e) => {
    modalWrapper.addEventListener('click', show, false)
 });
+
+
+function cutLongStrings() {
+   const substring = document.querySelectorAll('.substring');
+
+   console.log(substring)
+
+   for(let x = 0 ; x < substring.length; x++){
+      const sub = substring[x].innerText;
+      let res = '';
+
+      if(sub.length > 40){
+         res = sub.substr(0,40);
+         substring[x].innerHTML = res + "..."
+      }
+      else{
+         substring[x].innerHTML = sub ;
+      }
+   }
+}

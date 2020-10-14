@@ -8,8 +8,6 @@ let count = null;
 let list_type;
 let query;
 
-console.log(data_language)
-console.log(js_translater('History'));
 
 // Set Loading
 function setLoading(par) {
@@ -94,7 +92,7 @@ function createUi(data) {
                    `<img src="uploads/test.png" alt="">`
                    }
                </div>
-               <article>
+               <article class="substring">
                   ${user.TEST_NAME}
                </article>
             </a>
@@ -106,6 +104,7 @@ function createUi(data) {
          `
    });
    document.querySelector('.cards').innerHTML += html ;
+   cutLongStrings()
 }
 
 

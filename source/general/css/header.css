@@ -105,9 +105,10 @@ header.nav-header nav>ul>li>.lang {
    margin: 0;
    background: #fff;
    list-style: none;
-   box-shadow: 0 0 5px #b0a9a9;
+   box-shadow: 0px 0px 5px -1px rgb(111 111 111);
    right: 0;
    display: none;
+   
 }
 .hover-block li {
    display: flex;

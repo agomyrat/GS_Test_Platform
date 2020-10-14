@@ -60,7 +60,7 @@
                </div>
                <div class="right">
                   <div class="test-img-wrapper">
-                     <img src="./img/profile.jpg" alt="" id="photo" />
+                     <img src="./img/profile.png" alt="" id="photo" />
                   </div>
                   <div class="row">
                      <div class="input">

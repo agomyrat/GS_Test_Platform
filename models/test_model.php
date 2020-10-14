@@ -675,7 +675,7 @@ class _Test extends Model
             $returnDatas["DESCRIPTION"] = $fetchedDatas['DESCRIPTION'];
             $returnDatas["LANGUAGE"] = $fetchedDatas['LANGUAGE'];
             $returnDatas["IS_PUBLIC"] = $fetchedDatas['IS_PUBLIC'];
-            $returnDatas["TEST_IMAGE"] = !empty($fetchedDatas['TEST_IMAGE']) ? $fetchedDatas['TEST_IMAGE'] : 'profile.jpg';
+            $returnDatas["TEST_IMAGE"] = !empty($fetchedDatas['TEST_IMAGE']) ? $fetchedDatas['TEST_IMAGE'] : 'test.png';
             $returnDatas["GIVEN_TIME"] = $fetchedDatas['GIVEN_TIME'];
             $returnDatas["START_DATE"] = $fetchedDatas['START_DATE'];
             $returnDatas["END_DATE"] = $fetchedDatas['END_DATE'];
@@ -692,7 +692,7 @@ class _Test extends Model
             $returnDatas['SOLVING_COUNT'] = $fetchedDatas['SOLVING_COUNT'];
             $returnDatas['CREATE_TIME'] = $fetchedDatas['CREATE_TIME'];
             //$returnDatas['PASSWORD'] = $fetchedDatas['PASSWORD'];
-            $returnDatas['IMAGE'] = !empty($fetchedDatas['IMAGE']) ? $fetchedDatas['IMAGE'] : 'profile.jpg';
+            $returnDatas['IMAGE'] = !empty($fetchedDatas['IMAGE']) ? $fetchedDatas['IMAGE'] : 'profile.png';
 
 
             return $returnDatas;

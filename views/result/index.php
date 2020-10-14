@@ -2,27 +2,14 @@
       <h2>Results Page</h2>
       <!-- CHART -->
       <section>
-            <div id="container" style="width: 75%;">
+            <div id="container" >
                <canvas id="canvas"></canvas>
             </div>
-            <!-- <button id="randomizeData">Randomize Data</button>
-            <button id="addDataset">Add Dataset</button>
-            <button id="removeDataset">Remove Dataset</button>
-            <button id="addData">Add Data</button>
-            <button id="removeData">Remove Data</button> -->
-            
-      </section>
-
-      <section>
-         <div id="canvas-holder" style="width:40%">
+            <div id="canvas-holder">
             <canvas id="chart-area"></canvas>
          </div>
-         <!-- <button id="randomizeData">Randomize Data</button>
-         <button id="addDataset">Add Dataset</button>
-         <button id="removeDataset">Remove Dataset</button>
-         <button id="addData">Add Data</button>
-         <button id="removeData">Remove Data</button>
-         <button id="changeCircleSize">Semi/Full Circle</button> -->
+
+         
       </section>
 
       <!-- TABLE -->
@@ -50,7 +37,7 @@
 
    <div class="rotate-bg">
       <div class="rotate-block">
-         <img src="img/rotate.gif" alt="">
+         <img src="source/general/img/rotate.gif" alt="">
          <h1>Please rotate your device</h1>
       </div>
    </div>

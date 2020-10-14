@@ -115,7 +115,9 @@ $("#form").on('submit',function(event){
 // KEYWORDS
 var txt = document.getElementById('txt');
 var list = document.getElementById('list');
-var items = ['PHP', 'React.js', 'WordPress'];
+
+// Keywords
+var items = ['Bilim', 'Matematika', 'Programming'];
 
 txt.addEventListener('keypress', function (e) {
    if (e.key === 'Enter') {

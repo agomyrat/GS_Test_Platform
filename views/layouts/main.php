@@ -64,6 +64,8 @@
                </div>
 
                <ul class="hover-block profile">
+                  <li class="fullname" style="color: grey;">Parahat Iljanov</li>
+                  <li class="username" style="color: grey; font-size:0.8rem;">@parahatreis</li>
                   <li>
                      <a href="<?= URL."profile"?>" class="normal"><i class="far fa-user-circle"></i>&nbsp;<?= Polyglot::translate('Profile') ?></a>
                   </li>
