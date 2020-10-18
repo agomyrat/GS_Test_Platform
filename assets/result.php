@@ -1,0 +1,19 @@
+<?php 
+     return[
+        'css'=>[
+            URL.'source/general/css/header.css',
+            URL."source/result/js/DataTables/datatables.css",
+            URL.'source/general/icons/icons/all.css',
+            URL."source/result/css/style.css",
+        ],
+        'js'=>[
+            URL."source/general/js/jquery/jquery-3.4.1.min.js",
+            URL."source/general/js/header.js",
+            URL."source/result/js/animation.js",
+            URL."source/result/js/DataTables/datatables.js",
+            URL."source/result/js/Chart.js/Chart.min.js",
+            URL."source/result/js/utils.js",
+            URL."source/result/js/myChart.js"
+        ]
+    ];
+?>

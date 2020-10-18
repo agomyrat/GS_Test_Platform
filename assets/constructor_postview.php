@@ -1,0 +1,16 @@
+<?php 
+     return[
+        'css'=>[
+            URL.'source/test_constructor/css/profile.css',
+            URL.'source/test_constructor/css/postview.css',
+            URL.'source/general/icons/icons/all.min.css',
+            URL.'source/general/css/header.css',
+        ],
+        'js'=>[
+            URL.'source/general/js/jquery/jquery-3.4.1.min.js',
+            URL."source/general/js/header.js",
+            URL.'source/test_constructor/js/functions.js',
+            URL.'source/test_constructor/js/postview.js',
+        ]
+    ];
+?>

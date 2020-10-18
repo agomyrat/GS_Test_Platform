@@ -1,0 +1,9 @@
+In sonunda edilmeli ishler:
+	Internede yuklenmezden on:
+		SOURCE papkada hemme ulanylmajak zatlary ayyrmaly
+
+shu wagtlykca signupda dateler insert edilenok
+
+Teste create button basylanda pop chykmaly 'dineje testin adyny girizmek uchin'
+
+Dashyndan hic hili js, css, fonts sourcelere link bermeli dal.Download edip goymaly!

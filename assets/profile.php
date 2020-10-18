@@ -1,0 +1,21 @@
+<?php 
+     return[
+        'css'=>[
+            URL."source/general/icons/icons/all.css",
+            URL.'source/general/css/header.css',
+            URL.'source/profile/css/style.css',
+            URL.'source/profile/css/profile.css',
+            URL.'source/general/css/alert.css',
+        ],
+        'js'=>[
+            URL.'source/general/js/jquery/jquery-3.4.1.min.js',
+            URL."source/general/js/alert.js",
+            URL."source/general/js/validator/validator.min.js",
+            URL."source/general/js/header.js",
+            // URL."source/general/js/notification.js",
+            URL."source/profile/js/main.js",
+            URL."source/profile/js/functions.js",
+            URL."source/profile/js/password.js"
+        ]
+    ];
+?>

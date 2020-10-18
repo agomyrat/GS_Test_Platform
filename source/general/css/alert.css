@@ -1,0 +1,14 @@
+.alert{
+   padding: 1rem 1.5rem ;
+   background-color: #1752004b;
+   color: white;
+   position: absolute;
+   top: -15%;
+   left: 50%;
+   transform: translate(-50%, 0%);
+   box-shadow: 0 0 20px grey;
+   z-index: 1000;
+}
+.active-alert{
+   top: 15%;
+}

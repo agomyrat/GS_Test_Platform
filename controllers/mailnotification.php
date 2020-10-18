@@ -1,0 +1,88 @@
+<?php
+
+class Mailnotification extends Controller
+{
+
+	function __construct()
+	{
+		parent::__construct();
+		$this->view->layout = "logo";
+	}
+
+	public function index()
+	{
+		Polyglot::setPage('mail_notification');
+		$this->view->render('mail_notification/index');
+	}
+
+	public function notifyPassword($array = null)
+	{
+		if (isset($_POST['mail'])) {
+			$mail = $_POST['mail'];
+			$user_id = User::_getUserId('E_MAIL', $mail);
+			if (!empty($user_id)) {
+				$data = User::_get($user_id, ['E_MAIL', 'VERIFY_CODE']);
+				$address = $data['E_MAIL'];
+				$link = URL . 'password/newpassword/' . $data['VERIFY_CODE'];
+
+				$this->sendMail($address, [
+					'templateName' => 'register',
+					'link' => $link,
+					'subject' => 'Link for new password!'
+				]);
+
+				Polyglot::setPage('mail_notification');
+				$this->view->render('mail_notification/password');
+			} else {
+				echo "Bular mail bizin yazgylarymyzda yok! Belki sheyle bolup biler, beyle bolup biler...! Registrasiya bolun!";
+			}
+		}
+	}
+
+	public function notifyLogin()
+	{
+		//account activate edilmezden login boljak bolsa goyberilmeli page
+	}
+
+	public function contactUs()
+	{
+		if (!empty($_POST)) {
+			$name = $_POST['name'];
+			$email = $_POST['email'];
+			$message = $_POST['message'];
+
+			Mail::setMail($name, $email, $message);
+
+			$this->sendMail('erejepow00@mail.ru', [
+				'templateName' => 'contact_us',
+				'name' => $name,
+				'email' => $email,
+				'message' => $message
+			]);
+
+			echo "EMAIL HAS BEEN SENT!";
+		} else {
+			echo 0;
+		}
+	}
+
+	public function sendAgain()
+	{
+		$data = User::_get(Cookie::get(REGISTRATED), ['E_MAIL', 'VERIFY_CODE']);
+		$address = $data['E_MAIL'];
+		$link = URL . "welcome/activateUser/" . $data['VERIFY_CODE'];
+		Polyglot::setPage('registrate_template');
+		$address_ = Others::get();
+		$this->sendMail($address, [
+			'templateName' => 'register',
+			'link' => $link,
+			'subject' => Polyglot::translate('Registration letter'),
+			'welcome' => Polyglot::translate('welcome'),
+			'mail_body' => Polyglot::translate('mail_body'),
+			'set_active' => Polyglot::translate('set_active'),
+			'sended_by_GS' => Polyglot::translate('sended_by_GS'),
+			'not_send_mail' => Polyglot::translate('not_send_mail'),
+			'address_' => $address_['ADDRESS'] . ' | ' . $address_['TEL']
+		]);
+	}
+}

@@ -1,0 +1,11 @@
+<?php 
+     return[
+        'css'=>[
+            URL.'source/login/css/loginpage.css',
+        ],
+        'js'=>[
+            URL.'source/general/js/jquery/jquery-3.4.1.min.js',
+            URL.'source/login/js/main.js'
+        ]
+    ];
+?>
